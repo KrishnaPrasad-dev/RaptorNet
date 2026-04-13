@@ -1,0 +1,24 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Next.js app in subfolder
+raptornet/node_modules/
+raptornet/.next/
+raptornet/out/
+raptornet/.vercel/
+
+# TypeScript cache
+raptornet/*.tsbuildinfo
