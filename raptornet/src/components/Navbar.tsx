@@ -29,22 +29,24 @@ export default function Navbar() {
       <div className="flex items-center justify-between gap-6">
         <div className="flex items-center gap-8 lg:gap-10">
           <Link href="/" className="shrink-0" aria-label="RaptorNet home">
-            <div className="flex items-center gap-3">
-              <div className="relative h-9 w-9 overflow-hidden rounded-full border border-white/10 bg-white/5 shadow-[0_0_18px_rgba(255,255,255,0.06)]">
+            <div className="flex items-center gap-4">
+              <div className="relative h-12 w-12 overflow-hidden rounded-full border border-white/10 bg-white/5 shadow-[0_0_20px_rgba(255,255,255,0.08)]">
                 <Image
                   src="/rn.png"
                   alt="Raptor icon"
                   fill
-                  sizes="36px"
-                  className="object-cover"
+                  sizes="48px"
+                  quality={100}
+                  unoptimized
+                  className="object-cover object-[44%_48%]"
                   priority
                 />
               </div>
               <p className="flex items-baseline gap-1 text-white">
-                <span className={`${raptorFont.className} text-[1.45rem] font-semibold leading-none tracking-[0.08em] uppercase text-white`}>
+                <span className={`${raptorFont.className} text-[1.7rem] font-semibold leading-none tracking-[0.08em] uppercase text-white`}>
                   Raptor
                 </span>
-                <span className={`${netFont.className} text-[0.85rem] font-medium leading-none tracking-[0.34em] uppercase text-white/72`}>
+                <span className={`${netFont.className} text-[0.95rem] font-medium leading-none tracking-[0.32em] uppercase text-white/72`}>
                   Net
                 </span>
               </p>
