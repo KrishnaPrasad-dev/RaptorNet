@@ -53,8 +53,10 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden items-center gap-8 lg:flex">
-            <Link href="/#about-guild" className="text-sm text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020]">About Guild</Link>
-            <Link href="/resources" className="text-sm text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020]">Resources</Link>
+            <Link href="/#about-guild" className="text-md text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020]">About Guild</Link>
+            <Link href="/resources" className="text-md text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020]">Resources</Link>
+            <Link href="/admin" className="text-md text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020]">Admin</Link>
+            <Link href="/admin/applications" className="text-md text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020]">Applications</Link>
             <span className="text-xs font-medium tracking-[0.2em] uppercase text-white/45">Builders only</span>
           </div>
         </div>
@@ -97,6 +99,8 @@ export default function Navbar() {
         <div className="absolute left-0 top-full z-50 mt-3 flex w-full flex-col gap-1 rounded-b-[1.25rem] border border-white/10 border-t-0 bg-[#0d1117] p-5 shadow-2xl md:hidden">
           <Link href="/#about-guild" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">About Guild</Link>
           <Link href="/resources" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">Resources</Link>
+          <Link href="/admin" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">Admin Profile</Link>
+          <Link href="/admin/applications" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">Applications</Link>
 
           <Link
             href="/apply"

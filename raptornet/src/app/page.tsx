@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import Navbar from "@/components/Navbar";
 import RaptorModelCanvas from "@/components/RaptorModelCanvas";
+import InteractiveQuoteBox from "@/components/InteractiveQuoteBox";
 
 export default function Home() {
   return (
@@ -17,7 +18,7 @@ export default function Home() {
         >
           <div className="pointer-events-none absolute left-[34%] right-[-10%] top-[8%] bottom-0 hidden lg:block">
             <div className="absolute inset-0 rounded-[3rem] bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.08),transparent_48%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_32%)] opacity-90" />
-            <div className="absolute inset-x-8 top-4 bottom-0 overflow-hidden rounded-[2.25rem]">
+            <div className="absolute inset-x-8 top-4 bottom-0 overflow-hidden rounded-l-[2.25rem] rounded-r-[3.1rem]">
               <div className="absolute inset-0 scale-[1.22] origin-center">
                 <RaptorModelCanvas />
               </div>
@@ -34,7 +35,7 @@ export default function Home() {
             <h1 className="mt-4 max-w-md text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-[3.4rem] lg:leading-[0.95]">
               Build together. Ship with intent.
             </h1>
-            <p className="mt-4 max-w-md text-sm leading-6 text-white/72 sm:text-base pr-3 mb-4">
+            <p className="mt-4 max-w-[34ch] text-base leading-7 text-white/78 sm:text-[1.05rem] pr-3 mb-4">
               A guild from Guru Nanak University for students who build real projects, dive into tech, and show up at hackathons — grades optional.
             </p>
           </div>
@@ -49,7 +50,7 @@ export default function Home() {
           <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
             We build. We compete. Grades can wait.
           </h2>
-          <p className="mt-4 max-w-3xl text-sm leading-6 text-white/72 sm:text-base">
+          <p className="mt-4 max-w-2xl text-base leading-7 text-white/78 sm:text-[1.05rem]">
             RaptorNet is a guild of GNU students who chose a different path. When everyone else is cramming notes, we're deep in codebases, pulling all-nighters on projects that actually matter, and walking into hackathons ready to compete. No assignments. No attendance. No bullshit. Just a pack of builders who give everything to what they're building — because that's what separates the ones who make it from the ones who just pass.
           </p>
         </div>
@@ -61,8 +62,8 @@ export default function Home() {
             <p className="text-[10px] font-bold tracking-[0.22em] uppercase text-red-400/85">
               Who we are
             </p>
-            <h3 className="mt-3 text-xl font-semibold">Builders & Makers</h3>
-            <p className="mt-3 text-sm leading-6 text-white/70">
+            <h3 className="mt-3 text-[1.35rem] font-semibold">Builders & Makers</h3>
+            <p className="mt-3 max-w-[34ch] text-base leading-7 text-white/76">
               We don't wait for a course to teach us. We pick a project, figure
               it out, and ship it — frontend, backend, AI, whatever it takes.
             </p>
@@ -72,8 +73,8 @@ export default function Home() {
             <p className="text-[10px] font-bold tracking-[0.22em] uppercase text-red-400/85">
               What we do
             </p>
-            <h3 className="mt-3 text-xl font-semibold">Hackathons & Tech Events</h3>
-            <p className="mt-3 text-sm leading-6 text-white/70">
+            <h3 className="mt-3 text-[1.35rem] font-semibold">Hackathons & Tech Events</h3>
+            <p className="mt-3 max-w-[34ch] text-base leading-7 text-white/76">
               When a hackathon drops, everything stops. We form teams, go all
               in, and come back with something to show — win or not.
             </p>
@@ -83,8 +84,8 @@ export default function Home() {
             <p className="text-[10px] font-bold tracking-[0.22em] uppercase text-red-400/85">
               Who gets in
             </p>
-            <h3 className="mt-3 text-xl font-semibold">Vetted. Not Random.</h3>
-            <p className="mt-3 text-sm leading-6 text-white/70">
+            <h3 className="mt-3 text-[1.35rem] font-semibold">Vetted. Not Random.</h3>
+            <p className="mt-3 max-w-[34ch] text-base leading-7 text-white/76">
               This isn't an open group chat. Every member is handpicked. If
               you're here to actually build, you'll fit right in.
             </p>
@@ -93,8 +94,10 @@ export default function Home() {
       </section>
 
       <section className="relative mx-auto w-full max-w-7xl px-6 pb-20 sm:px-10 lg:px-12">
-        <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 sm:p-8 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">
-          <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-red-400/85">
+        <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 sm:p-8 transition-colors duration-150 ease-out hover:border-white/20 hover:bg-white/[0.04]">
+          <InteractiveQuoteBox />
+
+          <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-white/70">
             How to get in
           </p>
           <div className="mt-4 grid gap-4 sm:grid-cols-4">
@@ -102,7 +105,7 @@ export default function Home() {
               <p className="text-xs font-bold tracking-[0.14em] uppercase text-white/85">
                 01. Check if you qualify
               </p>
-              <p className="mt-2 text-sm text-white/72">
+              <p className="mt-2 text-base leading-7 text-white/76">
                 Read what we look for. Not grades — projects, curiosity, and the
                 drive to actually build something.
               </p>
@@ -111,7 +114,7 @@ export default function Home() {
               <p className="text-xs font-bold tracking-[0.14em] uppercase text-white/85">
                 02. Get your stuff ready
               </p>
-              <p className="mt-2 text-sm text-white/72">
+              <p className="mt-2 text-base leading-7 text-white/76">
                 GitHub, a project you're proud of, and a reason why you want
                 in. That's all we need.
               </p>
@@ -120,7 +123,7 @@ export default function Home() {
               <p className="text-xs font-bold tracking-[0.14em] uppercase text-white/85">
                 03. Apply
               </p>
-              <p className="mt-2 text-sm text-white/72">
+              <p className="mt-2 text-base leading-7 text-white/76">
                 Fill the form. No fluff, no essays. Just tell us who you are
                 and what you've built.
               </p>
@@ -129,7 +132,7 @@ export default function Home() {
               <p className="text-xs font-bold tracking-[0.14em] uppercase text-white/85">
                 04. We reach out
               </p>
-              <p className="mt-2 text-sm text-white/72">
+              <p className="mt-2 text-base leading-7 text-white/76">
                 If you're in, you'll hear from us. We review every application
                 personally — no auto-rejections.
               </p>

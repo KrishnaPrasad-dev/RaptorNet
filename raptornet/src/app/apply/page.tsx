@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import ApplicationForm from "@/components/ApplicationForm";
 
 export default function ApplyPage() {
   return (
@@ -16,7 +17,7 @@ export default function ApplyPage() {
               Apply to RaptorNet
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/72 sm:text-base">
-              This is where future members introduce themselves, show their work, and explain why they belong in a builder-first guild.
+              Submit your details here. We review names, academic background, projects, and public profiles before reaching out.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -33,44 +34,22 @@ export default function ApplyPage() {
                   What to include
                 </p>
                 <p className="mt-3 text-sm leading-6 text-white/72">
-                  GitHub, portfolio, hackathon work, or anything that proves you build.
+                  Name, email, college, branch, project link, GitHub, LinkedIn, LeetCode if any, and phone number.
                 </p>
               </div>
             </div>
           </div>
 
-          <aside className="rounded-[2rem] border border-white/10 bg-black/25 p-6 sm:p-8">
-            <p className="text-[10px] font-semibold tracking-[0.26em] uppercase text-red-200/85">
-              Application status
-            </p>
-            <h2 className="mt-3 text-2xl font-bold tracking-tight">
-              Form coming soon
-            </h2>
-            <p className="mt-4 text-sm leading-6 text-white/72">
-              The route now exists, so the deployment no longer returns NOT_FOUND. You can wire the actual submission flow here next.
-            </p>
+          <ApplicationForm />
+        </div>
 
-            <div className="mt-6 space-y-3 text-sm text-white/72">
-              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-                1. Submit your details
-              </div>
-              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-                2. Share one project
-              </div>
-              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-                3. Wait for review
-              </div>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/"
-                className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/85 transition hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white"
-              >
-                Back home
-              </Link>
-            </div>
-          </aside>
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Link
+            href="/"
+            className="rounded-full border border-white/10 bg-transparent px-5 py-2.5 text-sm font-medium text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+          >
+            Back home
+          </Link>
         </div>
       </section>
     </main>

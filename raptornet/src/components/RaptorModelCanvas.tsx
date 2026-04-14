@@ -122,7 +122,7 @@ export default function RaptorModelCanvas() {
   }
 
   return (
-    <div ref={containerRef} className="h-full w-full overflow-hidden rounded-[2.25rem]">
+    <div ref={containerRef} className="h-full w-full overflow-hidden">
       <Canvas
         camera={{ position: [0.2, 2.55, 6.9], fov: 30 }}
         dpr={[1, 1.5]}
