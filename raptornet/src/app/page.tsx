@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Navbar from "@/components/Navbar";
 import RaptorModelCanvas from "@/components/RaptorModelCanvas";
 
@@ -25,18 +26,16 @@ export default function Home() {
 
           <div
             id="about"
-            className="relative z-10 max-w-xl rounded-[2rem] border border-white/10 bg-black/20 p-6 backdrop-blur-[2px] sm:p-8 lg:max-w-lg lg:bg-transparent lg:p-0 lg:backdrop-blur-none"
+            className="relative z-10 max-w-xl rounded-[2rem] border border-white/10 bg-black/20 p-6 backdrop-blur-[2px] sm:p-8 lg:max-w-lg lg:bg-transparent lg:pl-8 lg:pr-0 lg:py-0 lg:backdrop-blur-none"
           >
-            <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-red-200/85">
-              Curated cohort for builders
+            <p className="text-[12px] font-semibold tracking-[0.28em] uppercase text-red-200/85 p-1 pt-4 relative">
+              Curated guild for builders
             </p>
             <h1 className="mt-4 max-w-md text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-[3.4rem] lg:leading-[0.95]">
-              Build with the pack. Ship with intent.
+              Build together. Ship with intent.
             </h1>
-            <p className="mt-4 max-w-md text-sm leading-6 text-white/72 sm:text-base">
-              A selective network from Guru Nanak University for students who
-              want to build real work, collaborate across domains, and compete
-              together at hackathons.
+            <p className="mt-4 max-w-md text-sm leading-6 text-white/72 sm:text-base pr-3 mb-4">
+              A guild from Guru Nanak University for students who build real projects, dive into tech, and show up at hackathons — grades optional.
             </p>
           </div>
         </div>
@@ -48,12 +47,10 @@ export default function Home() {
             What is RaptorNet
           </p>
           <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
-            A campus-first builder network with real output.
+            We build. We compete. Grades can wait.
           </h2>
           <p className="mt-4 max-w-3xl text-sm leading-6 text-white/72 sm:text-base">
-            RaptorNet is designed for students who want momentum: focused
-            cohorts, project sprints, and public showcases that create proof of
-            work. Every cycle is built around learning fast and shipping faster.
+            RaptorNet is a guild of GNU students who chose a different path. When everyone else is cramming notes, we're deep in codebases, pulling all-nighters on projects that actually matter, and walking into hackathons ready to compete. No assignments. No attendance. No bullshit. Just a pack of builders who give everything to what they're building — because that's what separates the ones who make it from the ones who just pass.
           </p>
         </div>
       </section>
@@ -62,34 +59,34 @@ export default function Home() {
         <div className="grid gap-4 md:grid-cols-3">
           <article className="rounded-2xl border border-white/10 bg-black/25 p-6 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
             <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-red-200/85">
-              Build Track
+              Who we are
             </p>
-            <h3 className="mt-3 text-xl font-semibold">Product + Frontend</h3>
+            <h3 className="mt-3 text-xl font-semibold">Builders & Makers</h3>
             <p className="mt-3 text-sm leading-6 text-white/70">
-              Turn ideas into usable products with rapid prototyping,
-              interaction design, and performance-focused implementation.
+              We don't wait for a course to teach us. We pick a project, figure
+              it out, and ship it — frontend, backend, AI, whatever it takes.
             </p>
           </article>
 
           <article className="rounded-2xl border border-white/10 bg-black/25 p-6 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
             <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-red-200/85">
-              Systems Track
+              What we do
             </p>
-            <h3 className="mt-3 text-xl font-semibold">Backend + Infra</h3>
+            <h3 className="mt-3 text-xl font-semibold">Hackathons & Tech Events</h3>
             <p className="mt-3 text-sm leading-6 text-white/70">
-              Learn architecture, APIs, cloud workflows, and deployment habits
-              needed to run reliable products under pressure.
+              When a hackathon drops, everything stops. We form teams, go all
+              in, and come back with something to show — win or not.
             </p>
           </article>
 
           <article className="rounded-2xl border border-white/10 bg-black/25 p-6 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
             <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-red-200/85">
-              Compete Track
+              Who gets in
             </p>
-            <h3 className="mt-3 text-xl font-semibold">Hackathons + Demos</h3>
+            <h3 className="mt-3 text-xl font-semibold">Vetted. Not Random.</h3>
             <p className="mt-3 text-sm leading-6 text-white/70">
-              Form teams, practice demo storytelling, and enter hackathons with
-              production-ready builds and cleaner execution.
+              This isn't an open group chat. Every member is handpicked. If
+              you're here to actually build, you'll fit right in.
             </p>
           </article>
         </div>
@@ -98,31 +95,43 @@ export default function Home() {
       <section className="relative mx-auto w-full max-w-7xl px-6 pb-20 sm:px-10 lg:px-12">
         <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 sm:p-8 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
           <p className="text-[10px] font-semibold tracking-[0.24em] uppercase text-red-100/90">
-            How it works
+            How to get in
           </p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-3">
+          <div className="mt-4 grid gap-4 sm:grid-cols-4">
             <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
               <p className="text-xs font-semibold tracking-[0.14em] uppercase text-white/85">
-                01. Join
+                01. Check if you qualify
               </p>
               <p className="mt-2 text-sm text-white/72">
-                Apply and get placed into a focused cohort based on skills.
+                Read what we look for. Not grades — projects, curiosity, and the
+                drive to actually build something.
               </p>
             </div>
             <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
               <p className="text-xs font-semibold tracking-[0.14em] uppercase text-white/85">
-                02. Build
+                02. Get your stuff ready
               </p>
               <p className="mt-2 text-sm text-white/72">
-                Work in short sprints with mentors, reviews, and deadlines.
+                GitHub, a project you're proud of, and a reason why you want
+                in. That's all we need.
               </p>
             </div>
             <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
               <p className="text-xs font-semibold tracking-[0.14em] uppercase text-white/85">
-                03. Showcase
+                03. Apply
               </p>
               <p className="mt-2 text-sm text-white/72">
-                Present your work publicly and ship updates consistently.
+                Fill the form. No fluff, no essays. Just tell us who you are
+                and what you've built.
+              </p>
+            </div>
+            <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
+              <p className="text-xs font-semibold tracking-[0.14em] uppercase text-white/85">
+                04. We reach out
+              </p>
+              <p className="mt-2 text-sm text-white/72">
+                If you're in, you'll hear from us. We review every application
+                personally — no auto-rejections.
               </p>
             </div>
           </div>
