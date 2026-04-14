@@ -1,8 +1,8 @@
 "use client";
 
 import { Suspense, useEffect } from "react";
-import { Canvas, useThree } from "@react-three/fiber";
-import { Environment, OrbitControls, useGLTF } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { Environment, Html, OrbitControls, useProgress, useGLTF } from "@react-three/drei";
 import {
   ACESFilmicToneMapping,
   LinearFilter,
@@ -14,11 +14,8 @@ import {
 
 function RaptorModel() {
   const { scene } = useGLTF("/models/red_the_velociraptor.glb");
-  const gl = useThree((state) => state.gl);
 
   useEffect(() => {
-    const maxAnisotropy = Math.min(8, gl.capabilities.getMaxAnisotropy());
-
     scene.traverse((object) => {
       if (!(object instanceof Mesh) || !object.material) {
         return;
@@ -37,13 +34,13 @@ function RaptorModel() {
           return;
         }
 
-        texture.anisotropy = maxAnisotropy;
+        texture.anisotropy = 8;
         texture.minFilter = LinearMipmapLinearFilter;
         texture.magFilter = LinearFilter;
         texture.needsUpdate = true;
       });
     });
-  }, [scene, gl]);
+  }, [scene]);
 
   return (
     <primitive
@@ -55,12 +52,44 @@ function RaptorModel() {
   );
 }
 
+function Loader() {
+  const { progress } = useProgress();
+
+  return (
+    <Html center>
+      <div className="pointer-events-none flex min-w-[220px] flex-col items-center gap-4 rounded-[1.5rem] border border-white/10 bg-black/70 px-6 py-5 text-white shadow-[0_0_60px_rgba(127,16,32,0.28)] backdrop-blur-2xl">
+        <div className="relative flex h-14 w-14 items-center justify-center">
+          <div className="absolute inset-0 rounded-full border border-white/10" />
+          <div className="absolute inset-0 rounded-full border-2 border-t-[#7f1020] border-r-transparent border-b-transparent border-l-transparent animate-spin" />
+          <div className="h-5 w-5 rounded-full bg-[#7f1020] shadow-[0_0_24px_rgba(127,16,32,0.75)]" />
+        </div>
+
+        <div className="text-center">
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.4em] text-white/65">
+            Loading Raptor
+          </p>
+          <p className="mt-1 text-sm text-white/90">
+            {Math.round(progress)}%
+          </p>
+        </div>
+
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+          <div
+            className="h-full rounded-full bg-[linear-gradient(90deg,#7f1020,#b91c1c,#ef4444)] transition-all duration-200"
+            style={{ width: `${Math.max(progress, 8)}%` }}
+          />
+        </div>
+      </div>
+    </Html>
+  );
+}
+
 export default function RaptorModelCanvas() {
   return (
     <div className="h-full w-full overflow-hidden rounded-[2.25rem]">
       <Canvas
         camera={{ position: [0.2, 2.55, 6.9], fov: 30 }}
-        dpr={[2, 2.5]}
+        dpr={[2, 2.75]}
         shadows
         gl={{
           antialias: true,
@@ -71,33 +100,33 @@ export default function RaptorModelCanvas() {
         onCreated={({ gl: renderer }) => {
           renderer.outputColorSpace = SRGBColorSpace;
           renderer.toneMapping = ACESFilmicToneMapping;
-          renderer.toneMappingExposure = 1.05;
+          renderer.toneMappingExposure = 1.08;
         }}
       >
-        <ambientLight intensity={0.45} />
+        <ambientLight intensity={0.6} />
         <hemisphereLight
-          intensity={0.55}
-          color="#ffd6bf"
-          groundColor="#260809"
+          intensity={0.65}
+          color="#ffe9d8"
+          groundColor="#1a1014"
         />
         <directionalLight
-          position={[4, 8, 2]}
-          intensity={1.7}
-          color="#ffe0d0"
+          position={[5, 8, 3]}
+          intensity={2.1}
+          color="#fff0e6"
           castShadow
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
         />
         <spotLight
-          position={[-2, 6, 6]}
-          angle={0.33}
-          intensity={1.55}
-          color="#ff5252"
-          penumbra={0.85}
-          distance={22}
+          position={[-3, 7, 6]}
+          angle={0.36}
+          intensity={2.1}
+          color="#ff3b3b"
+          penumbra={0.8}
+          distance={24}
         />
 
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader />}>
           <RaptorModel />
           <Environment preset="sunset" />
         </Suspense>
