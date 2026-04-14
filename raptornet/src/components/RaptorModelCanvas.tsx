@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, Html, OrbitControls, useProgress, useGLTF } from "@react-three/drei";
 import {
@@ -85,14 +85,50 @@ function Loader() {
 }
 
 export default function RaptorModelCanvas() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isDesktop, setIsDesktop] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const updateViewport = () => setIsDesktop(mediaQuery.matches);
+
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+
+    return () => mediaQuery.removeEventListener("change", updateViewport);
+  }, []);
+
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node || !isDesktop) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.12 }
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, [isDesktop]);
+
+  if (!isDesktop || !isVisible) {
+    return <div ref={containerRef} className="h-full w-full" />;
+  }
+
   return (
-    <div className="h-full w-full overflow-hidden rounded-[2.25rem]">
+    <div ref={containerRef} className="h-full w-full overflow-hidden rounded-[2.25rem]">
       <Canvas
         camera={{ position: [0.2, 2.55, 6.9], fov: 30 }}
-        dpr={[2, 2.75]}
+        dpr={[1, 1.5]}
         shadows
         gl={{
-          antialias: true,
+          antialias: false,
           alpha: true,
           powerPreference: "high-performance",
           precision: "highp",
@@ -143,5 +179,3 @@ export default function RaptorModelCanvas() {
     </div>
   );
 }
-
-useGLTF.preload("/models/red_the_velociraptor.glb");

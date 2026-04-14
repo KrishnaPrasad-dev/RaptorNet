@@ -41,9 +41,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative mx-auto w-full max-w-7xl px-6 pb-10 sm:px-10 lg:px-12">
+      <section id="about-guild" className="relative mx-auto w-full max-w-7xl scroll-mt-28 px-6 pb-10 sm:px-10 lg:px-12">
         <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
-          <p className="text-[10px] font-semibold tracking-[0.26em] uppercase text-red-200/85">
+          <p className="text-[16px] font-bold tracking-[0.26em] uppercase text-red-400/85">
             What is RaptorNet
           </p>
           <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
@@ -57,8 +57,8 @@ export default function Home() {
 
       <section className="relative mx-auto w-full max-w-7xl px-6 pb-10 sm:px-10 lg:px-12">
         <div className="grid gap-4 md:grid-cols-3">
-          <article className="rounded-2xl border border-white/10 bg-black/25 p-6 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
-            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-red-200/85">
+          <article className="rounded-2xl border border-white/10 bg-black/25 p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
+            <p className="text-[10px] font-bold tracking-[0.22em] uppercase text-red-400/85">
               Who we are
             </p>
             <h3 className="mt-3 text-xl font-semibold">Builders & Makers</h3>
@@ -68,8 +68,8 @@ export default function Home() {
             </p>
           </article>
 
-          <article className="rounded-2xl border border-white/10 bg-black/25 p-6 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
-            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-red-200/85">
+          <article className="rounded-2xl border border-white/10 bg-black/25 p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
+            <p className="text-[10px] font-bold tracking-[0.22em] uppercase text-red-400/85">
               What we do
             </p>
             <h3 className="mt-3 text-xl font-semibold">Hackathons & Tech Events</h3>
@@ -79,8 +79,8 @@ export default function Home() {
             </p>
           </article>
 
-          <article className="rounded-2xl border border-white/10 bg-black/25 p-6 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
-            <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-red-200/85">
+          <article className="rounded-2xl border border-white/10 bg-black/25 p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
+            <p className="text-[10px] font-bold tracking-[0.22em] uppercase text-red-400/85">
               Who gets in
             </p>
             <h3 className="mt-3 text-xl font-semibold">Vetted. Not Random.</h3>
@@ -93,13 +93,13 @@ export default function Home() {
       </section>
 
       <section className="relative mx-auto w-full max-w-7xl px-6 pb-20 sm:px-10 lg:px-12">
-        <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 sm:p-8 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
-          <p className="text-[10px] font-semibold tracking-[0.24em] uppercase text-red-100/90">
+        <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 sm:p-8 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">
+          <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-red-400/85">
             How to get in
           </p>
           <div className="mt-4 grid gap-4 sm:grid-cols-4">
-            <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
-              <p className="text-xs font-semibold tracking-[0.14em] uppercase text-white/85">
+            <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
+              <p className="text-xs font-bold tracking-[0.14em] uppercase text-white/85">
                 01. Check if you qualify
               </p>
               <p className="mt-2 text-sm text-white/72">
@@ -107,8 +107,8 @@ export default function Home() {
                 drive to actually build something.
               </p>
             </div>
-            <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
-              <p className="text-xs font-semibold tracking-[0.14em] uppercase text-white/85">
+            <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
+              <p className="text-xs font-bold tracking-[0.14em] uppercase text-white/85">
                 02. Get your stuff ready
               </p>
               <p className="mt-2 text-sm text-white/72">
@@ -116,8 +116,8 @@ export default function Home() {
                 in. That's all we need.
               </p>
             </div>
-            <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
-              <p className="text-xs font-semibold tracking-[0.14em] uppercase text-white/85">
+            <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
+              <p className="text-xs font-bold tracking-[0.14em] uppercase text-white/85">
                 03. Apply
               </p>
               <p className="mt-2 text-sm text-white/72">
@@ -125,8 +125,8 @@ export default function Home() {
                 and what you've built.
               </p>
             </div>
-            <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition duration-200 hover:border-[#7f1020] hover:bg-[#7f1020]/10">
-              <p className="text-xs font-semibold tracking-[0.14em] uppercase text-white/85">
+            <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
+              <p className="text-xs font-bold tracking-[0.14em] uppercase text-white/85">
                 04. We reach out
               </p>
               <p className="mt-2 text-sm text-white/72">
