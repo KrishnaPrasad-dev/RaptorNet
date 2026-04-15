@@ -5,7 +5,7 @@ import ApplicationForm from "@/components/ApplicationForm";
 export default function ApplyPage() {
   return (
     <main className="min-h-screen bg-[#05070b] text-white">
-      <section className="mx-auto w-full max-w-7xl px-6 pb-16 pt-4 sm:px-10 lg:px-12">
+      <section className="mx-auto w-full max-w-7xl px-4 pb-16 pt-4 sm:px-10 lg:px-12">
         <Navbar />
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
@@ -17,7 +17,7 @@ export default function ApplyPage() {
               Apply to RaptorNet
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/72 sm:text-base">
-              Submit your details here. We review names, academic background, projects, and public profiles before reaching out.
+              Submit your details here. We review names, academic background, projects, and public profiles before reaching out. We are open to builders from every branch, including CSE, AIML, ECE, and others.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -26,7 +26,7 @@ export default function ApplyPage() {
                   What we care about
                 </p>
                 <p className="mt-3 text-sm leading-6 text-white/72">
-                  Projects, curiosity, consistency, and the ability to ship.
+                  Projects, curiosity, consistency, and the ability to ship. Branch does not limit eligibility.
                 </p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-black/25 p-5">

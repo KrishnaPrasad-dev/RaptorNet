@@ -24,12 +24,12 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = React.useState(false);
 
   return (
-    <nav className={`${geist.className} relative rounded-[1.5rem] border border-white/10 bg-black/40 px-4 py-3 text-white backdrop-blur-md md:px-5`}>
-      <div className="flex items-center justify-between gap-6">
-        <div className="flex items-center gap-8 lg:gap-10">
+    <nav className={`${geist.className} relative rounded-[1.5rem] border border-white/10 bg-black/40 px-3 py-2.5 text-white backdrop-blur-md sm:px-4 sm:py-3 md:px-5`}>
+      <div className="flex items-center justify-between gap-3 sm:gap-6">
+        <div className="flex min-w-0 items-center gap-4 sm:gap-8 lg:gap-10">
           <Link href="/" className="shrink-0" aria-label="RaptorNet home">
-            <div className="flex items-center gap-4">
-              <div className="relative h-12 w-12 overflow-hidden rounded-full border border-white/10 bg-white/5 shadow-[0_0_20px_rgba(255,255,255,0.08)]">
+            <div className="flex items-center gap-2.5 sm:gap-4">
+              <div className="relative h-10 w-10 overflow-hidden rounded-full border border-white/10 bg-white/5 shadow-[0_0_20px_rgba(255,255,255,0.08)] sm:h-12 sm:w-12">
                 <Image
                   src="/rn.png"
                   alt="Raptor icon"
@@ -41,11 +41,11 @@ export default function Navbar() {
                   priority
                 />
               </div>
-              <p className="flex items-baseline gap-1 text-white">
-                <span className={`${raptorFont.className} text-[1.8rem] font-bold leading-none tracking-[0.06em] uppercase text-white`}>
+              <p className="flex items-baseline gap-0.5 text-white sm:gap-1">
+                <span className={`${raptorFont.className} text-[1.45rem] font-bold leading-none tracking-[0.05em] uppercase text-white sm:text-[1.8rem] sm:tracking-[0.06em]`}>
                   Raptor
                 </span>
-                <span className={`${netFont.className} text-[1.8rem] font-medium leading-none tracking-[0.06em] uppercase text-[#7f1020]`}>
+                <span className={`${netFont.className} text-[1.45rem] font-medium leading-none tracking-[0.05em] uppercase text-[#7f1020] sm:text-[1.8rem] sm:tracking-[0.06em]`}>
                   Net
                 </span>
               </p>
@@ -57,11 +57,16 @@ export default function Navbar() {
             <Link href="/resources" className="text-md text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020]">Resources</Link>
             <Link href="/admin" className="text-md text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020]">Admin</Link>
             <Link href="/admin/applications" className="text-md text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020]">Applications</Link>
-            <span className="text-xs font-medium tracking-[0.2em] uppercase text-white/45">Builders only</span>
+            <Link
+              href="/members"
+              className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold tracking-[0.14em] uppercase text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/20 hover:text-white"
+            >
+              Current Members
+            </Link>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <Link
             href="/apply"
             className="hidden items-center gap-2.5 rounded-full border border-white/10 bg-white/5 pl-5 pr-2 py-2 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white md:flex"
@@ -76,7 +81,7 @@ export default function Navbar() {
 
           <Link
             href="/apply"
-            className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-semibold tracking-[0.16em] uppercase text-white transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white md:hidden"
+            className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] font-semibold tracking-[0.14em] uppercase text-white transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white sm:px-4 sm:py-2 sm:text-[11px] sm:tracking-[0.16em] md:hidden"
           >
             Join
           </Link>
@@ -96,9 +101,10 @@ export default function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="absolute left-0 top-full z-50 mt-3 flex w-full flex-col gap-1 rounded-b-[1.25rem] border border-white/10 border-t-0 bg-[#0d1117] p-5 shadow-2xl md:hidden">
+        <div className="absolute left-0 top-full z-50 mt-2.5 flex w-full flex-col gap-1 rounded-b-[1.25rem] border border-white/10 border-t-0 bg-[#0d1117] p-4 shadow-2xl sm:mt-3 sm:p-5 md:hidden">
           <Link href="/#about-guild" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">About Guild</Link>
           <Link href="/resources" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">Resources</Link>
+          <Link href="/members" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">Current Members</Link>
           <Link href="/admin" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">Admin Profile</Link>
           <Link href="/admin/applications" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">Applications</Link>
 

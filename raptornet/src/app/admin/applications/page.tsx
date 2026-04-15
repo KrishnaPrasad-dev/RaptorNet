@@ -19,6 +19,14 @@ type ApplicationDoc = {
   createdAt?: Date | string;
 };
 
+function normalizeStatus(status?: string): "new" | "pending" | "rejected" {
+  if (status === "pending" || status === "rejected") {
+    return status;
+  }
+
+  return "new";
+}
+
 async function getApplications() {
   try {
     const db = await getDb();
@@ -40,7 +48,7 @@ async function getApplications() {
       linkedinLink: item.linkedinLink ?? "",
       leetcodeLink: item.leetcodeLink ?? "",
       phoneNumber: item.phoneNumber ?? "",
-      status: item.status ?? "new",
+      status: normalizeStatus(item.status),
       createdAt:
         item.createdAt instanceof Date
           ? item.createdAt.toISOString()

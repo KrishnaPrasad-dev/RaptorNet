@@ -4,6 +4,9 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
+type ApplicationStatus = "new" | "pending" | "rejected";
+type ApplicationAction = "accept" | "reject" | "pending";
+
 type ApplicationItem = {
   id: string;
   name: string;
@@ -15,7 +18,7 @@ type ApplicationItem = {
   linkedinLink: string;
   leetcodeLink: string;
   phoneNumber: string;
-  status: string;
+  status: ApplicationStatus;
   createdAt: string;
 };
 
@@ -61,6 +64,8 @@ export default function AdminApplicationsClient({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [authError, setAuthError] = useState("");
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [actionError, setActionError] = useState("");
+  const [activeActionId, setActiveActionId] = useState<string | null>(null);
 
   const stats = useMemo(() => {
     const total = applications.length;
@@ -117,6 +122,45 @@ export default function AdminApplicationsClient({
     } finally {
       setIsLoggingOut(false);
     }
+  }
+
+  async function handleApplicationAction(applicationId: string, action: ApplicationAction) {
+    try {
+      setActionError("");
+      setActiveActionId(applicationId);
+
+      const response = await fetch(`/api/admin/applications/${applicationId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ action }),
+      });
+
+      if (!response.ok) {
+        const result = (await response.json()) as { message?: string };
+        setActionError(result.message ?? "Failed to update application.");
+        return;
+      }
+
+      router.refresh();
+    } catch {
+      setActionError("Unable to update application right now.");
+    } finally {
+      setActiveActionId(null);
+    }
+  }
+
+  function statusBadgeClass(status: ApplicationStatus) {
+    if (status === "rejected") {
+      return "border-red-400/55 bg-red-500/15 text-red-100";
+    }
+
+    if (status === "pending") {
+      return "border-amber-300/55 bg-amber-400/15 text-amber-100";
+    }
+
+    return "border-[#7f1020]/70 bg-[#7f1020]/20 text-[#ffb5c0]";
   }
 
   if (!isAuthenticated) {
@@ -222,6 +266,12 @@ export default function AdminApplicationsClient({
         </div>
       </div>
 
+      {actionError && (
+        <div className="rounded-xl border border-red-400/35 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+          {actionError}
+        </div>
+      )}
+
       {applications.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-white/20 bg-black/20 p-8 text-center text-white/70">
           No applications yet.
@@ -241,7 +291,7 @@ export default function AdminApplicationsClient({
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="rounded-full border border-[#7f1020]/70 bg-[#7f1020]/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-[#ffb5c0]">
+                  <span className={`rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] ${statusBadgeClass(application.status)}`}>
                     {application.status}
                   </span>
                   <span className="rounded-full border border-white/20 bg-black/25 px-3 py-1 text-xs text-white/70">
@@ -306,6 +356,33 @@ export default function AdminApplicationsClient({
                   </svg>
                   {application.phoneNumber}
                 </a>
+              </div>
+
+              <div className="mt-4 flex flex-wrap items-center gap-2.5 border-t border-white/10 pt-4">
+                <button
+                  type="button"
+                  onClick={() => handleApplicationAction(application.id, "accept")}
+                  disabled={activeActionId === application.id}
+                  className="rounded-full border border-emerald-400/40 bg-emerald-500/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-emerald-100 transition-colors duration-150 ease-out hover:bg-emerald-500/25 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {activeActionId === application.id ? "Updating..." : "Accept"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleApplicationAction(application.id, "pending")}
+                  disabled={activeActionId === application.id}
+                  className="rounded-full border border-amber-300/45 bg-amber-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-amber-100 transition-colors duration-150 ease-out hover:bg-amber-400/20 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  Keep Pending
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleApplicationAction(application.id, "reject")}
+                  disabled={activeActionId === application.id}
+                  className="rounded-full border border-red-400/45 bg-red-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-red-100 transition-colors duration-150 ease-out hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  Reject
+                </button>
               </div>
             </article>
           ))}

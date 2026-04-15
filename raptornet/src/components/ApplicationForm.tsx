@@ -98,7 +98,7 @@ export default function ApplicationForm() {
     { name: "name", label: "Full Name", placeholder: "Your name", type: "text", autoComplete: "name" },
     { name: "email", label: "Email", placeholder: "you@example.com", type: "email", autoComplete: "email" },
     { name: "college", label: "College", placeholder: "Your college", type: "text", autoComplete: "organization" },
-    { name: "branch", label: "Branch", placeholder: "CSE / IT / ECE / etc.", type: "text", autoComplete: "off" },
+    { name: "branch", label: "Branch", placeholder: "CSE / AIML / ECE / Any branch", type: "text", autoComplete: "off" },
     { name: "projectLink", label: "Project Link", placeholder: "https://yourproject.com", type: "url", autoComplete: "url" },
     { name: "githubLink", label: "GitHub Link", placeholder: "https://github.com/yourname", type: "url", autoComplete: "url" },
     { name: "linkedinLink", label: "LinkedIn Link", placeholder: "https://linkedin.com/in/yourname", type: "url", autoComplete: "url" },

@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Environment, Html, OrbitControls, useProgress, useGLTF } from "@react-three/drei";
+import { Environment, Html, OrbitControls, useGLTF } from "@react-three/drei";
 import {
   ACESFilmicToneMapping,
   LinearFilter,
@@ -53,8 +53,6 @@ function RaptorModel() {
 }
 
 function Loader() {
-  const { progress } = useProgress();
-
   return (
     <Html center>
       <div className="pointer-events-none flex min-w-[220px] flex-col items-center gap-4 rounded-[1.5rem] border border-white/10 bg-black/70 px-6 py-5 text-white shadow-[0_0_60px_rgba(127,16,32,0.28)] backdrop-blur-2xl">
@@ -68,15 +66,12 @@ function Loader() {
           <p className="text-[0.7rem] font-semibold uppercase tracking-[0.4em] text-white/65">
             Loading Raptor
           </p>
-          <p className="mt-1 text-sm text-white/90">
-            {Math.round(progress)}%
-          </p>
+          <p className="mt-1 text-sm text-white/90">Preparing scene...</p>
         </div>
 
         <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
           <div
-            className="h-full rounded-full bg-[linear-gradient(90deg,#7f1020,#b91c1c,#ef4444)] transition-all duration-200"
-            style={{ width: `${Math.max(progress, 8)}%` }}
+            className="h-full w-1/2 rounded-full bg-[linear-gradient(90deg,#7f1020,#b91c1c,#ef4444)] animate-pulse"
           />
         </div>
       </div>
@@ -84,7 +79,11 @@ function Loader() {
   );
 }
 
-export default function RaptorModelCanvas() {
+export default function RaptorModelCanvas({
+  mobileEnabled = false,
+}: {
+  mobileEnabled?: boolean;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -101,7 +100,7 @@ export default function RaptorModelCanvas() {
 
   useEffect(() => {
     const node = containerRef.current;
-    if (!node || !isDesktop) {
+    if (!node) {
       return;
     }
 
@@ -115,10 +114,55 @@ export default function RaptorModelCanvas() {
     observer.observe(node);
 
     return () => observer.disconnect();
-  }, [isDesktop]);
+  }, []);
 
-  if (!isDesktop || !isVisible) {
+  if (!isVisible) {
     return <div ref={containerRef} className="h-full w-full" />;
+  }
+
+  if (!isDesktop && !mobileEnabled) {
+    return <div ref={containerRef} className="h-full w-full" />;
+  }
+
+  if (!isDesktop && mobileEnabled) {
+    return (
+      <div ref={containerRef} className="h-full w-full overflow-hidden">
+        <Canvas
+          camera={{ position: [0.28, 2.6, 7.25], fov: 34 }}
+          dpr={[0.75, 1.1]}
+          shadows={false}
+          gl={{
+            antialias: false,
+            alpha: true,
+            powerPreference: "high-performance",
+            precision: "mediump",
+          }}
+          onCreated={({ gl: renderer }) => {
+            renderer.outputColorSpace = SRGBColorSpace;
+            renderer.toneMapping = ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.03;
+          }}
+        >
+          <ambientLight intensity={0.82} />
+          <hemisphereLight
+            intensity={0.48}
+            color="#ffe9d8"
+            groundColor="#1a1014"
+          />
+
+          <Suspense fallback={<Loader />}>
+            <RaptorModel />
+          </Suspense>
+
+          <OrbitControls
+            enablePan={false}
+            enableZoom={false}
+            enableRotate={false}
+            target={[0.35, 1.7, 0]}
+          />
+        </Canvas>
+      </div>
+    );
   }
 
   return (

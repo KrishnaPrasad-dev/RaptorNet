@@ -9,7 +9,7 @@ export default function Home() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_8%,rgba(255,255,255,0.08),transparent_28%),radial-gradient(circle_at_85%_78%,rgba(120,144,156,0.12),transparent_30%)]" />
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:84px_84px] opacity-14" />
 
-      <section className="relative mx-auto flex min-h-[108vh] w-full max-w-7xl flex-col px-6 pb-10 pt-4 sm:px-10 lg:min-h-[114vh] lg:px-12">
+      <section className="relative mx-auto flex min-h-[100vh] w-full max-w-7xl flex-col px-4 pb-10 pt-4 sm:px-10 lg:min-h-[114vh] lg:px-12">
         <Navbar />
 
         <div
@@ -29,20 +29,29 @@ export default function Home() {
             id="about"
             className="relative z-10 max-w-xl rounded-[2rem] border border-white/10 bg-black/20 p-6 backdrop-blur-[2px] sm:p-8 lg:max-w-lg lg:bg-transparent lg:pl-8 lg:pr-0 lg:py-0 lg:backdrop-blur-none"
           >
-            <p className="text-[12px] font-semibold tracking-[0.28em] uppercase text-red-200/85 p-1 pt-4 relative">
+            <p className="relative p-1 pt-4 text-[11px] font-semibold tracking-[0.22em] uppercase text-red-200/85 sm:text-[12px] sm:tracking-[0.28em]">
               Curated guild for builders
             </p>
-            <h1 className="mt-4 max-w-md text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-[3.4rem] lg:leading-[0.95]">
+            <h1 className="mt-4 max-w-md text-[2rem] font-bold leading-tight tracking-tight sm:text-4xl lg:text-[3.4rem] lg:leading-[0.95]">
               Build together. Ship with intent.
             </h1>
-            <p className="mt-4 max-w-[34ch] text-base leading-7 text-white/78 sm:text-[1.05rem] pr-3 mb-4">
-              A guild from Guru Nanak University for students who build real projects, dive into tech, and show up at hackathons — grades optional.
+            <p className="mb-4 mt-4 max-w-[36ch] pr-1 text-[1rem] leading-7 text-white/78 sm:pr-3 sm:text-[1.05rem]">
+              A guild from Guru Nanak University for students who build real projects, dive into tech, prepare for internships, and show up at hackathons — from CSE, AIML, ECE, or any branch.
             </p>
+
+            <div className="mt-5 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[linear-gradient(170deg,rgba(255,255,255,0.05),rgba(10,12,18,0.86))] p-2.5 lg:hidden">
+              <div className="h-[250px] w-full rounded-[1.1rem] border border-white/10 bg-black/35">
+                <RaptorModelCanvas mobileEnabled />
+              </div>
+              <p className="px-2 pb-1 pt-3 text-xs leading-5 text-white/60">
+                Mobile-optimized model preview. Full interactive stage is available on larger screens.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="about-guild" className="relative mx-auto w-full max-w-7xl scroll-mt-28 px-6 pb-10 sm:px-10 lg:px-12">
+      <section id="about-guild" className="relative mx-auto w-full max-w-7xl scroll-mt-28 px-4 pb-10 sm:px-10 lg:px-12">
         <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
           <p className="text-[16px] font-bold tracking-[0.26em] uppercase text-red-400/85">
             What is RaptorNet
@@ -51,12 +60,12 @@ export default function Home() {
             We build. We compete. Grades can wait.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-white/78 sm:text-[1.05rem]">
-            RaptorNet is a guild of GNU students who chose a different path. When everyone else is cramming notes, we're deep in codebases, pulling all-nighters on projects that actually matter, and walking into hackathons ready to compete. No assignments. No attendance. No bullshit. Just a pack of builders who give everything to what they're building — because that's what separates the ones who make it from the ones who just pass.
+            RaptorNet is a guild of GNU students who chose a different path. When everyone else is cramming notes, we're deep in codebases, pulling all-nighters on projects that actually matter, and walking into hackathons ready to compete. We're open to builders from every branch — CSE, AIML, ECE, and beyond. No assignments. No attendance. No bullshit. Just a pack of builders who give everything to what they're building — because that's what separates the ones who make it from the ones who just pass.
           </p>
         </div>
       </section>
 
-      <section className="relative mx-auto w-full max-w-7xl px-6 pb-10 sm:px-10 lg:px-12">
+      <section className="relative mx-auto w-full max-w-7xl px-4 pb-10 sm:px-10 lg:px-12">
         <div className="grid gap-4 md:grid-cols-3">
           <article className="rounded-2xl border border-white/10 bg-black/25 p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
             <p className="text-[10px] font-bold tracking-[0.22em] uppercase text-red-400/85">
@@ -73,10 +82,11 @@ export default function Home() {
             <p className="text-[10px] font-bold tracking-[0.22em] uppercase text-red-400/85">
               What we do
             </p>
-            <h3 className="mt-3 text-[1.35rem] font-semibold">Hackathons & Tech Events</h3>
+            <h3 className="mt-3 text-[1.35rem] font-semibold">Hackathons, Internship Prep & Tech Events</h3>
             <p className="mt-3 max-w-[34ch] text-base leading-7 text-white/76">
               When a hackathon drops, everything stops. We form teams, go all
-              in, and come back with something to show — win or not.
+              in, sharpen for internship rounds together, and come back with
+              something to show — win or not.
             </p>
           </article>
 
@@ -87,13 +97,14 @@ export default function Home() {
             <h3 className="mt-3 text-[1.35rem] font-semibold">Vetted. Not Random.</h3>
             <p className="mt-3 max-w-[34ch] text-base leading-7 text-white/76">
               This isn't an open group chat. Every member is handpicked. If
-              you're here to actually build, you'll fit right in.
+              you're here to actually build, you'll fit right in, no matter
+              your branch.
             </p>
           </article>
         </div>
       </section>
 
-      <section className="relative mx-auto w-full max-w-7xl px-6 pb-20 sm:px-10 lg:px-12">
+      <section className="relative mx-auto w-full max-w-7xl px-4 pb-20 sm:px-10 lg:px-12">
         <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 sm:p-8 transition-colors duration-150 ease-out hover:border-white/20 hover:bg-white/[0.04]">
           <InteractiveQuoteBox />
 

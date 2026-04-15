@@ -28,11 +28,11 @@ const checklist = [
 export default function ResourcesPage() {
   return (
     <main className="min-h-screen bg-[#05070b] text-white">
-      <section className="mx-auto w-full max-w-7xl px-6 pb-16 pt-4 sm:px-10 lg:px-12">
+      <section className="mx-auto w-full max-w-7xl px-4 pb-16 pt-4 sm:px-10 lg:px-12">
         <Navbar />
 
         <div className="mt-10 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
-          <p className="text-[16px] font-semibold tracking-[0.28em] uppercase text-red-200/85">
+          <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-red-200/85 sm:text-[16px] sm:tracking-[0.28em]">
             Application resources
           </p>
           <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-[3.2rem] lg:leading-[0.95]">
@@ -59,7 +59,7 @@ export default function ResourcesPage() {
                   <iframe
                     src="https://www.youtube.com/embed/z8UPAVTh2aE"
                     title="GitHub video guide"
-                    className="h-48 w-full"
+                    className="h-44 w-full sm:h-48"
                     loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
@@ -75,7 +75,7 @@ export default function ResourcesPage() {
                   <iframe
                     src="https://www.youtube.com/embed/j2YA_TScR-E"
                     title="LinkedIn video guide"
-                    className="h-48 w-full"
+                    className="h-44 w-full sm:h-48"
                     loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
@@ -91,7 +91,7 @@ export default function ResourcesPage() {
                   <iframe
                     src="https://www.youtube.com/embed/7LcBek-bP9w"
                     title="Resume video guide"
-                    className="h-48 w-full"
+                    className="h-44 w-full sm:h-48"
                     loading="lazy"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
