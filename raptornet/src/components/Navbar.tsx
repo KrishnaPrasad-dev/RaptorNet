@@ -78,7 +78,7 @@ export default function Navbar() {
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <Link
             href="/apply"
-            className="hidden items-center gap-2.5 rounded-full border border-white/10 bg-white/5 pl-5 pr-2 py-2 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white md:flex lg:hidden"
+            className="hidden items-center gap-2.5 rounded-full border border-white/10 bg-white/5 pl-5 pr-2 py-2 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white md:flex"
           >
             Join the Raptor Guild
             <span className="flex size-7 items-center justify-center rounded-full bg-white">

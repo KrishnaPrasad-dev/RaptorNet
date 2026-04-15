@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
@@ -92,13 +94,6 @@ export default function ResourcesPage() {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       referrerPolicy="strict-origin-when-cross-origin"
                       allowFullScreen
-                      onLoad={(e) => {
-                        const parent = e.currentTarget.parentElement;
-                        if (parent) {
-                          const loader = parent.querySelector('[role="status"]') || parent.firstElementChild;
-                          if (loader) loader.style.display = 'none';
-                        }
-                      }}
                     />
                   </div>
                 </div>
@@ -128,13 +123,6 @@ export default function ResourcesPage() {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       referrerPolicy="strict-origin-when-cross-origin"
                       allowFullScreen
-                      onLoad={(e) => {
-                        const parent = e.currentTarget.parentElement;
-                        if (parent) {
-                          const loader = parent.querySelector('[role="status"]') || parent.firstElementChild;
-                          if (loader) loader.style.display = 'none';
-                        }
-                      }}
                     />
                   </div>
                 </div>
