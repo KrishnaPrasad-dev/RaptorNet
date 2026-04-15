@@ -20,6 +20,12 @@ export default function ApplyPage() {
               Submit your details here. We review names, academic background, projects, and public profiles before reaching out. We are open to builders from every branch, including CSE, AIML, ECE, and others.
             </p>
 
+            <div className="mt-4 rounded-lg border border-white/15 bg-white/[0.02] p-4">
+              <p className="text-xs leading-5 text-white/65">
+                <span className="font-semibold text-white/80">💡 Not sure what to prepare?</span> Check our <Link href="/resources" className="font-semibold text-[#7f1020] hover:text-[#9f1030] transition-colors">Resources page</Link> for guides, video tutorials, and examples.
+              </p>
+            </div>
+
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl border border-white/10 bg-black/25 p-5">
                 <p className="text-xs font-semibold tracking-[0.18em] uppercase text-white/70">
@@ -44,6 +50,12 @@ export default function ApplyPage() {
         </div>
 
         <div className="mt-8 flex flex-wrap gap-3">
+          <Link
+            href="/resources"
+            className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white"
+          >
+            View Resources
+          </Link>
           <Link
             href="/"
             className="rounded-full border border-white/10 bg-transparent px-5 py-2.5 text-sm font-medium text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"

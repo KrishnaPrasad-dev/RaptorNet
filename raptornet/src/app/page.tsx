@@ -72,7 +72,7 @@ export default function Home() {
               Who we are
             </p>
             <h3 className="mt-3 text-[1.15rem] font-semibold leading-snug sm:text-[1.35rem]">Builders & Makers</h3>
-            <p className="mt-3 max-w-[34ch] text-base leading-7 text-white/76">
+            <p className="mt-3 max-w-sm text-sm leading-6 text-white/76 sm:text-base sm:leading-7 break-words">
               We don't wait for a course to teach us. We pick a project, figure
               it out, and ship it — frontend, backend, AI, whatever it takes.
             </p>

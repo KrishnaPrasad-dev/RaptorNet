@@ -72,15 +72,35 @@ export default function ResourcesPage() {
                   <p className="border-b border-white/10 bg-black/30 px-4 py-2 text-[10px] font-semibold tracking-[0.24em] uppercase text-white/55">
                     Reference preview
                   </p>
-                  <iframe
-                    src="https://www.youtube.com/embed/j2YA_TScR-E"
-                    title="LinkedIn video guide"
-                    className="h-44 w-full sm:h-48"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  />
+                  <div className="relative bg-black/20">
+                    <div className="absolute inset-0 z-10 flex items-center justify-center">
+                      <div className="animate-pulse flex flex-col items-center gap-2 text-white/40">
+                        <div className="inline-block">
+                          <svg className="size-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                          </svg>
+                        </div>
+                        <span className="text-sm">Loading...</span>
+                      </div>
+                    </div>
+                    <iframe
+                      src="https://www.youtube.com/embed/j2YA_TScR-E"
+                      title="LinkedIn video guide"
+                      className="h-44 w-full sm:h-48"
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      onLoad={(e) => {
+                        const parent = e.currentTarget.parentElement;
+                        if (parent) {
+                          const loader = parent.querySelector('[role="status"]') || parent.firstElementChild;
+                          if (loader) loader.style.display = 'none';
+                        }
+                      }}
+                    />
+                  </div>
                 </div>
               )}
               {item.title === "Resume" && (
@@ -88,15 +108,35 @@ export default function ResourcesPage() {
                   <p className="border-b border-white/10 bg-black/30 px-4 py-2 text-[10px] font-semibold tracking-[0.24em] uppercase text-white/55">
                     Reference preview
                   </p>
-                  <iframe
-                    src="https://www.youtube.com/embed/7LcBek-bP9w"
-                    title="Resume video guide"
-                    className="h-44 w-full sm:h-48"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                  />
+                  <div className="relative bg-black/20">
+                    <div className="absolute inset-0 z-10 flex items-center justify-center">
+                      <div className="animate-pulse flex flex-col items-center gap-2 text-white/40">
+                        <div className="inline-block">
+                          <svg className="size-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                          </svg>
+                        </div>
+                        <span className="text-sm">Loading...</span>
+                      </div>
+                    </div>
+                    <iframe
+                      src="https://www.youtube.com/embed/7LcBek-bP9w"
+                      title="Resume video guide"
+                      className="h-44 w-full sm:h-48"
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      allowFullScreen
+                      onLoad={(e) => {
+                        const parent = e.currentTarget.parentElement;
+                        if (parent) {
+                          const loader = parent.querySelector('[role="status"]') || parent.firstElementChild;
+                          if (loader) loader.style.display = 'none';
+                        }
+                      }}
+                    />
+                  </div>
                 </div>
               )}
               {item.title === "Project Deployed Link" && (
@@ -155,7 +195,7 @@ export default function ResourcesPage() {
                 className="mt-3 inline-flex w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm leading-6 text-white/72 transition-colors duration-150 ease-out hover:border-[#0a66c2] hover:bg-[#0a66c2]/10 hover:text-white"
               >
                 <span className="flex size-9 items-center justify-center rounded-full bg-[#0a66c2] text-white shadow-[0_0_20px_rgba(10,102,194,0.25)]">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" className="size-4 fill-current">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" className="size-5 fill-current">
                     <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v15H0V8zm7.98 0h4.79v2.05h.07c.67-1.26 2.31-2.59 4.75-2.59 5.08 0 6.02 3.34 6.02 7.69V23h-5v-6.57c0-1.57-.03-3.59-2.19-3.59-2.2 0-2.54 1.72-2.54 3.48V23h-5V8z" />
                   </svg>
                 </span>

@@ -52,6 +52,15 @@ export default function Navbar() {
             </div>
           </Link>
 
+          {/* Tablet Navigation - 3-4 key buttons */}
+          <div className="hidden items-center gap-3 md:flex lg:hidden">
+            <Link href="/#about-guild" className="text-xs font-medium text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020] px-3 py-1.5">About</Link>
+            <Link href="/resources" className="text-xs font-medium text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020] px-3 py-1.5">Resources</Link>
+            <Link href="/members" className="text-xs font-medium text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020] px-3 py-1.5">Members</Link>
+            <Link href="/admin/applications" className="text-xs font-medium text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020] px-3 py-1.5">Apps</Link>
+          </div>
+
+          {/* Desktop Navigation - Full menu */}
           <div className="hidden items-center gap-8 lg:flex">
             <Link href="/#about-guild" className="text-md text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020]">About Guild</Link>
             <Link href="/resources" className="text-md text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020]">Resources</Link>
@@ -69,7 +78,7 @@ export default function Navbar() {
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
           <Link
             href="/apply"
-            className="hidden items-center gap-2.5 rounded-full border border-white/10 bg-white/5 pl-5 pr-2 py-2 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white md:flex"
+            className="hidden items-center gap-2.5 rounded-full border border-white/10 bg-white/5 pl-5 pr-2 py-2 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white md:flex lg:hidden"
           >
             Join the Raptor Guild
             <span className="flex size-7 items-center justify-center rounded-full bg-white">
