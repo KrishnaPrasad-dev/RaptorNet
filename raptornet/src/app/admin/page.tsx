@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import LetterGlitch from "@/components/LetterGlitch";
 
 const admin = {
-  name: "J Krishna Prasad",
+  name: "J Krishna Prasad Goud",
   title: "Full Stack Web Developer (MERN)",
   role: "Guild Admin",
   section: "Core Team",

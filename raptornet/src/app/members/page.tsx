@@ -39,7 +39,7 @@ type MemberDoc = {
 
 const foundingMembers: Member[] = [
   {
-    name: "J Krishna Prasad",
+    name: "J Krishna Prasad Goud",
     role: "Guild Founder",
     title: "Full Stack Web Developer (MERN)",
     branch: "Computer Science",
