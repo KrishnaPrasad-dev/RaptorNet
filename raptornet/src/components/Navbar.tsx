@@ -24,7 +24,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = React.useState(false);
 
   return (
-    <nav className={`${geist.className} relative rounded-[1.5rem] border border-white/10 bg-black/40 px-3 py-2.5 text-white backdrop-blur-md sm:px-4 sm:py-3 md:px-5`}>
+    <nav className={`${geist.className} relative z-[100] rounded-[1.5rem] border border-white/10 bg-black/40 px-3 py-2.5 text-white backdrop-blur-md sm:px-4 sm:py-3 md:px-5`}>
       <div className="flex items-center justify-between gap-3 sm:gap-6">
         <div className="flex min-w-0 items-center gap-4 sm:gap-8 lg:gap-10">
           <Link href="/" className="shrink-0" aria-label="RaptorNet home">
@@ -101,7 +101,7 @@ export default function Navbar() {
       </div>
 
       {menuOpen && (
-        <div className="absolute left-0 top-full z-50 mt-2.5 flex w-full flex-col gap-1 rounded-b-[1.25rem] border border-white/10 border-t-0 bg-[#0d1117] p-4 shadow-2xl sm:mt-3 sm:p-5 md:hidden">
+        <div className="absolute left-0 top-full z-[200] mt-2.5 flex w-full flex-col gap-1 rounded-b-[1.25rem] border border-white/10 border-t-0 bg-[#0d1117] p-4 shadow-2xl sm:mt-3 sm:p-5 md:hidden">
           <Link href="/#about-guild" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">About Guild</Link>
           <Link href="/resources" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">Resources</Link>
           <Link href="/members" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">Current Members</Link>

@@ -67,22 +67,22 @@ export default function Home() {
 
       <section className="relative mx-auto w-full max-w-7xl px-4 pb-10 sm:px-10 lg:px-12">
         <div className="grid gap-4 md:grid-cols-3">
-          <article className="rounded-2xl border border-white/10 bg-black/25 p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
-            <p className="text-[10px] font-bold tracking-[0.22em] uppercase text-red-400/85">
+          <article className="rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
+            <p className="text-[9px] font-bold tracking-[0.22em] uppercase text-red-400/85 sm:text-[10px]">
               Who we are
             </p>
-            <h3 className="mt-3 text-[1.35rem] font-semibold">Builders & Makers</h3>
+            <h3 className="mt-3 text-[1.15rem] font-semibold leading-snug sm:text-[1.35rem]">Builders & Makers</h3>
             <p className="mt-3 max-w-[34ch] text-base leading-7 text-white/76">
               We don't wait for a course to teach us. We pick a project, figure
               it out, and ship it — frontend, backend, AI, whatever it takes.
             </p>
           </article>
 
-          <article className="rounded-2xl border border-white/10 bg-black/25 p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
-            <p className="text-[10px] font-bold tracking-[0.22em] uppercase text-red-400/85">
+          <article className="rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
+            <p className="text-[9px] font-bold tracking-[0.22em] uppercase text-red-400/85 sm:text-[10px]">
               What we do
             </p>
-            <h3 className="mt-3 text-[1.35rem] font-semibold">Hackathons, Internship Prep & Tech Events</h3>
+            <h3 className="mt-3 text-[1.15rem] font-semibold leading-snug sm:text-[1.35rem]">Hackathons, Internship Prep & Tech Events</h3>
             <p className="mt-3 max-w-[34ch] text-base leading-7 text-white/76">
               When a hackathon drops, everything stops. We form teams, go all
               in, sharpen for internship rounds together, and come back with
@@ -90,11 +90,11 @@ export default function Home() {
             </p>
           </article>
 
-          <article className="rounded-2xl border border-white/10 bg-black/25 p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
-            <p className="text-[10px] font-bold tracking-[0.22em] uppercase text-red-400/85">
+          <article className="rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
+            <p className="text-[9px] font-bold tracking-[0.22em] uppercase text-red-400/85 sm:text-[10px]">
               Who gets in
             </p>
-            <h3 className="mt-3 text-[1.35rem] font-semibold">Vetted. Not Random.</h3>
+            <h3 className="mt-3 text-[1.15rem] font-semibold leading-snug sm:text-[1.35rem]">Vetted. Not Random.</h3>
             <p className="mt-3 max-w-[34ch] text-base leading-7 text-white/76">
               This isn't an open group chat. Every member is handpicked. If
               you're here to actually build, you'll fit right in, no matter
@@ -112,38 +112,38 @@ export default function Home() {
             How to get in
           </p>
           <div className="mt-4 grid gap-4 sm:grid-cols-4">
-            <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
-              <p className="text-xs font-bold tracking-[0.14em] uppercase text-white/85">
+            <div className="rounded-xl border border-white/15 bg-black/20 p-3 sm:p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
+              <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/85 sm:text-xs sm:tracking-[0.14em]">
                 01. Check if you qualify
               </p>
-              <p className="mt-2 text-base leading-7 text-white/76">
+              <p className="mt-2 text-sm leading-6 text-white/76 sm:text-base sm:leading-7">
                 Read what we look for. Not grades — projects, curiosity, and the
                 drive to actually build something.
               </p>
             </div>
-            <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
-              <p className="text-xs font-bold tracking-[0.14em] uppercase text-white/85">
+            <div className="rounded-xl border border-white/15 bg-black/20 p-3 sm:p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
+              <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/85 sm:text-xs sm:tracking-[0.14em]">
                 02. Get your stuff ready
               </p>
-              <p className="mt-2 text-base leading-7 text-white/76">
+              <p className="mt-2 text-sm leading-6 text-white/76 sm:text-base sm:leading-7">
                 GitHub, a project you're proud of, and a reason why you want
                 in. That's all we need.
               </p>
             </div>
-            <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
-              <p className="text-xs font-bold tracking-[0.14em] uppercase text-white/85">
+            <div className="rounded-xl border border-white/15 bg-black/20 p-3 sm:p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
+              <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/85 sm:text-xs sm:tracking-[0.14em]">
                 03. Apply
               </p>
-              <p className="mt-2 text-base leading-7 text-white/76">
+              <p className="mt-2 text-sm leading-6 text-white/76 sm:text-base sm:leading-7">
                 Fill the form. No fluff, no essays. Just tell us who you are
                 and what you've built.
               </p>
             </div>
-            <div className="rounded-xl border border-white/15 bg-black/20 p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
-              <p className="text-xs font-bold tracking-[0.14em] uppercase text-white/85">
+            <div className="rounded-xl border border-white/15 bg-black/20 p-3 sm:p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
+              <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/85 sm:text-xs sm:tracking-[0.14em]">
                 04. We reach out
               </p>
-              <p className="mt-2 text-base leading-7 text-white/76">
+              <p className="mt-2 text-sm leading-6 text-white/76 sm:text-base sm:leading-7">
                 If you're in, you'll hear from us. We review every application
                 personally — no auto-rejections.
               </p>
