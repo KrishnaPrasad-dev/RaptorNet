@@ -33,7 +33,7 @@ export default function AdminPage() {
       <section className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 pt-4 sm:px-10 lg:px-12">
         <Navbar />
 
-        <section className="relative mx-auto mt-10 max-w-6xl overflow-hidden rounded-[2.2rem] border border-white/20 p-[1px] shadow-[0_30px_85px_rgba(0,0,0,0.45)]">
+        <section className="rn-reveal relative mx-auto mt-10 max-w-6xl overflow-hidden rounded-[2.2rem] border border-white/20 p-[1px] shadow-[0_30px_85px_rgba(0,0,0,0.45)]">
           <div className="relative z-10 rounded-[2.05rem] border border-white/15 bg-[linear-gradient(145deg,rgba(16,20,28,0.9),rgba(10,12,18,0.86))] p-6 sm:p-8 lg:p-10">
             <div className="grid gap-8 md:grid-cols-[260px_1fr] md:items-start">
             <div className="flex flex-col items-center">
@@ -90,7 +90,7 @@ export default function AdminPage() {
                   href={admin.resumeLink}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white/90 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/25"
+                  className="rn-button inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white/90 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/25"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
                     <path d="M12 4v10m0 0 4-4m-4 4-4-4" strokeLinecap="round" strokeLinejoin="round" />

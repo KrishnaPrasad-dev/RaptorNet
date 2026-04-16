@@ -33,7 +33,7 @@ export default function ResourcesPage() {
       <section className="mx-auto w-full max-w-7xl px-4 pb-16 pt-4 sm:px-10 lg:px-12">
         <Navbar />
 
-        <div className="mt-10 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+        <div className="rn-reveal mt-10 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
           <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-red-200/85 sm:text-[16px] sm:tracking-[0.28em]">
             Application resources
           </p>
@@ -45,11 +45,11 @@ export default function ResourcesPage() {
           </p>
         </div>
 
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="rn-stagger mt-6 grid gap-4 sm:grid-cols-2">
           {checklist.map((item) => (
             <article
               key={item.title}
-              className="rounded-2xl border border-white/10 bg-black/25 p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10"
+              className="rn-card rounded-2xl border border-white/10 bg-black/25 p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10"
             >
               <h2 className="text-lg font-semibold tracking-tight">{item.title}</h2>
               <p className="mt-3 text-sm leading-6 text-white/72">{item.detail}</p>
@@ -148,7 +148,7 @@ export default function ResourcesPage() {
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href="/apply"
-            className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white"
+            className="rn-button rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white"
           >
             Go to Apply
           </Link>
@@ -160,7 +160,7 @@ export default function ResourcesPage() {
           </Link>
         </div>
 
-        <div className="mt-8 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+        <div className="rn-reveal rn-delay-1 mt-8 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
           <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-red-200/85">
             Contact details
           </p>
@@ -172,7 +172,7 @@ export default function ResourcesPage() {
           </p>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-white/10 bg-black/25 p-5">
+            <div className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5">
               <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/55">
                 LinkedIn
               </p>
@@ -190,7 +190,7 @@ export default function ResourcesPage() {
                 <span className="break-all">https://www.linkedin.com/in/krishnaprasad-webdev/</span>
               </a>
             </div>
-            <div className="rounded-2xl border border-white/10 bg-black/25 p-5">
+            <div className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5">
               <p className="text-[10px] font-semibold tracking-[0.22em] uppercase text-white/55">
                 WhatsApp
               </p>

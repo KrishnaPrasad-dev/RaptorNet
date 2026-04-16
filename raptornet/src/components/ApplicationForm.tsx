@@ -107,8 +107,8 @@ export default function ApplicationForm() {
   ];
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-[2rem] border border-white/10 bg-black/25 p-6 sm:p-8">
-      <div className="grid gap-4 sm:grid-cols-2">
+    <form onSubmit={handleSubmit} className="rn-reveal rn-delay-1 rounded-[2rem] border border-white/10 bg-black/25 p-6 sm:p-8">
+      <div className="rn-stagger grid gap-4 sm:grid-cols-2">
         {fields.map((field) => (
           <label key={field.name} className={field.name === "phoneNumber" ? "sm:col-span-2" : ""}>
             <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">{field.label}</span>
@@ -131,7 +131,7 @@ export default function ApplicationForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rounded-full bg-[#7f1020] px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-colors duration-150 ease-out hover:bg-[#9d1427] disabled:cursor-not-allowed disabled:opacity-60"
+          className="rn-button rounded-full bg-[#7f1020] px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-colors duration-150 ease-out hover:bg-[#9d1427] disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSubmitting ? "Submitting..." : "Submit Application"}
         </button>

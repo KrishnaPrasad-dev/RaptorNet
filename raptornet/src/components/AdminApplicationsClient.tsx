@@ -22,10 +22,27 @@ type ApplicationItem = {
   createdAt: string;
 };
 
+type AcceptedMemberItem = {
+  id: string;
+  name: string;
+  email: string;
+  college: string;
+  branch: string;
+  role: string;
+  title: string;
+  projectLink: string;
+  githubLink: string;
+  linkedinLink: string;
+  leetcodeLink: string;
+  phoneNumber: string;
+  approvedAt: string;
+};
+
 type Props = {
   isAuthenticated: boolean;
   isPasswordConfigured: boolean;
   applications: ApplicationItem[];
+  acceptedMembers: AcceptedMemberItem[];
 };
 
 function formatDate(value: string) {
@@ -58,6 +75,7 @@ export default function AdminApplicationsClient({
   isAuthenticated,
   isPasswordConfigured,
   applications,
+  acceptedMembers,
 }: Props) {
   const router = useRouter();
   const [password, setPassword] = useState("");
@@ -66,6 +84,9 @@ export default function AdminApplicationsClient({
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [actionError, setActionError] = useState("");
   const [activeActionId, setActiveActionId] = useState<string | null>(null);
+  const [memberActionError, setMemberActionError] = useState("");
+  const [activeMemberActionId, setActiveMemberActionId] = useState<string | null>(null);
+  const [confirmRemoveMemberId, setConfirmRemoveMemberId] = useState<string | null>(null);
 
   const stats = useMemo(() => {
     const total = applications.length;
@@ -151,6 +172,36 @@ export default function AdminApplicationsClient({
     }
   }
 
+  async function handleRemoveMember(memberId: string) {
+    if (confirmRemoveMemberId !== memberId) {
+      setConfirmRemoveMemberId(memberId);
+      setMemberActionError("");
+      return;
+    }
+
+    try {
+      setMemberActionError("");
+      setActiveMemberActionId(memberId);
+
+      const response = await fetch(`/api/admin/members/${memberId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        const result = (await response.json()) as { message?: string };
+        setMemberActionError(result.message ?? "Failed to remove member.");
+        return;
+      }
+
+      setConfirmRemoveMemberId(null);
+      router.refresh();
+    } catch {
+      setMemberActionError("Unable to remove member right now.");
+    } finally {
+      setActiveMemberActionId(null);
+    }
+  }
+
   function statusBadgeClass(status: ApplicationStatus) {
     if (status === "rejected") {
       return "border-red-400/55 bg-red-500/15 text-red-100";
@@ -165,7 +216,7 @@ export default function AdminApplicationsClient({
 
   if (!isAuthenticated) {
     return (
-      <section className="mx-auto mt-10 max-w-xl rounded-[2rem] border border-white/15 bg-[linear-gradient(145deg,rgba(18,18,24,0.88),rgba(12,12,16,0.86))] p-8 shadow-[0_25px_60px_rgba(0,0,0,0.4)]">
+      <section className="rn-reveal mx-auto mt-10 max-w-xl rounded-[2rem] border border-white/15 bg-[linear-gradient(145deg,rgba(18,18,24,0.88),rgba(12,12,16,0.86))] p-8 shadow-[0_25px_60px_rgba(0,0,0,0.4)]">
         <div className="inline-flex items-center gap-2 rounded-full border border-[#7f1020]/50 bg-[#7f1020]/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#ff8ea1]">
           <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
             <path d="M7 11V7a5 5 0 0 1 10 0v4" strokeLinecap="round" />
@@ -203,7 +254,7 @@ export default function AdminApplicationsClient({
           <button
             type="submit"
             disabled={isSubmitting || !isPasswordConfigured}
-            className="inline-flex items-center gap-2 rounded-full border border-[#7f1020]/70 bg-[#7f1020]/35 px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-150 ease-out hover:bg-[#7f1020]/55 disabled:cursor-not-allowed disabled:opacity-60"
+            className="rn-button inline-flex items-center gap-2 rounded-full border border-[#7f1020]/70 bg-[#7f1020]/35 px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-150 ease-out hover:bg-[#7f1020]/55 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
               <path d="M9 12h6M12 9l3 3-3 3" strokeLinecap="round" strokeLinejoin="round" />
@@ -219,7 +270,7 @@ export default function AdminApplicationsClient({
 
   return (
     <section className="mx-auto mt-10 max-w-6xl space-y-6">
-      <div className="flex flex-wrap items-start justify-between gap-4 rounded-[1.8rem] border border-white/15 bg-[linear-gradient(145deg,rgba(16,20,28,0.9),rgba(10,12,18,0.86))] p-6 shadow-[0_22px_55px_rgba(0,0,0,0.38)]">
+      <div className="rn-reveal flex flex-wrap items-start justify-between gap-4 rounded-[1.8rem] border border-white/15 bg-[linear-gradient(145deg,rgba(16,20,28,0.9),rgba(10,12,18,0.86))] p-6 shadow-[0_22px_55px_rgba(0,0,0,0.38)]">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/60">Admin</p>
           <h1 className="mt-2 text-3xl font-black tracking-tight text-white">Applications</h1>
@@ -251,16 +302,16 @@ export default function AdminApplicationsClient({
         </div>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-3">
-        <div className="rounded-2xl border border-white/15 bg-black/30 p-4">
+      <div className="rn-stagger grid gap-3 sm:grid-cols-3">
+        <div className="rn-card rounded-2xl border border-white/15 bg-black/30 p-4">
           <p className="text-xs uppercase tracking-[0.16em] text-white/60">Total</p>
           <p className="mt-1 text-3xl font-black text-white">{stats.total}</p>
         </div>
-        <div className="rounded-2xl border border-white/15 bg-black/30 p-4">
+        <div className="rn-card rounded-2xl border border-white/15 bg-black/30 p-4">
           <p className="text-xs uppercase tracking-[0.16em] text-white/60">New</p>
           <p className="mt-1 text-3xl font-black text-white">{stats.newCount}</p>
         </div>
-        <div className="rounded-2xl border border-white/15 bg-black/30 p-4">
+        <div className="rn-card rounded-2xl border border-white/15 bg-black/30 p-4">
           <p className="text-xs uppercase tracking-[0.16em] text-white/60">Today</p>
           <p className="mt-1 text-3xl font-black text-white">{stats.todayCount}</p>
         </div>
@@ -272,16 +323,22 @@ export default function AdminApplicationsClient({
         </div>
       )}
 
+      {memberActionError && (
+        <div className="rounded-xl border border-red-400/35 bg-red-500/10 px-4 py-3 text-sm text-red-100">
+          {memberActionError}
+        </div>
+      )}
+
       {applications.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-white/20 bg-black/20 p-8 text-center text-white/70">
           No applications yet.
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="rn-stagger space-y-4">
           {applications.map((application) => (
             <article
               key={application.id}
-              className="rounded-2xl border border-white/15 bg-[linear-gradient(145deg,rgba(17,20,28,0.9),rgba(10,12,18,0.84))] p-5 shadow-[0_12px_36px_rgba(0,0,0,0.28)]"
+              className="rn-card rounded-2xl border border-white/15 bg-[linear-gradient(145deg,rgba(17,20,28,0.9),rgba(10,12,18,0.84))] p-5 shadow-[0_12px_36px_rgba(0,0,0,0.28)]"
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
@@ -388,6 +445,108 @@ export default function AdminApplicationsClient({
           ))}
         </div>
       )}
+
+      <section className="rn-reveal rn-delay-1 rounded-2xl border border-white/15 bg-[linear-gradient(145deg,rgba(17,20,28,0.9),rgba(10,12,18,0.84))] p-5 shadow-[0_12px_36px_rgba(0,0,0,0.28)]">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 className="text-xl font-extrabold tracking-tight text-white">Accepted Members</h2>
+            <p className="mt-1 text-sm text-white/68">
+              Members shown on the public members page. Removing here hides them from that list.
+            </p>
+          </div>
+          <span className="rounded-full border border-white/20 bg-black/25 px-3 py-1 text-xs text-white/70">
+            {acceptedMembers.length} total
+          </span>
+        </div>
+
+        {acceptedMembers.length === 0 ? (
+          <div className="mt-4 rounded-xl border border-dashed border-white/20 bg-black/20 p-6 text-center text-sm text-white/65">
+            No accepted members yet.
+          </div>
+        ) : (
+          <div className="mt-4 space-y-3">
+            {acceptedMembers.map((member) => {
+              const isConfirming = confirmRemoveMemberId === member.id;
+              const isRemoving = activeMemberActionId === member.id;
+
+              return (
+                <article
+                  key={member.id}
+                  className="rn-card rounded-xl border border-white/15 bg-black/25 p-4"
+                >
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <div>
+                      <h3 className="text-lg font-bold text-white">{member.name}</h3>
+                      <p className="mt-1 text-sm text-white/70">{member.email}</p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.12em] text-white/55">
+                        {member.role} • {member.branch || "Branch N/A"}
+                      </p>
+                    </div>
+
+                    <span className="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-xs text-white/70">
+                      Accepted {formatDate(member.approvedAt)}
+                    </span>
+                  </div>
+
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {member.projectLink && (
+                      <a
+                        href={member.projectLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                      >
+                        Project
+                      </a>
+                    )}
+                    {member.githubLink && (
+                      <a
+                        href={member.githubLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                      >
+                        GitHub
+                      </a>
+                    )}
+                    {member.linkedinLink && (
+                      <a
+                        href={member.linkedinLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                      >
+                        LinkedIn
+                      </a>
+                    )}
+                  </div>
+
+                  <div className="mt-4 flex flex-wrap items-center gap-2.5 border-t border-white/10 pt-4">
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveMember(member.id)}
+                      disabled={isRemoving}
+                      className="rn-button rounded-full border border-red-400/45 bg-red-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-red-100 transition-colors duration-150 ease-out hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {isRemoving ? "Removing..." : isConfirming ? "Click Again to Confirm Remove" : "Remove Member"}
+                    </button>
+
+                    {isConfirming && !isRemoving && (
+                      <button
+                        type="button"
+                        onClick={() => setConfirmRemoveMemberId(null)}
+                        className="rounded-full border border-white/25 bg-black/30 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/75 transition-colors duration-150 ease-out hover:border-white/40 hover:text-white"
+                      >
+                        Cancel
+                      </button>
+                    )}
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        )}
+      </section>
     </section>
   );
 }

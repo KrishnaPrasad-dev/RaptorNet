@@ -36,7 +36,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`${geist.className} relative z-[100] rounded-[1.5rem] border border-white/10 bg-black/40 px-3 py-2.5 text-white backdrop-blur-md sm:px-4 sm:py-3 md:px-5`}>
+    <nav className={`${geist.className} rn-nav-enter relative z-[100] rounded-[1.5rem] border border-white/10 bg-black/40 px-3 py-2.5 text-white backdrop-blur-md sm:px-4 sm:py-3 md:px-5`}>
       <div className="flex items-center justify-between gap-3 sm:gap-6">
         {/* Logo */}
         <Link href="/" className="shrink-0" aria-label="RaptorNet home">
@@ -49,7 +49,7 @@ export default function Navbar() {
                 sizes="48px"
                 quality={100}
                 unoptimized
-                className="object-cover object-[44%_48%]"
+                className="rounded-full object-cover object-[44%_48%]"
                 priority
               />
             </div>
@@ -115,7 +115,7 @@ export default function Navbar() {
         <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <Link
             href="/apply"
-            className="hidden items-center gap-2.5 rounded-full border border-white/10 bg-white/5 pl-5 pr-2 py-2 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white md:flex"
+            className="rn-button hidden items-center gap-2.5 rounded-full border border-white/10 bg-white/5 pl-5 pr-2 py-2 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white md:flex"
           >
             Join the Raptor Guild
             <span className="flex size-7 items-center justify-center rounded-full bg-white">
@@ -127,7 +127,7 @@ export default function Navbar() {
 
           <Link
             href="/apply"
-            className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] font-semibold tracking-[0.14em] uppercase text-white transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white sm:px-4 sm:py-2 sm:text-[11px] md:hidden"
+            className="rn-button rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] font-semibold tracking-[0.14em] uppercase text-white transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white sm:px-4 sm:py-2 sm:text-[11px] md:hidden"
           >
             Join
           </Link>
@@ -168,7 +168,7 @@ export default function Navbar() {
 
           <Link
             href="/apply"
-            className="mt-3 flex w-fit items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white"
+            className="rn-button mt-3 flex w-fit items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white"
           >
             Join Our Guild
             <span className="flex size-7 items-center justify-center rounded-full bg-white">

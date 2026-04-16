@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { unstable_noStore as noStore } from "next/cache";
 import Navbar from "@/components/Navbar";
 import { getDb } from "@/lib/mongodb";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 type Member = {
   name: string;
@@ -64,6 +68,8 @@ const seatsToFill = [
 
 async function getApprovedMembers(): Promise<Member[]> {
   try {
+    noStore();
+
     const db = await getDb();
     const docs = (await db
       .collection<MemberDoc>("members")
@@ -123,7 +129,7 @@ export default async function MembersPage() {
       <section className="relative mx-auto w-full max-w-7xl px-4 pb-16 pt-4 sm:px-10 lg:px-12">
         <Navbar />
 
-        <div className="mt-10 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+        <div className="rn-reveal mt-10 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
           <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-300/85">
             Current Members
           </p>
@@ -140,7 +146,7 @@ export default async function MembersPage() {
             </span>
             <Link
               href="/apply"
-              className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/20"
+              className="rn-button rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/20"
             >
               Apply to join
             </Link>
@@ -148,11 +154,11 @@ export default async function MembersPage() {
         </div>
 
         <section className="mt-6 grid gap-4 lg:grid-cols-[1.7fr_1fr]">
-          <div className="space-y-4">
+          <div className="rn-stagger space-y-4">
             {members.map((member, index) => (
               <article
                 key={`${member.name}-${index}`}
-                className="rounded-[1.7rem] border border-white/10 bg-[linear-gradient(150deg,rgba(255,255,255,0.06),rgba(10,12,18,0.92))] p-5 sm:p-6"
+                className="rn-card rounded-[1.7rem] border border-white/10 bg-[linear-gradient(150deg,rgba(255,255,255,0.06),rgba(10,12,18,0.92))] p-5 sm:p-6"
               >
                 <div className="grid gap-5 md:grid-cols-[150px_1fr] md:items-start">
                   <ProfileAvatar member={member} />
@@ -262,7 +268,7 @@ export default async function MembersPage() {
             ))}
           </div>
 
-          <aside className="rounded-[1.7rem] border border-white/10 bg-black/30 p-5 sm:p-6">
+          <aside className="rn-reveal rn-delay-2 rounded-[1.7rem] border border-white/10 bg-black/30 p-5 sm:p-6">
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/62">
               Open Builder Seats
             </p>
@@ -284,7 +290,7 @@ export default async function MembersPage() {
 
             <Link
               href="/apply"
-              className="mt-5 inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/20"
+              className="rn-button mt-5 inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/20"
             >
               Submit profile
             </Link>

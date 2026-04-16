@@ -27,7 +27,7 @@ export default function Home() {
 
           <div
             id="about"
-            className="relative z-10 max-w-xl rounded-[2rem] border border-white/10 bg-black/20 p-6 backdrop-blur-[2px] sm:p-8 lg:max-w-lg lg:bg-transparent lg:pl-8 lg:pr-0 lg:py-0 lg:backdrop-blur-none"
+            className="rn-reveal relative z-10 max-w-xl rounded-[2rem] border border-white/10 bg-black/20 p-6 backdrop-blur-[2px] sm:p-8 lg:max-w-lg lg:bg-transparent lg:pl-8 lg:pr-0 lg:py-0 lg:backdrop-blur-none"
           >
             <p className="relative p-1 pt-4 text-[11px] font-semibold tracking-[0.22em] uppercase text-red-200/85 sm:text-[12px] sm:tracking-[0.28em]">
               Curated guild for builders
@@ -52,7 +52,7 @@ export default function Home() {
       </section>
 
       <section id="about-guild" className="relative mx-auto w-full max-w-7xl scroll-mt-28 px-4 pb-10 sm:px-10 lg:px-12">
-        <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+        <div className="rn-reveal rn-delay-1 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
           <p className="text-[16px] font-bold tracking-[0.26em] uppercase text-red-400/85">
             What is RaptorNet
           </p>
@@ -66,8 +66,8 @@ export default function Home() {
       </section>
 
       <section className="relative mx-auto w-full max-w-7xl px-4 pb-10 sm:px-10 lg:px-12">
-        <div className="grid gap-4 md:grid-cols-3">
-          <article className="rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
+        <div className="rn-stagger grid gap-4 md:grid-cols-3">
+          <article className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
             <p className="text-[9px] font-bold tracking-[0.22em] uppercase text-red-400/85 sm:text-[10px]">
               Who we are
             </p>
@@ -78,7 +78,7 @@ export default function Home() {
             </p>
           </article>
 
-          <article className="rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
+          <article className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
             <p className="text-[9px] font-bold tracking-[0.22em] uppercase text-red-400/85 sm:text-[10px]">
               What we do
             </p>
@@ -90,7 +90,7 @@ export default function Home() {
             </p>
           </article>
 
-          <article className="rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
+          <article className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
             <p className="text-[9px] font-bold tracking-[0.22em] uppercase text-red-400/85 sm:text-[10px]">
               Who gets in
             </p>
@@ -105,14 +105,14 @@ export default function Home() {
       </section>
 
       <section className="relative mx-auto w-full max-w-7xl px-4 pb-20 sm:px-10 lg:px-12">
-        <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 sm:p-8 transition-colors duration-150 ease-out hover:border-white/20 hover:bg-white/[0.04]">
+        <div className="rn-reveal rn-delay-2 rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 sm:p-8 transition-colors duration-150 ease-out hover:border-white/20 hover:bg-white/[0.04]">
           <InteractiveQuoteBox />
 
           <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-white/70">
             How to get in
           </p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-4">
-            <div className="rounded-xl border border-white/15 bg-black/20 p-3 sm:p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
+          <div className="rn-stagger mt-4 grid gap-4 sm:grid-cols-4">
+            <div className="rn-card rounded-xl border border-white/15 bg-black/20 p-3 sm:p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
               <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/85 sm:text-xs sm:tracking-[0.14em]">
                 01. Check if you qualify
               </p>
@@ -121,7 +121,7 @@ export default function Home() {
                 drive to actually build something.
               </p>
             </div>
-            <div className="rounded-xl border border-white/15 bg-black/20 p-3 sm:p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
+            <div className="rn-card rounded-xl border border-white/15 bg-black/20 p-3 sm:p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
               <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/85 sm:text-xs sm:tracking-[0.14em]">
                 02. Get your stuff ready
               </p>
@@ -130,7 +130,7 @@ export default function Home() {
                 in. That's all we need.
               </p>
             </div>
-            <div className="rounded-xl border border-white/15 bg-black/20 p-3 sm:p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
+            <div className="rn-card rounded-xl border border-white/15 bg-black/20 p-3 sm:p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
               <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/85 sm:text-xs sm:tracking-[0.14em]">
                 03. Apply
               </p>
@@ -139,7 +139,7 @@ export default function Home() {
                 and what you've built.
               </p>
             </div>
-            <div className="rounded-xl border border-white/15 bg-black/20 p-3 sm:p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
+            <div className="rn-card rounded-xl border border-white/15 bg-black/20 p-3 sm:p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
               <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/85 sm:text-xs sm:tracking-[0.14em]">
                 04. We reach out
               </p>

@@ -19,6 +19,24 @@ type ApplicationDoc = {
   createdAt?: Date | string;
 };
 
+type MemberDoc = {
+  _id: { toString(): string };
+  name?: string;
+  email?: string;
+  college?: string;
+  branch?: string;
+  projectLink?: string;
+  githubLink?: string;
+  linkedinLink?: string;
+  leetcodeLink?: string;
+  phoneNumber?: string;
+  role?: string;
+  title?: string;
+  status?: string;
+  approvedAt?: Date | string;
+  createdAt?: Date | string;
+};
+
 function normalizeStatus(status?: string): "new" | "pending" | "rejected" {
   if (status === "pending" || status === "rejected") {
     return status;
@@ -60,10 +78,45 @@ async function getApplications() {
   }
 }
 
+async function getAcceptedMembers() {
+  try {
+    const db = await getDb();
+    const docs = (await db
+      .collection<MemberDoc>("members")
+      .find({ status: "active" })
+      .sort({ approvedAt: -1, createdAt: -1 })
+      .limit(300)
+      .toArray()) as MemberDoc[];
+
+    return docs.map((item) => ({
+      id: item._id.toString(),
+      name: item.name ?? "",
+      email: item.email ?? "",
+      college: item.college ?? "",
+      branch: item.branch ?? "",
+      role: item.role ?? "Guild Member",
+      title: item.title ?? "Builder",
+      projectLink: item.projectLink ?? "",
+      githubLink: item.githubLink ?? "",
+      linkedinLink: item.linkedinLink ?? "",
+      leetcodeLink: item.leetcodeLink ?? "",
+      phoneNumber: item.phoneNumber ?? "",
+      approvedAt:
+        item.approvedAt instanceof Date
+          ? item.approvedAt.toISOString()
+          : new Date(item.approvedAt ?? item.createdAt ?? Date.now()).toISOString(),
+    }));
+  } catch (error) {
+    console.error("Failed to load accepted members:", error);
+    return [];
+  }
+}
+
 export default async function AdminApplicationsPage() {
   const passwordConfigured = isAdminPasswordConfigured();
   const authenticated = passwordConfigured ? await isAdminAuthenticated() : false;
   const applications = authenticated ? await getApplications() : [];
+  const acceptedMembers = authenticated ? await getAcceptedMembers() : [];
 
   return (
     <main className="relative min-h-screen overflow-hidden text-white">
@@ -85,6 +138,7 @@ export default async function AdminApplicationsPage() {
           isAuthenticated={authenticated}
           isPasswordConfigured={passwordConfigured}
           applications={applications}
+          acceptedMembers={acceptedMembers}
         />
       </section>
     </main>
