@@ -8,7 +8,7 @@ const requiredFields = [
   "email",
   "college",
   "branch",
-  "projectLink",
+  "resumeLink",
   "githubLink",
   "linkedinLink",
   "phoneNumber",
@@ -31,6 +31,29 @@ export async function POST(request: Request) {
       );
     }
 
+    const requiresHardwareDemo = /ece|hardware/i.test(payload.branch ?? "");
+
+    if (requiresHardwareDemo && !payload.demoVideoLink) {
+      return NextResponse.json(
+        {
+          message:
+            "For ECE/Hardware projects, demo video link (Google Drive) is required.",
+          missingFields: ["demoVideoLink"],
+        },
+        { status: 400 }
+      );
+    }
+
+    if (!requiresHardwareDemo && !payload.projectLink) {
+      return NextResponse.json(
+        {
+          message: "Missing required fields.",
+          missingFields: ["projectLink"],
+        },
+        { status: 400 }
+      );
+    }
+
     const db = await getDb();
 
     const result = await db.collection("applications").insertOne({
@@ -38,7 +61,9 @@ export async function POST(request: Request) {
       email: payload.email,
       college: payload.college,
       branch: payload.branch,
-      projectLink: payload.projectLink,
+      resumeLink: payload.resumeLink,
+      projectLink: payload.projectLink ?? "",
+      demoVideoLink: payload.demoVideoLink ?? "",
       githubLink: payload.githubLink,
       linkedinLink: payload.linkedinLink,
       leetcodeLink: payload.leetcodeLink ?? "",

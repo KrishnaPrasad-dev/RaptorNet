@@ -7,52 +7,49 @@ import Navbar from "@/components/Navbar";
 const checklist = [
   {
     title: "GitHub Profile",
-    detail:
-      "Share your GitHub profile link with active repositories, clear README files, and recent work.",
+    detail: "Share your main GitHub profile with 2-3 solid projects and clean README files.",
   },
   {
     title: "LinkedIn Profile",
-    detail:
-      "Add your LinkedIn profile so we can understand your background, interests, and public work.",
+    detail: "Share your LinkedIn profile with your photo, headline, and project/activity updates.",
   },
   {
     title: "Resume",
-    detail:
-      "Upload or share a resume link that clearly shows your technical experience, projects, and skills.",
+    detail: "Upload your resume to Google Drive and share a viewable link.",
   },
   {
     title: "Project Deployed Link",
-    detail:
-      "Provide at least one live deployed project URL that we can open and test directly. The image below shows popular hosting platforms you can use for deployment.",
+    detail: "Share one live project link that solves a real problem and can be tested quickly.",
   },
 ];
 
 export default function ResourcesPage() {
   return (
-    <main className="min-h-screen bg-[#05070b] text-white">
-      <section className="mx-auto w-full max-w-7xl px-4 pb-16 pt-4 sm:px-10 lg:px-12">
+    <main className="relative min-h-screen overflow-hidden bg-[#05070b] text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_8%,rgba(255,255,255,0.08),transparent_28%),radial-gradient(circle_at_85%_78%,rgba(120,144,156,0.12),transparent_30%)]" />
+      <section className="mx-auto w-full max-w-7xl px-4 pb-14 pt-3 sm:px-10 sm:pt-4 lg:px-12">
         <Navbar />
 
-        <div className="rn-reveal mt-10 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+        <div className="rn-reveal mt-8 rounded-[2rem] border border-white/8 bg-white/[0.03] p-5 sm:mt-10 sm:p-8">
           <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-red-200/85 sm:text-[16px] sm:tracking-[0.28em]">
             Application resources
           </p>
           <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-[3.2rem] lg:leading-[0.95]">
             What you should prepare before applying
           </h1>
-          <p className="mt-4 max-w-3xl text-sm leading-6 text-white/72 sm:text-base">
-            Use this page as your pre-application checklist. Keep these links and details ready before you submit your application.
+          <p className="mt-4 max-w-3xl text-base leading-7 text-white/78 sm:text-lg">
+            Keep these links ready first. Then submit your application.
           </p>
         </div>
 
-        <div className="rn-stagger mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="rn-stagger mt-5 grid gap-4 sm:mt-6 sm:grid-cols-2">
           {checklist.map((item) => (
             <article
               key={item.title}
-              className="rn-card rounded-2xl border border-white/10 bg-black/25 p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10"
+              className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10"
             >
-              <h2 className="text-lg font-semibold tracking-tight">{item.title}</h2>
-              <p className="mt-3 text-sm leading-6 text-white/72">{item.detail}</p>
+              <h2 className="text-xl font-semibold tracking-tight">{item.title}</h2>
+              <p className="mt-3 text-base leading-7 text-white/78">{item.detail}</p>
               {item.title === "GitHub Profile" && (
                 <div className="mt-4 overflow-hidden rounded-xl border border-white/10">
                   <p className="border-b border-white/10 bg-black/30 px-4 py-2 text-[10px] font-semibold tracking-[0.24em] uppercase text-white/55">
@@ -148,27 +145,27 @@ export default function ResourcesPage() {
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href="/apply"
-            className="rn-button rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white"
+            className="rn-button inline-flex w-full items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-base font-semibold text-white/90 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white sm:w-auto"
           >
             Go to Apply
           </Link>
           <Link
             href="/"
-            className="rounded-full border border-white/10 bg-transparent px-5 py-2.5 text-sm font-medium text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+            className="rn-button inline-flex w-full items-center justify-center rounded-full border border-white/10 bg-transparent px-6 py-3 text-base font-semibold text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white sm:w-auto"
           >
             Back Home
           </Link>
         </div>
 
-        <div className="rn-reveal rn-delay-1 mt-8 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+        <div className="rn-reveal rn-delay-1 mt-8 rounded-[2rem] border border-white/8 bg-white/[0.03] p-6 sm:p-8">
           <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-red-200/85">
             Contact details
           </p>
           <h2 className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
             Reach out if you have questions
           </h2>
-          <p className="mt-4 max-w-3xl text-sm leading-6 text-white/72 sm:text-base">
-            Add your own LinkedIn profile and phone number here so applicants can contact you directly about their projects or application.
+          <p className="mt-4 max-w-3xl text-base leading-7 text-white/78 sm:text-lg">
+            Need help? Contact us directly.
           </p>
 
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -187,7 +184,7 @@ export default function ResourcesPage() {
                     <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v15H0V8zm7.98 0h4.79v2.05h.07c.67-1.26 2.31-2.59 4.75-2.59 5.08 0 6.02 3.34 6.02 7.69V23h-5v-6.57c0-1.57-.03-3.59-2.19-3.59-2.2 0-2.54 1.72-2.54 3.48V23h-5V8z" />
                   </svg>
                 </span>
-                <span className="break-all">https://www.linkedin.com/in/krishnaprasad-webdev/</span>
+                <span className="text-base font-semibold">Open LinkedIn Profile</span>
               </a>
             </div>
             <div className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5">
@@ -205,7 +202,7 @@ export default function ResourcesPage() {
                     <path d="M.6 23.4 2.2 17.6A11.1 11.1 0 0 1 0 11.9C0 5.3 5.3 0 11.9 0c3.2 0 6.1 1.2 8.3 3.4A11.8 11.8 0 0 1 24 11.7c0 6.6-5.3 12-11.9 12h-.1c-2 0-4-.5-5.8-1.6L.6 23.4zm6-3.5.3.2a9.7 9.7 0 0 0 5 1.4h.1c5.3 0 9.6-4.3 9.6-9.6a9.6 9.6 0 0 0-2.8-6.8A9.4 9.4 0 0 0 11.9 2.3C6.6 2.3 2.3 6.6 2.3 11.9c0 2 .5 3.9 1.5 5.6l.2.4-.9 3.2 3.5-.9zM8 7.5c.2-.4.4-.4.7-.4h.6c.2 0 .4 0 .5.4.2.5.7 1.8.8 2 .1.2.1.4 0 .6l-.3.4c-.1.1-.2.3-.1.5.1.2.5 1 1.3 1.7.9.8 1.6 1 1.9 1.2.2.1.4.1.5 0l.5-.6c.1-.2.3-.2.5-.1l2.1 1c.2.1.3.2.3.4 0 .9-.5 1.7-1.1 1.8-.6.1-1.3.1-2.2-.2-1.1-.4-2.6-1.1-4.3-2.7C7.2 12 6.3 10.3 6 9.2c-.2-.7-.2-1.5.1-2.1L8 7.5z" />
                   </svg>
                 </span>
-                <span className="break-all">7842337902</span>
+                <span className="text-base font-semibold">Chat on WhatsApp</span>
               </a>
             </div>
           </div>

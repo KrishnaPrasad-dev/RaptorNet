@@ -126,10 +126,10 @@ export default async function MembersPage() {
     <main className="relative min-h-screen overflow-hidden bg-[#05070b] text-white">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_8%,rgba(255,255,255,0.08),transparent_24%),radial-gradient(circle_at_82%_86%,rgba(120,144,156,0.12),transparent_32%)]" />
 
-      <section className="relative mx-auto w-full max-w-7xl px-4 pb-16 pt-4 sm:px-10 lg:px-12">
+      <section className="relative mx-auto w-full max-w-7xl px-4 pb-14 pt-3 sm:px-10 sm:pt-4 lg:px-12">
         <Navbar />
 
-        <div className="rn-reveal mt-10 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+        <div className="rn-reveal mt-8 rounded-[2rem] border border-white/8 bg-white/[0.03] p-5 sm:mt-10 sm:p-8">
           <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-red-300/85">
             Current Members
           </p>
@@ -153,12 +153,12 @@ export default async function MembersPage() {
           </div>
         </div>
 
-        <section className="mt-6 grid gap-4 lg:grid-cols-[1.7fr_1fr]">
+        <section className="mt-5 grid gap-4 sm:mt-6 lg:grid-cols-[1.7fr_1fr]">
           <div className="rn-stagger space-y-4">
             {members.map((member, index) => (
               <article
                 key={`${member.name}-${index}`}
-                className="rn-card rounded-[1.7rem] border border-white/10 bg-[linear-gradient(150deg,rgba(255,255,255,0.06),rgba(10,12,18,0.92))] p-5 sm:p-6"
+                className="rn-card rounded-[1.7rem] border border-white/10 bg-[linear-gradient(150deg,rgba(255,255,255,0.05),rgba(10,12,18,0.92))] p-5 sm:p-6"
               >
                 <div className="grid gap-5 md:grid-cols-[150px_1fr] md:items-start">
                   <ProfileAvatar member={member} />
@@ -216,7 +216,7 @@ export default async function MembersPage() {
                           href={member.projectLink}
                           target="_blank"
                           rel="noreferrer"
-                          className="rounded-full border border-white/15 bg-transparent px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                          className="rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
                         >
                           Project
                         </a>
@@ -226,7 +226,7 @@ export default async function MembersPage() {
                           href={member.githubUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="rounded-full border border-white/15 bg-transparent px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                          className="rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
                         >
                           GitHub
                         </a>
@@ -236,7 +236,7 @@ export default async function MembersPage() {
                           href={member.linkedinUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="rounded-full border border-white/15 bg-transparent px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                          className="rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
                         >
                           LinkedIn
                         </a>
@@ -246,7 +246,7 @@ export default async function MembersPage() {
                           href={member.leetcodeUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="rounded-full border border-white/15 bg-transparent px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                          className="rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
                         >
                           LeetCode
                         </a>
@@ -256,7 +256,7 @@ export default async function MembersPage() {
                           href={member.portfolioUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="rounded-full border border-white/15 bg-transparent px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                          className="rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
                         >
                           Portfolio
                         </a>
@@ -280,7 +280,7 @@ export default async function MembersPage() {
               {seatsToFill.map((seat) => (
                 <div
                   key={seat}
-                  className="flex items-center justify-between rounded-xl border border-white/10 bg-black/35 px-3.5 py-2.5"
+                  className="rn-card flex items-center justify-between rounded-xl border border-white/10 bg-black/35 px-3.5 py-2.5 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10"
                 >
                   <span className="text-sm text-white/84">{seat}</span>
                   <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/45">Open</span>

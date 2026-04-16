@@ -10,7 +10,9 @@ type ApplicationDoc = {
   email?: string;
   college?: string;
   branch?: string;
+  resumeLink?: string;
   projectLink?: string;
+  demoVideoLink?: string;
   githubLink?: string;
   linkedinLink?: string;
   leetcodeLink?: string;
@@ -25,7 +27,9 @@ type MemberDoc = {
   email?: string;
   college?: string;
   branch?: string;
+  resumeLink?: string;
   projectLink?: string;
+  demoVideoLink?: string;
   githubLink?: string;
   linkedinLink?: string;
   leetcodeLink?: string;
@@ -61,7 +65,9 @@ async function getApplications() {
       email: item.email ?? "",
       college: item.college ?? "",
       branch: item.branch ?? "",
+      resumeLink: item.resumeLink ?? "",
       projectLink: item.projectLink ?? "",
+      demoVideoLink: item.demoVideoLink ?? "",
       githubLink: item.githubLink ?? "",
       linkedinLink: item.linkedinLink ?? "",
       leetcodeLink: item.leetcodeLink ?? "",
@@ -96,7 +102,9 @@ async function getAcceptedMembers() {
       branch: item.branch ?? "",
       role: item.role ?? "Guild Member",
       title: item.title ?? "Builder",
+      resumeLink: item.resumeLink ?? "",
       projectLink: item.projectLink ?? "",
+      demoVideoLink: item.demoVideoLink ?? "",
       githubLink: item.githubLink ?? "",
       linkedinLink: item.linkedinLink ?? "",
       leetcodeLink: item.leetcodeLink ?? "",
@@ -131,7 +139,7 @@ export default async function AdminApplicationsPage() {
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,8,0.34),rgba(5,5,8,0.46))]" />
       </div>
 
-      <section className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 pt-4 sm:px-10 lg:px-12">
+      <section className="rn-reveal relative z-10 mx-auto w-full max-w-7xl px-6 pb-16 pt-4 sm:px-10 lg:px-12">
         <Navbar />
 
         <AdminApplicationsClient

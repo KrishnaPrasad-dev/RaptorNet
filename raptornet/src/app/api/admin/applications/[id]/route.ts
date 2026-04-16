@@ -13,7 +13,9 @@ type ApplicationDoc = {
   email?: string;
   college?: string;
   branch?: string;
+  resumeLink?: string;
   projectLink?: string;
+  demoVideoLink?: string;
   githubLink?: string;
   linkedinLink?: string;
   leetcodeLink?: string;
@@ -86,7 +88,9 @@ export async function PATCH(
             email: application.email ?? "",
             college: application.college ?? "",
             branch: application.branch ?? "",
+            resumeLink: application.resumeLink ?? "",
             projectLink: application.projectLink ?? "",
+            demoVideoLink: application.demoVideoLink ?? "",
             githubLink: application.githubLink ?? "",
             linkedinLink: application.linkedinLink ?? "",
             leetcodeLink: application.leetcodeLink ?? "",

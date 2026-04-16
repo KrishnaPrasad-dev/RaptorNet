@@ -35,8 +35,15 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  React.useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   return (
-    <nav className={`${geist.className} rn-nav-enter relative z-[100] rounded-[1.5rem] border border-white/10 bg-black/40 px-3 py-2.5 text-white backdrop-blur-md sm:px-4 sm:py-3 md:px-5`}>
+    <nav className={`${geist.className} rn-nav-enter relative z-[100] rounded-[1.35rem] border border-white/12 bg-[#0b0f15]/70 px-3 py-2 text-white backdrop-blur-md sm:rounded-[1.5rem] sm:px-4 sm:py-3 md:px-5`}>
       <div className="flex items-center justify-between gap-3 sm:gap-6">
         {/* Logo */}
         <Link href="/" className="shrink-0" aria-label="RaptorNet home">
@@ -138,7 +145,7 @@ export default function Navbar() {
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex cursor-pointer flex-col gap-1.5 border-0 bg-transparent p-1 md:hidden"
+            className="flex cursor-pointer flex-col gap-1.5 rounded-md border-0 bg-transparent p-2 md:hidden"
           >
             <span className={`block h-0.5 w-6 bg-white transition-transform ${mobileMenuOpen ? "translate-y-2 rotate-45" : ""}`} />
             <span className={`block h-0.5 w-6 bg-white transition-opacity ${mobileMenuOpen ? "opacity-0" : ""}`} />
@@ -149,26 +156,27 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="absolute left-0 top-full z-[200] mt-2.5 flex w-full flex-col gap-1 rounded-b-[1.25rem] border border-white/10 border-t-0 bg-[#0d1117] p-4 shadow-2xl sm:mt-3 sm:p-5 md:hidden">
-          <Link href="/#about-guild" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
+        <div className="absolute left-0 top-full z-[200] mt-2.5 flex max-h-[calc(100vh-6rem)] w-full flex-col gap-1 overflow-y-auto rounded-b-[1.25rem] border border-white/10 border-t-0 bg-[#0d1117] p-4 shadow-2xl sm:mt-3 sm:p-5 md:hidden">
+          <Link href="/#about-guild" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
             About Guild
           </Link>
-          <Link href="/resources" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
+          <Link href="/resources" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
             Resources
           </Link>
-          <Link href="/members" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
+          <Link href="/members" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
             Current Members
           </Link>
-          <Link href="/admin" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
+          <Link href="/admin" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
             Admin
           </Link>
-          <Link href="/admin/applications" className="rounded-lg px-4 py-2.5 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
+          <Link href="/admin/applications" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
             Applications
           </Link>
 
           <Link
             href="/apply"
-            className="rn-button mt-3 flex w-fit items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white"
+            onClick={() => setMobileMenuOpen(false)}
+            className="rn-button mt-3 flex w-full items-center justify-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white"
           >
             Join Our Guild
             <span className="flex size-7 items-center justify-center rounded-full bg-white">

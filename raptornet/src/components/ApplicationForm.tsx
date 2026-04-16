@@ -7,7 +7,9 @@ type FormState = {
   email: string;
   college: string;
   branch: string;
+  resumeLink: string;
   projectLink: string;
+  demoVideoLink: string;
   githubLink: string;
   linkedinLink: string;
   leetcodeLink: string;
@@ -27,7 +29,9 @@ const initialState: FormState = {
   email: "",
   college: "",
   branch: "",
+  resumeLink: "",
   projectLink: "",
+  demoVideoLink: "",
   githubLink: "",
   linkedinLink: "",
   leetcodeLink: "",
@@ -92,14 +96,18 @@ export default function ApplicationForm() {
   };
 
   const inputClassName =
-    "mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none transition-colors duration-150 ease-out placeholder:text-white/30 focus:border-[#7f1020]";
+    "mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-base text-white outline-none transition-colors duration-150 ease-out placeholder:text-white/30 focus:border-[#7f1020] sm:text-sm";
+
+  const requiresHardwareDemo = /ece|hardware/i.test(formData.branch);
 
   const fields: FieldConfig[] = [
     { name: "name", label: "Full Name", placeholder: "Your name", type: "text", autoComplete: "name" },
     { name: "email", label: "Email", placeholder: "you@example.com", type: "email", autoComplete: "email" },
     { name: "college", label: "College", placeholder: "Your college", type: "text", autoComplete: "organization" },
     { name: "branch", label: "Branch", placeholder: "CSE / AIML / ECE / Any branch", type: "text", autoComplete: "off" },
-    { name: "projectLink", label: "Project Link", placeholder: "https://yourproject.com", type: "url", autoComplete: "url" },
+    { name: "resumeLink", label: "Resume Link (Google Drive)", placeholder: "https://drive.google.com/file/d/...", type: "url", autoComplete: "url" },
+    { name: "projectLink", label: "Project Link (Live/Deployed)", placeholder: "https://yourproject.com", type: "url", autoComplete: "url" },
+    { name: "demoVideoLink", label: "Demo Video Link (Google Drive, for ECE/Hardware)", placeholder: "https://drive.google.com/file/d/...", type: "url", autoComplete: "url" },
     { name: "githubLink", label: "GitHub Link", placeholder: "https://github.com/yourname", type: "url", autoComplete: "url" },
     { name: "linkedinLink", label: "LinkedIn Link", placeholder: "https://linkedin.com/in/yourname", type: "url", autoComplete: "url" },
     { name: "leetcodeLink", label: "LeetCode Link (optional)", placeholder: "https://leetcode.com/u/yourname", type: "url", autoComplete: "url" },
@@ -107,7 +115,7 @@ export default function ApplicationForm() {
   ];
 
   return (
-    <form onSubmit={handleSubmit} className="rn-reveal rn-delay-1 rounded-[2rem] border border-white/10 bg-black/25 p-6 sm:p-8">
+    <form onSubmit={handleSubmit} className="rn-reveal rn-delay-1 w-full self-start rounded-[2rem] border border-white/10 bg-black/25 p-5 sm:p-8">
       <div className="rn-stagger grid gap-4 sm:grid-cols-2">
         {fields.map((field) => (
           <label key={field.name} className={field.name === "phoneNumber" ? "sm:col-span-2" : ""}>
@@ -121,7 +129,11 @@ export default function ApplicationForm() {
               type={field.type}
               autoComplete={field.autoComplete}
               inputMode={field.type === "tel" ? "numeric" : undefined}
-              required={field.name !== "leetcodeLink"}
+              required={
+                field.name !== "leetcodeLink" &&
+                !(field.name === "projectLink" && requiresHardwareDemo) &&
+                !(field.name === "demoVideoLink" && !requiresHardwareDemo)
+              }
             />
           </label>
         ))}
@@ -131,12 +143,12 @@ export default function ApplicationForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rn-button rounded-full bg-[#7f1020] px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-colors duration-150 ease-out hover:bg-[#9d1427] disabled:cursor-not-allowed disabled:opacity-60"
+          className="rn-button w-full rounded-full bg-[#7f1020] px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-colors duration-150 ease-out hover:bg-[#9d1427] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >
           {isSubmitting ? "Submitting..." : "Submit Application"}
         </button>
         <p className="text-xs leading-5 text-white/55">
-          LeetCode is optional. Everything else is required.
+          LeetCode is optional. For ECE/Hardware branch, demo video link is required and live project link is optional.
         </p>
       </div>
 

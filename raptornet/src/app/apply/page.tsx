@@ -4,12 +4,13 @@ import ApplicationForm from "@/components/ApplicationForm";
 
 export default function ApplyPage() {
   return (
-    <main className="min-h-screen bg-[#05070b] text-white">
-      <section className="mx-auto w-full max-w-7xl px-4 pb-16 pt-4 sm:px-10 lg:px-12">
+    <main className="relative min-h-screen overflow-hidden bg-[#05070b] text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_8%,rgba(255,255,255,0.08),transparent_28%),radial-gradient(circle_at_85%_78%,rgba(120,144,156,0.12),transparent_30%)]" />
+      <section className="mx-auto w-full max-w-7xl px-4 pb-14 pt-3 sm:px-10 sm:pt-4 lg:px-12">
         <Navbar />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-          <div className="rn-reveal rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+        <div className="mt-8 grid gap-5 lg:mt-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-6">
+          <div className="rn-reveal rounded-[2rem] border border-white/8 bg-white/[0.03] p-5 sm:p-8">
             <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-red-200/85">
               Join the guild
             </p>
@@ -17,32 +18,52 @@ export default function ApplyPage() {
               Apply to RaptorNet
             </h1>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/72 sm:text-base">
-              Submit your details here. We review names, academic background, projects, and public profiles before reaching out. We are open to builders from every branch, including CSE, AIML, ECE, and others.
+              Submit your details. We review profiles and projects, then reach out. All branches are welcome.
             </p>
 
             <div className="mt-4 rounded-lg border border-white/15 bg-white/[0.02] p-4">
-              <p className="text-xs leading-5 text-white/65">
-                <span className="font-semibold text-white/80">💡 Not sure what to prepare?</span> Check our <Link href="/resources" className="font-semibold text-[#7f1020] hover:text-[#9f1030] transition-colors">Resources page</Link> for guides, video tutorials, and examples.
+              <p className="text-sm leading-6 text-white/78 sm:text-base">
+                <span className="font-semibold text-white/80">Not sure what to prepare?</span> Use the <Link href="/resources" className="font-semibold text-[#7f1020] hover:text-[#9f1030] transition-colors">Resources page</Link> for quick examples.
               </p>
             </div>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <div className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5">
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">
                 <p className="text-xs font-semibold tracking-[0.18em] uppercase text-white/70">
                   What we care about
                 </p>
                 <p className="mt-3 text-sm leading-6 text-white/72">
-                  Projects, curiosity, consistency, and the ability to ship. Branch does not limit eligibility.
+                  We value builders: projects, consistency, and shipping.
                 </p>
               </div>
-              <div className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5">
+              <div className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">
                 <p className="text-xs font-semibold tracking-[0.18em] uppercase text-white/70">
                   What to include
                 </p>
                 <p className="mt-3 text-sm leading-6 text-white/72">
-                  Name, email, college, branch, project link, GitHub, LinkedIn, LeetCode if any, and phone number.
+                  Basic details, resume link, GitHub, LinkedIn, phone, and project proof.
                 </p>
               </div>
+            </div>
+
+            <div className="rn-reveal rn-delay-1 mt-5 rounded-2xl border border-white/10 bg-black/25 p-4 sm:p-6">
+              <p className="text-xs font-semibold tracking-[0.18em] uppercase text-red-200/85">
+                Quick checklist
+              </p>
+              <ol className="mt-4 space-y-3 text-sm leading-6 text-white/75">
+                <li>
+                  <span className="font-semibold text-white">1. Resume (Google Drive):</span> set "Anyone with the link can view".
+                </li>
+                <li>
+                  <span className="font-semibold text-white">2. Project proof:</span> software = live deployed link, ECE/hardware = Google Drive demo video.
+                </li>
+                <li>
+                  <span className="font-semibold text-white">3. Add GitHub + LinkedIn:</span> share clean, active profiles.
+                </li>
+                <li>
+                  <span className="font-semibold text-white">4. Final check:</span> LeetCode is optional; open all links once before submit.
+                </li>
+              </ol>
             </div>
           </div>
 
@@ -58,7 +79,7 @@ export default function ApplyPage() {
           </Link>
           <Link
             href="/"
-            className="rounded-full border border-white/10 bg-transparent px-5 py-2.5 text-sm font-medium text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+            className="rn-button rounded-full border border-white/10 bg-transparent px-5 py-2.5 text-sm font-medium text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
           >
             Back home
           </Link>

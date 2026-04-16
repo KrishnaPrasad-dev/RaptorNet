@@ -7,14 +7,14 @@ export default function Home() {
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#05070b] text-white">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_8%,rgba(255,255,255,0.08),transparent_28%),radial-gradient(circle_at_85%_78%,rgba(120,144,156,0.12),transparent_30%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:84px_84px] opacity-14" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:84px_84px] opacity-8" />
 
-      <section className="relative mx-auto flex min-h-[100vh] w-full max-w-7xl flex-col px-4 pb-10 pt-4 sm:px-10 lg:min-h-[114vh] lg:px-12">
+      <section className="relative mx-auto flex min-h-[92vh] w-full max-w-7xl flex-col px-4 pb-10 pt-3 sm:min-h-[100vh] sm:px-10 sm:pt-4 lg:min-h-[114vh] lg:px-12">
         <Navbar />
 
         <div
           id="cohort"
-          className="relative flex flex-1 items-center overflow-hidden py-14 lg:py-12"
+          className="relative flex flex-1 items-center overflow-hidden py-10 sm:py-12 lg:py-12"
         >
           <div className="pointer-events-none absolute left-[34%] right-[-10%] top-[8%] bottom-0 hidden lg:block">
             <div className="absolute inset-0 rounded-[3rem] bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.08),transparent_48%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_32%)] opacity-90" />
@@ -27,15 +27,15 @@ export default function Home() {
 
           <div
             id="about"
-            className="rn-reveal relative z-10 max-w-xl rounded-[2rem] border border-white/10 bg-black/20 p-6 backdrop-blur-[2px] sm:p-8 lg:max-w-lg lg:bg-transparent lg:pl-8 lg:pr-0 lg:py-0 lg:backdrop-blur-none"
+            className="rn-reveal relative z-10 max-w-xl rounded-[2rem] border border-white/8 bg-black/15 p-6 backdrop-blur-[2px] sm:p-8 lg:max-w-lg lg:bg-transparent lg:pl-8 lg:pr-0 lg:py-0 lg:backdrop-blur-none"
           >
             <p className="relative p-1 pt-4 text-[11px] font-semibold tracking-[0.22em] uppercase text-red-200/85 sm:text-[12px] sm:tracking-[0.28em]">
               Curated guild for builders
             </p>
-            <h1 className="mt-4 max-w-md text-[2rem] font-bold leading-tight tracking-tight sm:text-4xl lg:text-[3.4rem] lg:leading-[0.95]">
+            <h1 className="mt-4 max-w-md text-[2rem] font-bold leading-tight tracking-tight sm:text-4xl lg:text-[3.2rem] lg:leading-[0.98]">
               Build together. Ship with intent.
             </h1>
-            <p className="mb-4 mt-4 max-w-[36ch] pr-1 text-[1rem] leading-7 text-white/78 sm:pr-3 sm:text-[1.05rem]">
+            <p className="mb-4 mt-4 max-w-[34ch] pr-1 text-[1rem] leading-7 text-white/78 sm:pr-3 sm:text-[1.05rem]">
               A guild from Guru Nanak University for students who build real projects, dive into tech, prepare for internships, and show up at hackathons — from CSE, AIML, ECE, or any branch.
             </p>
 
@@ -51,7 +51,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about-guild" className="relative mx-auto w-full max-w-7xl scroll-mt-28 px-4 pb-10 sm:px-10 lg:px-12">
+      <section id="about-guild" className="relative mx-auto w-full max-w-7xl scroll-mt-24 px-4 pb-10 sm:scroll-mt-28 sm:px-10 lg:px-12">
         <div className="rn-reveal rn-delay-1 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
           <p className="text-[16px] font-bold tracking-[0.26em] uppercase text-red-400/85">
             What is RaptorNet

@@ -13,7 +13,9 @@ type ApplicationItem = {
   email: string;
   college: string;
   branch: string;
+  resumeLink: string;
   projectLink: string;
+  demoVideoLink: string;
   githubLink: string;
   linkedinLink: string;
   leetcodeLink: string;
@@ -30,7 +32,9 @@ type AcceptedMemberItem = {
   branch: string;
   role: string;
   title: string;
+  resumeLink: string;
   projectLink: string;
+  demoVideoLink: string;
   githubLink: string;
   linkedinLink: string;
   leetcodeLink: string;
@@ -358,17 +362,47 @@ export default function AdminApplicationsClient({
               </div>
 
               <div className="mt-4 flex flex-wrap gap-2">
-                <a
-                  href={application.projectLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/25 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
-                >
-                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-                    <path d="M7 17 17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  Project
-                </a>
+                {application.resumeLink && (
+                  <a
+                    href={application.resumeLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/25 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                  >
+                    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                      <path d="M8 3h6l5 5v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="M14 3v5h5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Resume
+                  </a>
+                )}
+                {application.projectLink && (
+                  <a
+                    href={application.projectLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/25 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                  >
+                    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                      <path d="M7 17 17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Project
+                  </a>
+                )}
+                {application.demoVideoLink && (
+                  <a
+                    href={application.demoVideoLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/25 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                  >
+                    <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                      <path d="M8 5h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z" strokeLinecap="round" strokeLinejoin="round" />
+                      <path d="m11 9 4 3-4 3V9Z" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Demo Video
+                  </a>
+                )}
                 <a
                   href={application.githubLink}
                   target="_blank"
@@ -489,6 +523,16 @@ export default function AdminApplicationsClient({
                   </div>
 
                   <div className="mt-3 flex flex-wrap gap-2">
+                    {member.resumeLink && (
+                      <a
+                        href={member.resumeLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                      >
+                        Resume
+                      </a>
+                    )}
                     {member.projectLink && (
                       <a
                         href={member.projectLink}
@@ -497,6 +541,16 @@ export default function AdminApplicationsClient({
                         className="inline-flex items-center rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
                       >
                         Project
+                      </a>
+                    )}
+                    {member.demoVideoLink && (
+                      <a
+                        href={member.demoVideoLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center rounded-full border border-white/20 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                      >
+                        Demo Video
                       </a>
                     )}
                     {member.githubLink && (
