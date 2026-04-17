@@ -12,8 +12,11 @@ import {
   Texture,
 } from "three";
 
-function RaptorModel() {
+function RaptorModel({ mobilePreview = false }: { mobilePreview?: boolean }) {
   const { scene } = useGLTF("/models/red_the_velociraptor.glb");
+  const modelPosition = mobilePreview ? [3.4, -4.43, -0.48] : [2.35, -3.25, -0.85];
+  const modelRotation = [0.04, Math.PI * 1.58, 0] as const;
+  const modelScale = mobilePreview ? 0.38 : 0.31;
 
   useEffect(() => {
     scene.traverse((object) => {
@@ -45,9 +48,9 @@ function RaptorModel() {
   return (
     <primitive
       object={scene}
-      position={[2.8, -3.3, -0.9]}
-      rotation={[0.05, Math.PI * 1.55, 0]}
-      scale={0.34}
+      position={modelPosition}
+      rotation={modelRotation}
+      scale={modelScale}
     />
   );
 }
@@ -126,10 +129,10 @@ export default function RaptorModelCanvas({
 
   if (!isDesktop && mobileEnabled) {
     return (
-      <div ref={containerRef} className="h-full w-full overflow-hidden">
+      <div ref={containerRef} className="flex h-full w-full items-center justify-center overflow-hidden">
         <Canvas
-          camera={{ position: [0.28, 2.6, 7.25], fov: 34 }}
-          dpr={[0.75, 1.1]}
+          camera={{ position: [0.1, 2.52, 6.75], fov: 32 }}
+          dpr={[0.9, 1.2]}
           shadows={false}
           gl={{
             antialias: false,
@@ -151,14 +154,14 @@ export default function RaptorModelCanvas({
           />
 
           <Suspense fallback={<Loader />}>
-            <RaptorModel />
+            <RaptorModel mobilePreview />
           </Suspense>
 
           <OrbitControls
             enablePan={false}
             enableZoom={false}
             enableRotate={false}
-            target={[0.35, 1.7, 0]}
+            target={[0.05, 1.2, 0]}
           />
         </Canvas>
       </div>
@@ -166,10 +169,10 @@ export default function RaptorModelCanvas({
   }
 
   return (
-    <div ref={containerRef} className="h-full w-full overflow-hidden">
+    <div ref={containerRef} className="flex h-full w-full items-center justify-center overflow-hidden">
       <Canvas
-        camera={{ position: [0.2, 2.55, 6.9], fov: 30 }}
-        dpr={[1, 1.5]}
+        camera={{ position: [0.15, 2.7, 7.6], fov: 33 }}
+        dpr={[1, 1.4]}
         shadows
         gl={{
           antialias: false,
@@ -214,7 +217,7 @@ export default function RaptorModelCanvas({
         <OrbitControls
           enablePan={true}
           enableZoom={false}
-          target={[0.35, 1.7, 0]}
+          target={[0.2, 1.55, 0]}
           autoRotate={false}
           enableDamping
           dampingFactor={0.08}

@@ -10,18 +10,18 @@ export default function ApplyPage() {
         <Navbar />
 
         <div className="mt-8 grid gap-5 lg:mt-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-6">
-          <div className="rn-reveal rounded-[2rem] border border-white/8 bg-white/[0.03] p-5 sm:p-8">
+          <div className="rn-reveal rounded-[2rem] border border-white/8 bg-white/[0.03] p-5 text-center sm:p-8 lg:text-left">
             <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-red-200/85">
               Join the guild
             </p>
             <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-[3.4rem] lg:leading-[0.95]">
               Apply to RaptorNet
             </h1>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-white/72 sm:text-base">
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-white/72 sm:text-base lg:mx-0">
               Submit your details. We review profiles and projects, then reach out. All branches are welcome.
             </p>
 
-            <div className="mt-4 rounded-lg border border-white/15 bg-white/[0.02] p-4">
+            <div className="mt-4 rounded-lg border border-white/15 bg-white/[0.02] p-4 text-left">
               <p className="text-sm leading-6 text-white/78 sm:text-base">
                 <span className="font-semibold text-white/80">Not sure what to prepare?</span> Use the <Link href="/resources" className="font-semibold text-[#7f1020] hover:text-[#9f1030] transition-colors">Resources page</Link> for quick examples.
               </p>
@@ -70,16 +70,16 @@ export default function ApplyPage() {
           <ApplicationForm />
         </div>
 
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Link
             href="/resources"
-            className="rn-button rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white"
+            className="rn-button inline-flex w-full items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white sm:w-auto"
           >
             View Resources
           </Link>
           <Link
             href="/"
-            className="rn-button rounded-full border border-white/10 bg-transparent px-5 py-2.5 text-sm font-medium text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+            className="rn-button inline-flex w-full items-center justify-center rounded-full border border-white/10 bg-transparent px-5 py-2.5 text-sm font-medium text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white sm:w-auto"
           >
             Back home
           </Link>

@@ -27,23 +27,23 @@ export default function Home() {
 
           <div
             id="about"
-            className="rn-reveal relative z-10 max-w-xl rounded-[2rem] border border-white/8 bg-black/15 p-6 backdrop-blur-[2px] sm:p-8 lg:max-w-lg lg:bg-transparent lg:pl-8 lg:pr-0 lg:py-0 lg:backdrop-blur-none"
+            className="rn-reveal relative z-10 mx-auto w-full max-w-xl rounded-[2rem] border border-white/8 bg-black/15 p-6 text-center backdrop-blur-[2px] sm:p-8 lg:mx-0 lg:max-w-lg lg:bg-transparent lg:pl-8 lg:pr-0 lg:py-0 lg:text-left lg:backdrop-blur-none"
           >
             <p className="relative p-1 pt-4 text-[11px] font-semibold tracking-[0.22em] uppercase text-red-200/85 sm:text-[12px] sm:tracking-[0.28em]">
               Curated guild for builders
             </p>
-            <h1 className="mt-4 max-w-md text-[2rem] font-bold leading-tight tracking-tight sm:text-4xl lg:text-[3.2rem] lg:leading-[0.98]">
+            <h1 className="mx-auto mt-4 max-w-md text-[2rem] font-bold leading-tight tracking-tight sm:text-4xl lg:mx-0 lg:text-[3.2rem] lg:leading-[0.98]">
               Build together. Ship with intent.
             </h1>
-            <p className="mb-4 mt-4 max-w-[34ch] pr-1 text-[1rem] leading-7 text-white/78 sm:pr-3 sm:text-[1.05rem]">
+            <p className="mx-auto mb-4 mt-4 max-w-[34ch] px-1 text-[1rem] leading-7 text-white/78 sm:px-0 sm:text-[1.05rem] lg:mx-0">
               A guild from Guru Nanak University for students who build real projects, dive into tech, prepare for internships, and show up at hackathons — from CSE, AIML, ECE, or any branch.
             </p>
 
-            <div className="mt-5 overflow-hidden rounded-[1.5rem] border border-white/10 bg-[linear-gradient(170deg,rgba(255,255,255,0.05),rgba(10,12,18,0.86))] p-2.5 lg:hidden">
-              <div className="h-[250px] w-full rounded-[1.1rem] border border-white/10 bg-black/35">
+            <div className="mx-auto mt-5 max-w-xl overflow-hidden rounded-[1.5rem] border border-white/10 bg-[linear-gradient(170deg,rgba(255,255,255,0.05),rgba(10,12,18,0.86))] p-2.5 lg:hidden">
+              <div className="h-[260px] w-full rounded-[1.1rem] border border-white/10 bg-black/35 sm:h-[290px]">
                 <RaptorModelCanvas mobileEnabled />
               </div>
-              <p className="px-2 pb-1 pt-3 text-xs leading-5 text-white/60">
+              <p className="px-2 pb-1 pt-3 text-center text-xs leading-5 text-white/60 sm:text-left">
                 Mobile-optimized model preview. Full interactive stage is available on larger screens.
               </p>
             </div>

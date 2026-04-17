@@ -30,14 +30,14 @@ export default function ResourcesPage() {
       <section className="mx-auto w-full max-w-7xl px-4 pb-14 pt-3 sm:px-10 sm:pt-4 lg:px-12">
         <Navbar />
 
-        <div className="rn-reveal mt-8 rounded-[2rem] border border-white/8 bg-white/[0.03] p-5 sm:mt-10 sm:p-8">
+        <div className="rn-reveal mt-8 rounded-[2rem] border border-white/8 bg-white/[0.03] p-5 text-center sm:mt-10 sm:p-8 lg:text-left">
           <p className="text-[13px] font-semibold tracking-[0.2em] uppercase text-red-200/85 sm:text-[16px] sm:tracking-[0.28em]">
             Application resources
           </p>
-          <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-[3.2rem] lg:leading-[0.95]">
+          <h1 className="mx-auto mt-4 max-w-3xl text-3xl font-bold tracking-tight sm:text-4xl lg:mx-0 lg:text-[3.2rem] lg:leading-[0.95]">
             What you should prepare before applying
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-white/78 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-3xl text-base leading-7 text-white/78 sm:text-lg lg:mx-0">
             Keep these links ready first. Then submit your application.
           </p>
         </div>
@@ -142,7 +142,7 @@ export default function ResourcesPage() {
           ))}
         </div>
 
-        <div className="mt-8 flex flex-wrap gap-3">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <Link
             href="/apply"
             className="rn-button inline-flex w-full items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-base font-semibold text-white/90 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white sm:w-auto"

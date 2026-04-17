@@ -114,11 +114,23 @@ export default function ApplicationForm() {
     { name: "phoneNumber", label: "Phone Number", placeholder: "Your phone number", type: "tel", autoComplete: "tel" },
   ];
 
+  const fullWidthFields = new Set<keyof FormState>([
+    "resumeLink",
+    "projectLink",
+    "demoVideoLink",
+    "githubLink",
+    "linkedinLink",
+    "leetcodeLink",
+  ]);
+
   return (
-    <form onSubmit={handleSubmit} className="rn-reveal rn-delay-1 w-full self-start rounded-[2rem] border border-white/10 bg-black/25 p-5 sm:p-8">
+    <form onSubmit={handleSubmit} className="rn-reveal rn-delay-1 w-full self-start rounded-[2rem] border border-white/10 bg-black/25 p-5 sm:p-8 lg:sticky lg:top-6">
       <div className="rn-stagger grid gap-4 sm:grid-cols-2">
         {fields.map((field) => (
-          <label key={field.name} className={field.name === "phoneNumber" ? "sm:col-span-2" : ""}>
+          <label
+            key={field.name}
+            className={field.name === "phoneNumber" || fullWidthFields.has(field.name) ? "sm:col-span-2" : ""}
+          >
             <span className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">{field.label}</span>
             <input
               name={field.name}
@@ -139,15 +151,15 @@ export default function ApplicationForm() {
         ))}
       </div>
 
-      <div className="mt-6 flex flex-wrap items-center gap-3">
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rn-button w-full rounded-full bg-[#7f1020] px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-colors duration-150 ease-out hover:bg-[#9d1427] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          className="rn-button inline-flex w-full justify-center rounded-full bg-[#7f1020] px-5 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white transition-colors duration-150 ease-out hover:bg-[#9d1427] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:px-6 sm:tracking-[0.18em]"
         >
           {isSubmitting ? "Submitting..." : "Submit Application"}
         </button>
-        <p className="text-xs leading-5 text-white/55">
+        <p className="text-xs leading-5 text-white/55 sm:max-w-md">
           LeetCode is optional. For ECE/Hardware branch, demo video link is required and live project link is optional.
         </p>
       </div>

@@ -160,11 +160,11 @@ export default async function MembersPage() {
                 key={`${member.name}-${index}`}
                 className="rn-card rounded-[1.7rem] border border-white/10 bg-[linear-gradient(150deg,rgba(255,255,255,0.05),rgba(10,12,18,0.92))] p-5 sm:p-6"
               >
-                <div className="grid gap-5 md:grid-cols-[150px_1fr] md:items-start">
+                <div className="grid gap-5 text-center md:grid-cols-[150px_1fr] md:items-start md:text-left">
                   <ProfileAvatar member={member} />
 
                   <div>
-                    <div className="flex flex-wrap items-center gap-2.5">
+                    <div className="flex flex-wrap items-center justify-center gap-2.5 md:justify-start">
                       <span className="rounded-full border border-[#7f1020]/70 bg-[#7f1020]/20 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#ffb9c4]">
                         {member.status}
                       </span>
@@ -210,13 +210,13 @@ export default async function MembersPage() {
                       </div>
                     )}
 
-                    <div className="mt-5 flex flex-wrap items-center gap-2.5">
+                    <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center md:justify-start">
                       {member.projectLink && (
                         <a
                           href={member.projectLink}
                           target="_blank"
                           rel="noreferrer"
-                          className="rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                          className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white sm:w-auto"
                         >
                           Project
                         </a>
@@ -226,7 +226,7 @@ export default async function MembersPage() {
                           href={member.githubUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                          className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white sm:w-auto"
                         >
                           GitHub
                         </a>
@@ -236,7 +236,7 @@ export default async function MembersPage() {
                           href={member.linkedinUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                          className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white sm:w-auto"
                         >
                           LinkedIn
                         </a>
@@ -246,7 +246,7 @@ export default async function MembersPage() {
                           href={member.leetcodeUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                          className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white sm:w-auto"
                         >
                           LeetCode
                         </a>
@@ -256,7 +256,7 @@ export default async function MembersPage() {
                           href={member.portfolioUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white"
+                          className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white sm:w-auto"
                         >
                           Portfolio
                         </a>
@@ -268,7 +268,7 @@ export default async function MembersPage() {
             ))}
           </div>
 
-          <aside className="rn-reveal rn-delay-2 rounded-[1.7rem] border border-white/10 bg-black/30 p-5 sm:p-6">
+          <aside className="rn-reveal rn-delay-2 rounded-[1.7rem] border border-white/10 bg-black/30 p-5 text-center sm:p-6 lg:text-left">
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/62">
               Open Builder Seats
             </p>
@@ -290,7 +290,7 @@ export default async function MembersPage() {
 
             <Link
               href="/apply"
-              className="rn-button mt-5 inline-flex rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/20"
+              className="rn-button mt-5 inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/20 sm:w-auto"
             >
               Submit profile
             </Link>

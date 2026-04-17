@@ -220,7 +220,7 @@ export default function AdminApplicationsClient({
 
   if (!isAuthenticated) {
     return (
-      <section className="rn-reveal mx-auto mt-10 max-w-xl rounded-[2rem] border border-white/15 bg-[linear-gradient(145deg,rgba(18,18,24,0.88),rgba(12,12,16,0.86))] p-8 shadow-[0_25px_60px_rgba(0,0,0,0.4)]">
+      <section className="rn-reveal mx-auto mt-10 max-w-xl rounded-[2rem] border border-white/15 bg-[linear-gradient(145deg,rgba(18,18,24,0.88),rgba(12,12,16,0.86))] p-5 text-center shadow-[0_25px_60px_rgba(0,0,0,0.4)] sm:p-8 sm:text-left">
         <div className="inline-flex items-center gap-2 rounded-full border border-[#7f1020]/50 bg-[#7f1020]/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#ff8ea1]">
           <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
             <path d="M7 11V7a5 5 0 0 1 10 0v4" strokeLinecap="round" />
@@ -274,17 +274,17 @@ export default function AdminApplicationsClient({
 
   return (
     <section className="mx-auto mt-10 max-w-6xl space-y-6">
-      <div className="rn-reveal flex flex-wrap items-start justify-between gap-4 rounded-[1.8rem] border border-white/15 bg-[linear-gradient(145deg,rgba(16,20,28,0.9),rgba(10,12,18,0.86))] p-6 shadow-[0_22px_55px_rgba(0,0,0,0.38)]">
+      <div className="rn-reveal flex flex-col gap-4 rounded-[1.8rem] border border-white/15 bg-[linear-gradient(145deg,rgba(16,20,28,0.9),rgba(10,12,18,0.86))] p-5 shadow-[0_22px_55px_rgba(0,0,0,0.38)] sm:flex-row sm:flex-wrap sm:items-start sm:justify-between sm:p-6">
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/60">Admin</p>
           <h1 className="mt-2 text-3xl font-black tracking-tight text-white">Applications</h1>
           <p className="mt-2 text-sm text-white/70">Review every submission, open project links, and shortlist candidates.</p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center">
           <Link
             href="/admin"
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/25 px-4 py-2 text-sm font-semibold text-white/80 transition-colors duration-150 ease-out hover:border-white/35 hover:text-white"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-black/25 px-4 py-2 text-sm font-semibold text-white/80 transition-colors duration-150 ease-out hover:border-white/35 hover:text-white sm:w-auto"
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
               <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
@@ -295,7 +295,7 @@ export default function AdminApplicationsClient({
             type="button"
             onClick={handleLogout}
             disabled={isLoggingOut}
-            className="inline-flex items-center gap-2 rounded-full border border-[#7f1020]/70 bg-[#7f1020]/25 px-4 py-2 text-sm font-semibold text-white transition-colors duration-150 ease-out hover:bg-[#7f1020]/45 disabled:cursor-not-allowed disabled:opacity-65"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#7f1020]/70 bg-[#7f1020]/25 px-4 py-2 text-sm font-semibold text-white transition-colors duration-150 ease-out hover:bg-[#7f1020]/45 disabled:cursor-not-allowed disabled:opacity-65 sm:w-auto"
           >
             <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
               <path d="M15 12H9m0 0 3-3m-3 3 3 3" strokeLinecap="round" strokeLinejoin="round" />
