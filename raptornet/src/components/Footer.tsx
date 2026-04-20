@@ -42,12 +42,7 @@ export default function Footer() {
               Contact
             </p>
             <div className="mt-2 space-y-1">
-              <a
-                href="mailto:raptornetclub@gmail.com"
-                className="block text-sm font-medium text-white/78 transition-colors duration-150 ease-out hover:text-white"
-              >
-                raptornetclub@gmail.com
-              </a>
+              
               <a
                 href="mailto:itzmekrishna.257@gmail.com"
                 className="block text-sm font-medium text-white/78 transition-colors duration-150 ease-out hover:text-white"

@@ -129,7 +129,7 @@ export default function RaptorModelCanvas({
 
   if (!isDesktop && mobileEnabled) {
     return (
-      <div ref={containerRef} className="flex h-full w-full items-center justify-center overflow-hidden">
+      <div ref={containerRef} className="relative flex h-full w-full items-center justify-center overflow-hidden">
         <Canvas
           style={{ touchAction: "pan-y" }}
           camera={{ position: [0.1, 2.52, 6.75], fov: 32 }}
@@ -167,7 +167,7 @@ export default function RaptorModelCanvas({
         </Canvas>
         <div
           aria-hidden
-          className="absolute inset-0 z-10"
+          className="absolute inset-0 z-10 bg-transparent"
           style={{ touchAction: "pan-y" }}
         />
       </div>

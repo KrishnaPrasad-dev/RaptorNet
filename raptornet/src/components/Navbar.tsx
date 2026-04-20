@@ -44,7 +44,7 @@ export default function Navbar() {
 
   return (
     <nav className={`${geist.className} rn-nav-enter relative z-[100] rounded-[1.35rem] border border-white/12 bg-[#0b0f15]/70 px-3 py-2 text-white backdrop-blur-md sm:rounded-[1.5rem] sm:px-4 sm:py-3 md:px-5`}>
-      <div className="flex items-center justify-between gap-3 sm:gap-6">
+      <div className="flex items-center justify-between gap-2 sm:gap-6">
         {/* Logo */}
         <Link href="/" className="shrink-0" aria-label="RaptorNet home">
           <div className="flex items-center gap-2.5 sm:gap-4">
@@ -61,10 +61,10 @@ export default function Navbar() {
               />
             </div>
             <p className="flex items-baseline gap-0.5 text-white sm:gap-1">
-              <span className={`${raptorFont.className} text-[1.45rem] font-bold leading-none tracking-[0.05em] uppercase text-white sm:text-[1.8rem] sm:tracking-[0.06em]`}>
+              <span className={`${raptorFont.className} text-[1.22rem] font-bold leading-none tracking-[0.04em] uppercase text-white sm:text-[1.8rem] sm:tracking-[0.06em]`}>
                 Raptor
               </span>
-              <span className={`${netFont.className} text-[1.45rem] font-medium leading-none tracking-[0.05em] uppercase text-[#7f1020] sm:text-[1.8rem] sm:tracking-[0.06em]`}>
+              <span className={`${netFont.className} text-[1.22rem] font-medium leading-none tracking-[0.04em] uppercase text-[#7f1020] sm:text-[1.8rem] sm:tracking-[0.06em]`}>
                 Net
               </span>
             </p>
@@ -119,7 +119,7 @@ export default function Navbar() {
         </div>
 
         {/* Right Side - Join Button & Mobile Menu */}
-        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           <Link
             href="/apply"
             className="rn-button hidden items-center gap-2.5 rounded-full border border-white/10 bg-white/5 pl-5 pr-2 py-2 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white md:flex"
@@ -134,7 +134,7 @@ export default function Navbar() {
 
           <Link
             href="/apply"
-            className="rn-button rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] font-semibold tracking-[0.14em] uppercase text-white transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white sm:px-4 sm:py-2 sm:text-[11px] md:hidden"
+            className="rn-button rounded-full border border-white/10 bg-white/5 px-2.5 py-1.5 text-[10px] font-semibold tracking-[0.12em] uppercase text-white transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white sm:px-4 sm:py-2 sm:text-[11px] md:hidden"
           >
             Join
           </Link>

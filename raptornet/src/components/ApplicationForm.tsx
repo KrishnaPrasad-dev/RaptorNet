@@ -98,7 +98,8 @@ export default function ApplicationForm() {
   const inputClassName =
     "mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-base text-white outline-none transition-colors duration-150 ease-out placeholder:text-white/30 focus:border-[#7f1020] sm:text-sm";
 
-  const requiresHardwareDemo = /ece|hardware/i.test(formData.branch);
+  const normalizedBranch = formData.branch.trim().toLowerCase();
+  const isEceBranch = /ece|electronics|hardware/.test(normalizedBranch);
 
   const fields: FieldConfig[] = [
     { name: "name", label: "Full Name", placeholder: "Your name", type: "text", autoComplete: "name" },
@@ -143,8 +144,11 @@ export default function ApplicationForm() {
               inputMode={field.type === "tel" ? "numeric" : undefined}
               required={
                 field.name !== "leetcodeLink" &&
-                !(field.name === "projectLink" && requiresHardwareDemo) &&
-                !(field.name === "demoVideoLink" && !requiresHardwareDemo)
+                (field.name === "demoVideoLink"
+                  ? isEceBranch
+                  : field.name === "projectLink"
+                    ? !isEceBranch
+                    : true)
               }
             />
           </label>
@@ -160,7 +164,7 @@ export default function ApplicationForm() {
           {isSubmitting ? "Submitting..." : "Submit Application"}
         </button>
         <p className="text-xs leading-5 text-white/55 sm:max-w-md">
-          LeetCode is optional. For ECE/Hardware branch, demo video link is required and live project link is optional.
+          For CSE/AIML, all fields are required except demo video and LeetCode. For ECE/Hardware, demo video is required, project link is optional, and LeetCode is optional.
         </p>
       </div>
 
