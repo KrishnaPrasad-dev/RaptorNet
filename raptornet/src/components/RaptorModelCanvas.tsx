@@ -131,6 +131,7 @@ export default function RaptorModelCanvas({
     return (
       <div ref={containerRef} className="flex h-full w-full items-center justify-center overflow-hidden">
         <Canvas
+          style={{ touchAction: "pan-y" }}
           camera={{ position: [0.1, 2.52, 6.75], fov: 32 }}
           dpr={[0.9, 1.2]}
           shadows={false}
@@ -164,6 +165,11 @@ export default function RaptorModelCanvas({
             target={[0.05, 1.2, 0]}
           />
         </Canvas>
+        <div
+          aria-hidden
+          className="absolute inset-0 z-10"
+          style={{ touchAction: "pan-y" }}
+        />
       </div>
     );
   }
