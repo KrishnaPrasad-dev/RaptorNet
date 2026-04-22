@@ -79,13 +79,15 @@ export async function PATCH(
     }
 
     if (action === "accept") {
+      const normalizedEmail = (application.email ?? "").trim().toLowerCase();
+
       await db.collection("members").updateOne(
-        { email: application.email ?? "" },
+        { email: normalizedEmail },
         {
           $set: {
             applicationId: application._id.toString(),
             name: application.name ?? "",
-            email: application.email ?? "",
+            email: normalizedEmail,
             college: application.college ?? "",
             branch: application.branch ?? "",
             resumeLink: application.resumeLink ?? "",
@@ -98,6 +100,7 @@ export async function PATCH(
             role: "Guild Member",
             title: `${application.branch ?? "Student"} Builder`,
             status: "active",
+            canSignup: true,
             approvedAt: new Date(),
           },
           $setOnInsert: {

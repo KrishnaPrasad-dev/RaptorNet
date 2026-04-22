@@ -22,6 +22,8 @@ export async function POST(request: Request) {
       Object.entries(body).map(([key, value]) => [key, typeof value === "string" ? value.trim() : ""])
     ) as Record<string, string>;
 
+    payload.email = (payload.email ?? "").toLowerCase();
+
     const missingFields = requiredFields.filter((field) => !payload[field]);
 
     if (missingFields.length > 0) {

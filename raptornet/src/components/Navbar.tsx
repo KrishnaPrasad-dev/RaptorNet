@@ -121,6 +121,13 @@ export default function Navbar() {
         {/* Right Side - Join Button & Mobile Menu */}
         <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           <Link
+            href="/login"
+            className="hidden rounded-full border border-white/10 bg-transparent px-4 py-2 text-sm font-medium text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white md:inline-flex"
+          >
+            Login
+          </Link>
+
+          <Link
             href="/apply"
             className="rn-button hidden items-center gap-2.5 rounded-full border border-white/10 bg-white/5 pl-5 pr-2 py-2 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white md:flex"
           >
@@ -171,6 +178,9 @@ export default function Navbar() {
           </Link>
           <Link href="/admin/applications" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
             Applications
+          </Link>
+          <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
+            Login
           </Link>
 
           <Link
