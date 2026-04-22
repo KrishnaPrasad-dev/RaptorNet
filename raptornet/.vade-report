@@ -1,0 +1,65 @@
+# Vercel Web Analytics Installation Report
+
+## Summary
+Successfully installed and configured Vercel Web Analytics for the RaptorNet Next.js project.
+
+## Changes Made
+
+### 1. Package Installation
+- Installed `@vercel/analytics` package (version as per latest stable release)
+- Added to dependencies in `package.json`
+- Updated `package-lock.json` with new dependency tree
+
+### 2. Analytics Component Integration
+Modified: `src/app/layout.tsx`
+- Added import: `import { Analytics } from "@vercel/analytics/next";`
+- Added `<Analytics />` component to the root layout inside the `<body>` tag
+- Positioned after the Footer component to ensure proper page load performance
+
+## Implementation Details
+
+### Framework Detection
+- Detected Next.js 16.2.3 with App Router architecture
+- Package manager: npm (confirmed by presence of package-lock.json)
+
+### Configuration Approach
+Following the official Vercel documentation (https://vercel.com/docs/analytics/quickstart), implemented the Next.js App Router approach:
+- Used `@vercel/analytics/next` import path for Next.js optimization
+- Placed Analytics component in root layout for global page view tracking
+- No additional configuration required - analytics will work automatically when deployed to Vercel
+
+## Verification Completed
+
+### Build Success ✓
+- Ran `npm run build` - Build completed successfully
+- TypeScript compilation passed
+- All routes generated correctly (10 pages)
+
+### Linting ✓
+- Ran `npm run lint` 
+- Note: Pre-existing linting issues detected in other files (not related to this change):
+  - `/src/app/apply/page.tsx`: 2 unescaped quote warnings
+  - `/src/lib/mongodb.ts`: 1 unused eslint-disable directive
+- No new linting errors introduced by Analytics integration
+
+### Tests
+- No test suite configured in this project
+
+## Next Steps for Activation
+
+To activate Web Analytics in production:
+1. Deploy this project to Vercel (`vercel deploy`)
+2. Navigate to the project's Analytics section in the Vercel dashboard
+3. Click the "Enable" button to activate Web Analytics
+4. After deployment and user visits, analytics data will appear in the dashboard
+
+## Files Modified
+- `package.json` - Added @vercel/analytics dependency
+- `package-lock.json` - Updated with new dependency tree
+- `src/app/layout.tsx` - Added Analytics component
+
+## Technical Notes
+- Analytics component is lightweight and doesn't impact page load performance
+- Data collection is GDPR-compliant and privacy-focused
+- No additional environment variables or configuration needed
+- Works automatically on Vercel deployments
