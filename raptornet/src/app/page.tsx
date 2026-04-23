@@ -36,7 +36,7 @@ export default function Home() {
               Build together. Ship with intent.
             </h1>
             <p className="mx-auto mb-4 mt-4 max-w-[34ch] px-1 text-[1rem] leading-7 text-white/78 sm:px-0 sm:text-[1.05rem] lg:mx-0">
-              A guild from Guru Nanak University for students who build real projects, dive into tech, prepare for internships, and show up at hackathons — from CSE, AIML, ECE, or any branch.
+              A guild from Guru Nanak institutions for students who build real projects, dive into tech, prepare for internships, and show up at hackathons — from CSE, AIML, ECE, or any branch.
             </p>
 
             <div className="mx-auto mt-5 max-w-xl overflow-hidden rounded-[1.5rem] border border-white/10 bg-[linear-gradient(170deg,rgba(255,255,255,0.05),rgba(10,12,18,0.86))] p-2.5 lg:hidden">

@@ -20,7 +20,7 @@ export default function Footer() {
             Built for students who ship, compete, and keep moving.
           </h2>
           <p className="mt-3 max-w-lg text-sm leading-6 text-white/68 sm:text-base">
-            A curated guild at Guru Nanak University for builders from every branch. No filler, just projects, hackathons, and real momentum.
+            A curated guild at Guru Nanak institutions for builders from every branch. No filler, just projects, hackathons, and real momentum.
           </p>
         </div>
 
