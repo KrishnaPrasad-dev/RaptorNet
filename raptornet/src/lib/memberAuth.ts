@@ -23,7 +23,16 @@ function base64UrlDecode(value: string) {
 }
 
 function getSessionSecret() {
-  return process.env.MEMBER_AUTH_SECRET?.trim() ?? "";
+  const configured = process.env.MEMBER_AUTH_SECRET?.trim() ?? "";
+  if (configured) {
+    return configured;
+  }
+
+  if (process.env.NODE_ENV !== "production") {
+    return "raptornet-dev-member-auth-secret";
+  }
+
+  return "";
 }
 
 export function isMemberAuthConfigured() {

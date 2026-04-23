@@ -53,42 +53,42 @@ export default function SignupPage() {
     <>
       <CustomCursor />
       <main
-      className="relative min-h-screen overflow-hidden bg-[#05070b] text-white"
-      style={{ backgroundColor: "#05070b", color: "#ededed" }}
-    >
-      <div className="absolute inset-0 z-0">
-        <RippleGrid
-          enableRainbow={false}
-          gridColor="#ff3f3f"
-          rippleIntensity={0.05}
-          gridSize={10}
-          gridThickness={15}
-          mouseInteraction={true}
-          mouseInteractionRadius={1.2}
-          opacity={0.8}
-        />
-      </div>
+        className="relative min-h-screen overflow-hidden bg-[#05070b] text-white"
+        style={{ backgroundColor: "#05070b", color: "#ededed" }}
+      >
+        <div className="absolute inset-0 z-0">
+          <RippleGrid
+            enableRainbow={false}
+            gridColor="#ff3f3f"
+            rippleIntensity={0.05}
+            gridSize={10}
+            gridThickness={15}
+            mouseInteraction={true}
+            mouseInteractionRadius={1.2}
+            opacity={0.8}
+          />
+        </div>
 
-      <section className="relative z-20 mx-auto grid min-h-screen w-full max-w-7xl items-center gap-10 px-4 py-12 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-        <div className="max-w-2xl">
+      <section className="relative z-20 mx-auto grid min-h-screen w-full max-w-7xl items-center gap-8 px-4 py-8 sm:px-8 sm:py-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+        <div className="max-w-2xl text-center lg:text-left">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/60">
             Signup
           </p>
-          <h1 className="mt-5 text-5xl font-black leading-[0.96] tracking-tight sm:text-6xl lg:text-7xl">
+          <h1 className="mt-4 text-3xl font-black leading-[0.98] tracking-tight sm:mt-5 sm:text-5xl lg:text-7xl">
             Join
             <span className="block text-[#ff3f3f]">RaptorNet account</span>
           </h1>
-          <p className="mt-7 max-w-xl text-base leading-8 text-white/70 sm:text-lg">
+          <p className="mt-4 max-w-xl text-sm leading-7 text-white/70 sm:mt-6 sm:text-base sm:leading-8 lg:text-lg">
             Create your member account.
           </p>
-          <p className="mt-5 text-xl font-semibold text-white/78">
+          <p className="mt-3 text-base font-semibold text-white/78 sm:mt-5 sm:text-xl">
             Approved emails only.
           </p>
         </div>
 
-        <div className="w-full max-w-xl justify-self-end overflow-hidden rounded-[2rem] border border-white/15 bg-[linear-gradient(145deg,rgba(12,16,24,0.56),rgba(8,10,16,0.62))] p-7 shadow-[0_24px_90px_rgba(0,0,0,0.45)] sm:p-9">
-          <h2 className="text-center text-4xl font-black tracking-tight">Sign Up</h2>
-          <p className="mt-2 text-center text-base text-white/65">
+        <div className="w-full max-w-xl justify-self-stretch overflow-hidden rounded-2xl border border-white/15 bg-[linear-gradient(145deg,rgba(12,16,24,0.56),rgba(8,10,16,0.62))] p-5 shadow-[0_24px_90px_rgba(0,0,0,0.45)] sm:justify-self-end sm:rounded-[2rem] sm:p-9">
+          <h2 className="text-center text-3xl font-black tracking-tight sm:text-4xl">Sign Up</h2>
+          <p className="mt-2 text-center text-sm text-white/65 sm:text-base">
             Use your approved email
           </p>
 
