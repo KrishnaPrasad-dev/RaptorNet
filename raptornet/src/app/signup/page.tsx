@@ -39,8 +39,8 @@ export default function SignupPage() {
         return;
       }
 
-      setSuccess("Account created. Redirecting you to members area...");
-      router.push("/members");
+      setSuccess("Account created. Redirecting you to your profile...");
+      router.push("/profile");
       router.refresh();
     } catch {
       setError("Network error. Please try again.");

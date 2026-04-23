@@ -35,7 +35,7 @@ export default function LoginPage() {
         return;
       }
 
-      router.push("/members");
+      router.push("/profile");
       router.refresh();
     } catch {
       setError("Network error. Please try again.");

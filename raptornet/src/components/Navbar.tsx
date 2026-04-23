@@ -73,6 +73,9 @@ export default function Navbar() {
 
         {/* Main Navigation - Shows on md and up */}
         <div className="hidden items-center gap-6 md:flex lg:gap-8 xl:gap-4">
+          <Link href="/profile" className="text-sm font-medium text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020] px-3 py-2 lg:text-base">
+            Profile
+          </Link>
           <Link href="/resources" className="text-sm font-medium text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020] px-3 py-2 lg:text-base">
             Resources
           </Link>
@@ -161,6 +164,9 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="absolute left-0 top-full z-[200] mt-2.5 flex max-h-[calc(100vh-6rem)] w-full flex-col gap-1 overflow-y-auto rounded-b-[1.25rem] border border-white/10 border-t-0 bg-[#0d1117] p-4 shadow-2xl sm:mt-3 sm:p-5 md:hidden">
+          <Link href="/profile" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
+            Profile
+          </Link>
           <Link href="/resources" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
             Resources
           </Link>
