@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import RippleGrid from "@/components/RippleGrid";
+import CustomCursor from "@/components/CustomCursor";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -44,10 +45,12 @@ export default function LoginPage() {
   };
 
   return (
-    <main
-      className="relative min-h-screen overflow-hidden bg-[#05070b] text-white"
-      style={{ backgroundColor: "#05070b", color: "#ededed" }}
-    >
+    <>
+      <CustomCursor />
+      <main
+        className="relative min-h-screen overflow-hidden bg-[#05070b] text-white"
+        style={{ backgroundColor: "#05070b", color: "#ededed" }}
+      >
       <div className="absolute inset-0 z-0">
         <RippleGrid
           enableRainbow={false}
@@ -64,25 +67,24 @@ export default function LoginPage() {
       <section className="relative z-20 mx-auto grid min-h-screen w-full max-w-7xl items-center gap-10 px-4 py-12 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <div className="max-w-2xl">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/60">
-            RaptorNet Member Access
+            Member Access
           </p>
           <h1 className="mt-5 text-5xl font-black leading-[0.96] tracking-tight sm:text-6xl lg:text-7xl">
-            Welcome back to
+            Welcome back
             <span className="block text-[#ff3f3f]">RaptorNet</span>
           </h1>
           <p className="mt-7 max-w-xl text-base leading-8 text-white/70 sm:text-lg">
-            Built your way in? Sign in to continue with the guild. Access is
-            reserved for approved applicants only.
+            Sign in to continue.
           </p>
           <p className="mt-5 text-xl font-semibold text-white/78">
-            Vetted access for serious builders.
+            Approved members only.
           </p>
         </div>
 
         <div className="w-full max-w-xl justify-self-end overflow-hidden rounded-[2rem] border border-white/15 bg-[linear-gradient(145deg,rgba(12,16,24,0.56),rgba(8,10,16,0.62))] p-7 shadow-[0_24px_90px_rgba(0,0,0,0.45)] sm:p-9">
           <h2 className="text-center text-4xl font-black tracking-tight">Login</h2>
           <p className="mt-2 text-center text-base text-white/65">
-            Use your approved email and password
+            Use your email and password
           </p>
 
           <form className="mt-8 space-y-4" onSubmit={onSubmit}>
@@ -132,26 +134,27 @@ export default function LoginPage() {
           </form>
 
           <div className="mt-6 flex items-center justify-center gap-2 text-sm text-white/60">
-            <span>No account yet?</span>
+            <span>Need an account?</span>
             <Link
               href="/signup"
               className="font-semibold text-[#ff9f9f] transition-colors duration-150 ease-out hover:text-[#ffc1c1]"
             >
-              Create account
+              Sign up
             </Link>
           </div>
 
           <div className="mt-3 flex items-center justify-center gap-2 text-xs text-white/55">
-            <span>Not approved yet?</span>
+            <span>Need access?</span>
             <Link
               href="/apply"
               className="font-semibold text-white/80 transition-colors duration-150 ease-out hover:text-white"
             >
-              Submit application
+              Apply
             </Link>
           </div>
         </div>
       </section>
     </main>
+    </>
   );
 }

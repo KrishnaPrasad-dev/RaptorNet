@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import RippleGrid from "@/components/RippleGrid";
+import CustomCursor from "@/components/CustomCursor";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -49,7 +50,9 @@ export default function SignupPage() {
   };
 
   return (
-    <main
+    <>
+      <CustomCursor />
+      <main
       className="relative min-h-screen overflow-hidden bg-[#05070b] text-white"
       style={{ backgroundColor: "#05070b", color: "#ededed" }}
     >
@@ -69,25 +72,24 @@ export default function SignupPage() {
       <section className="relative z-20 mx-auto grid min-h-screen w-full max-w-7xl items-center gap-10 px-4 py-12 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <div className="max-w-2xl">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/60">
-            Invite-Only Signup
+            Signup
           </p>
           <h1 className="mt-5 text-5xl font-black leading-[0.96] tracking-tight sm:text-6xl lg:text-7xl">
-            Activate your
+            Join
             <span className="block text-[#ff3f3f]">RaptorNet account</span>
           </h1>
           <p className="mt-7 max-w-xl text-base leading-8 text-white/70 sm:text-lg">
-            Signup works only for emails that were accepted from the application
-            review process.
+            Create your member account.
           </p>
           <p className="mt-5 text-xl font-semibold text-white/78">
-            Approved first. Account second.
+            Approved emails only.
           </p>
         </div>
 
         <div className="w-full max-w-xl justify-self-end overflow-hidden rounded-[2rem] border border-white/15 bg-[linear-gradient(145deg,rgba(12,16,24,0.56),rgba(8,10,16,0.62))] p-7 shadow-[0_24px_90px_rgba(0,0,0,0.45)] sm:p-9">
           <h2 className="text-center text-4xl font-black tracking-tight">Sign Up</h2>
           <p className="mt-2 text-center text-base text-white/65">
-            Create your member account with your approved email
+            Use your approved email
           </p>
 
           <form className="mt-8 space-y-4" onSubmit={onSubmit}>
@@ -102,7 +104,7 @@ export default function SignupPage() {
                 autoComplete="name"
                 required
                 className="h-12 w-full rounded-xl border border-white/20 bg-black/35 px-4 text-sm text-white outline-none transition-colors duration-150 ease-out placeholder:text-white/35 focus:border-[#ff4a4a]"
-                placeholder="Your full name"
+                placeholder="Your name"
               />
             </label>
 
@@ -133,7 +135,7 @@ export default function SignupPage() {
                 minLength={8}
                 required
                 className="h-12 w-full rounded-xl border border-white/20 bg-black/35 px-4 text-sm text-white outline-none transition-colors duration-150 ease-out placeholder:text-white/35 focus:border-[#ff4a4a]"
-                placeholder="At least 8 characters"
+                placeholder="8+ characters"
               />
             </label>
 
@@ -159,16 +161,17 @@ export default function SignupPage() {
           </form>
 
           <div className="mt-6 flex items-center justify-center gap-2 text-sm text-white/60">
-            <span>Already registered?</span>
+            <span>Have an account?</span>
             <Link
               href="/login"
               className="font-semibold text-[#ff9f9f] transition-colors duration-150 ease-out hover:text-[#ffc1c1]"
             >
-              Login
+              Log in
             </Link>
           </div>
         </div>
       </section>
     </main>
+    </>
   );
 }
