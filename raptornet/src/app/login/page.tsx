@@ -3,7 +3,7 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import AuthBackground from "@/components/AuthBackground";
+import RippleGrid from "@/components/RippleGrid";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -48,7 +48,18 @@ export default function LoginPage() {
       className="relative min-h-screen overflow-hidden bg-[#05070b] text-white"
       style={{ backgroundColor: "#05070b", color: "#ededed" }}
     >
-      <AuthBackground />
+      <div className="absolute inset-0 z-0">
+        <RippleGrid
+          enableRainbow={false}
+          gridColor="#ff3f3f"
+          rippleIntensity={0.05}
+          gridSize={10}
+          gridThickness={15}
+          mouseInteraction={true}
+          mouseInteractionRadius={1.2}
+          opacity={0.8}
+        />
+      </div>
 
       <section className="relative z-20 mx-auto grid min-h-screen w-full max-w-7xl items-center gap-10 px-4 py-12 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <div className="max-w-2xl">
