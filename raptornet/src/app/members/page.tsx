@@ -44,14 +44,14 @@ type MemberDoc = {
 const foundingMembers: Member[] = [
   {
     name: "J Krishna Prasad Goud",
-    role: "Guild Founder",
+    role: "Guild Admin",
     title: "Full Stack Web Developer (MERN)",
     branch: "Computer Science",
     year: "GNU",
     focus: ["Web Platforms", "Builder Community", "Mentorship"],
     strengths: ["React", "Next.js", "Node.js", "MongoDB", "Product Thinking"],
     image: "/kp.jpeg",
-    status: "Founding",
+    status: "Core",
     githubUrl: "https://github.com/KrishnaPrasad-dev/RaptorNet",
     linkedinUrl: "https://www.linkedin.com/in/krishnaprasad-webdev/",
     portfolioUrl: "https://krishnaprasad.space",

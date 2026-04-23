@@ -33,6 +33,7 @@ export async function POST(request: Request) {
 
     const db = await getDb();
     const accountsCollection = db.collection("member_accounts");
+    const applicationsCollection = db.collection("applications");
 
     const account = (await accountsCollection.findOne({ email })) as
       | {
@@ -42,6 +43,18 @@ export async function POST(request: Request) {
       | null;
 
     if (!account?.passwordHash) {
+      const application = await applicationsCollection.findOne({ email });
+
+      if (application) {
+        return NextResponse.json(
+          {
+            message:
+              "Your application has not been accepted yet. Please wait for review.",
+          },
+          { status: 403 }
+        );
+      }
+
       return NextResponse.json(
         { message: "Invalid credentials." },
         { status: 401 }
