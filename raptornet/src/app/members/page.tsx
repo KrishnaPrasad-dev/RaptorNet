@@ -3,11 +3,13 @@ import Link from "next/link";
 import { unstable_noStore as noStore } from "next/cache";
 import Navbar from "@/components/Navbar";
 import { getDb } from "@/lib/mongodb";
+import MembersCardsClient from "@/components/MembersCardsClient";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 type Member = {
+  id: string;
   name: string;
   role: string;
   title: string;
@@ -43,6 +45,7 @@ type MemberDoc = {
 
 const foundingMembers: Member[] = [
   {
+    id: "founder-krishna",
     name: "J Krishna Prasad Goud",
     role: "Guild Admin",
     title: "Full Stack Web Developer (MERN)",
@@ -78,6 +81,7 @@ async function getApprovedMembers(): Promise<Member[]> {
       .toArray()) as MemberDoc[];
 
     return docs.map((member) => ({
+      id: member._id.toString(),
       name: member.name ?? "Unnamed member",
       role: member.role ?? "Guild Member",
       title: member.title ?? "Builder",
@@ -154,119 +158,7 @@ export default async function MembersPage() {
         </div>
 
         <section className="mt-5 grid gap-4 sm:mt-6 lg:grid-cols-[1.7fr_1fr]">
-          <div className="rn-stagger space-y-4">
-            {members.map((member, index) => (
-              <article
-                key={`${member.name}-${index}`}
-                className="rn-card rounded-[1.7rem] border border-white/10 bg-[linear-gradient(150deg,rgba(255,255,255,0.05),rgba(10,12,18,0.92))] p-5 sm:p-6"
-              >
-                <div className="grid gap-5 text-center md:grid-cols-[150px_1fr] md:items-start md:text-left">
-                  <ProfileAvatar member={member} />
-
-                  <div>
-                    <div className="flex flex-wrap items-center justify-center gap-2.5 md:justify-start">
-                      <span className="rounded-full border border-[#7f1020]/70 bg-[#7f1020]/20 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#ffb9c4]">
-                        {member.status}
-                      </span>
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.17em] text-white/60">
-                        {member.role}
-                      </span>
-                    </div>
-
-                    <h2 className="mt-2 text-2xl font-bold tracking-tight">{member.name}</h2>
-                    <p className="mt-1 text-sm text-white/80">{member.title}</p>
-                    <p className="mt-1 text-xs uppercase tracking-[0.16em] text-white/55">{member.branch} • {member.year}</p>
-                    <p className="mt-4 text-sm leading-6 text-white/72">{member.bio}</p>
-
-                    {member.focus && member.focus.length > 0 && (
-                      <div className="mt-4">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/60">Focus</p>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {member.focus.map((item) => (
-                            <span
-                              key={item}
-                              className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.13em] text-white/82"
-                            >
-                              {item}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {member.strengths && member.strengths.length > 0 && (
-                      <div className="mt-4">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/60">Strengths</p>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {member.strengths.map((item) => (
-                            <span
-                              key={item}
-                              className="rounded-full border border-white/15 bg-black/30 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.13em] text-white/75"
-                            >
-                              {item}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:items-center md:justify-start">
-                      {member.projectLink && (
-                        <a
-                          href={member.projectLink}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white sm:w-auto"
-                        >
-                          Project
-                        </a>
-                      )}
-                      {member.githubUrl && (
-                        <a
-                          href={member.githubUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white sm:w-auto"
-                        >
-                          GitHub
-                        </a>
-                      )}
-                      {member.linkedinUrl && (
-                        <a
-                          href={member.linkedinUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white sm:w-auto"
-                        >
-                          LinkedIn
-                        </a>
-                      )}
-                      {member.leetcodeUrl && (
-                        <a
-                          href={member.leetcodeUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white sm:w-auto"
-                        >
-                          LeetCode
-                        </a>
-                      )}
-                      {member.portfolioUrl && (
-                        <a
-                          href={member.portfolioUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-transparent px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white sm:w-auto"
-                        >
-                          Portfolio
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+          <MembersCardsClient members={members} />
 
           <aside className="rn-reveal rn-delay-2 rounded-[1.7rem] border border-white/10 bg-black/30 p-5 text-center sm:p-6 lg:text-left">
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/62">
