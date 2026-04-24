@@ -18,9 +18,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "RaptorNet",
   description: "A curated tech guild for serious builders at Guru Nanak institutions.",
-  verification: {
-    google: 'mLo8noFQdAc_ZQCaiPgD3Rpl6LC7gsLidMnGSWZQZa4',
-  },
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
