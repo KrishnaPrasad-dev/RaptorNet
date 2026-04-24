@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
+import { GoogleAnalytics } from '@next/third-parties/google'
 import "./globals.css";
 
 const geistSans = Geist({
@@ -47,6 +48,7 @@ export default function RootLayout({
           <Footer />
           <Analytics />
         </div>
+           <GoogleAnalytics gaId="G-YPRJ5YXP7Q" />
       </body>
     </html>
   );
