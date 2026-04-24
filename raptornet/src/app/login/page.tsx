@@ -4,7 +4,6 @@ import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import RippleGrid from "@/components/RippleGrid";
-import CustomCursor from "@/components/CustomCursor";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -46,7 +45,6 @@ export default function LoginPage() {
 
   return (
     <>
-      <CustomCursor />
       <main
         className="relative min-h-screen overflow-hidden bg-[#05070b] text-white"
         style={{ backgroundColor: "#05070b", color: "#ededed" }}

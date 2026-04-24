@@ -1,9 +1,24 @@
+"use client";
+
 /* eslint-disable react/no-unescaped-entities */
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import RaptorModelCanvas from "@/components/RaptorModelCanvas";
 import InteractiveQuoteBox from "@/components/InteractiveQuoteBox";
+import TiltCard from "@/components/TiltCard";
 
 export default function Home() {
+  const aboutRef = useRef<HTMLDivElement | null>(null);
+  const cardsRef = useRef<HTMLDivElement | null>(null);
+  const quoteRef = useRef<HTMLDivElement | null>(null);
+  const stepsRef = useRef<HTMLDivElement | null>(null);
+
+  const aboutInView = useInView(aboutRef, { once: true, amount: 0.2 });
+  const cardsInView = useInView(cardsRef, { once: true, amount: 0.2 });
+  const quoteInView = useInView(quoteRef, { once: true, amount: 0.25 });
+  const stepsInView = useInView(stepsRef, { once: true, amount: 0.2 });
+
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#05070b] text-white">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_8%,rgba(255,255,255,0.08),transparent_28%),radial-gradient(circle_at_85%_78%,rgba(120,144,156,0.12),transparent_30%)]" />
@@ -33,9 +48,31 @@ export default function Home() {
               Curated guild for builders
             </p>
             <h1 className="mx-auto mt-4 max-w-md text-[2rem] font-bold leading-tight tracking-tight sm:text-4xl lg:mx-0 lg:text-[3.2rem] lg:leading-[0.98]">
-              Build together. Ship with intent.
+              {[
+                "Build",
+                "together.",
+                "Ship",
+                "with",
+                "intent.",
+              ].map((word, index) => (
+                <span
+                  key={word}
+                  className="inline-block opacity-0 drop-shadow-[0_1px_10px_rgba(147,197,253,0.22)]"
+                  style={{
+                    color: "#ffffff",
+                    animation: "heroWordDrop 560ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards",
+                    animationDelay: `${index * 0.1}s`,
+                  }}
+                >
+                  {word}
+                  {index < 4 ? "\u00A0" : ""}
+                </span>
+              ))}
             </h1>
-            <p className="mx-auto mb-4 mt-4 max-w-[34ch] px-1 text-[1rem] leading-7 text-white/78 sm:px-0 sm:text-[1.05rem] lg:mx-0">
+            <p
+              className="mx-auto mb-4 mt-4 max-w-[34ch] px-1 text-[1rem] leading-7 text-white/90 opacity-0 sm:px-0 sm:text-[1.05rem] lg:mx-0"
+              style={{ animation: "heroSubFade 520ms ease-out 0.4s forwards" }}
+            >
               A guild from Guru Nanak institutions for students who build real projects, dive into tech, prepare for internships, and show up at hackathons — from CSE, AIML, ECE, or any branch.
             </p>
 
@@ -52,7 +89,13 @@ export default function Home() {
       </section>
 
       <section id="about-guild" className="relative mx-auto w-full max-w-7xl scroll-mt-24 px-4 pb-10 sm:scroll-mt-28 sm:px-10 lg:px-12">
-        <div className="rn-reveal rn-delay-1 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">
+        <motion.div
+          ref={aboutRef}
+          initial={{ opacity: 0, y: 40 }}
+          animate={aboutInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8"
+        >
           <p className="text-[16px] font-bold tracking-[0.26em] uppercase text-red-400/85">
             What is RaptorNet
           </p>
@@ -62,12 +105,18 @@ export default function Home() {
           <p className="mt-4 max-w-2xl text-base leading-7 text-white/78 sm:text-[1.05rem]">
             RaptorNet is a guild of GNU students who chose a different path. When everyone else is cramming notes, we're deep in codebases, pulling all-nighters on projects that actually matter, and walking into hackathons ready to compete. We're open to builders from every branch — CSE, AIML, ECE, and beyond. No assignments. No attendance. No bullshit. Just a pack of builders who give everything to what they're building — because that's what separates the ones who make it from the ones who just pass.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       <section className="relative mx-auto w-full max-w-7xl px-4 pb-10 sm:px-10 lg:px-12">
-        <div className="rn-stagger grid gap-4 md:grid-cols-3">
-          <article className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
+        <motion.div
+          ref={cardsRef}
+          initial={{ opacity: 0, y: 40 }}
+          animate={cardsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="rn-stagger grid gap-4 md:grid-cols-3"
+        >
+          <TiltCard className="rn-card group rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
             <p className="text-[9px] font-bold tracking-[0.22em] uppercase text-red-400/85 sm:text-[10px]">
               Who we are
             </p>
@@ -76,9 +125,9 @@ export default function Home() {
               We don't wait for a course to teach us. We pick a project, figure
               it out, and ship it — frontend, backend, AI, whatever it takes.
             </p>
-          </article>
+          </TiltCard>
 
-          <article className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
+          <TiltCard className="rn-card group rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
             <p className="text-[9px] font-bold tracking-[0.22em] uppercase text-red-400/85 sm:text-[10px]">
               What we do
             </p>
@@ -88,9 +137,9 @@ export default function Home() {
               in, sharpen for internship rounds together, and come back with
               something to show — win or not.
             </p>
-          </article>
+          </TiltCard>
 
-          <article className="rn-card rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
+          <TiltCard className="rn-card group rounded-2xl border border-white/10 bg-black/25 p-5 sm:p-6 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">   
             <p className="text-[9px] font-bold tracking-[0.22em] uppercase text-red-400/85 sm:text-[10px]">
               Who gets in
             </p>
@@ -100,18 +149,31 @@ export default function Home() {
               you're here to actually build, you'll fit right in, no matter
               your branch.
             </p>
-          </article>
-        </div>
+          </TiltCard>
+        </motion.div>
       </section>
 
       <section className="relative mx-auto w-full max-w-7xl px-4 pb-20 sm:px-10 lg:px-12">
-        <div className="rn-reveal rn-delay-2 rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 sm:p-8 transition-colors duration-150 ease-out hover:border-white/20 hover:bg-white/[0.04]">
-          <InteractiveQuoteBox />
+        <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6 sm:p-8 transition-colors duration-150 ease-out hover:border-white/20 hover:bg-white/[0.04]">
+          <motion.div
+            ref={quoteRef}
+            initial={{ opacity: 0, x: -30 }}
+            animate={quoteInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <InteractiveQuoteBox />
+          </motion.div>
 
-          <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-white/70">
-            How to get in
-          </p>
-          <div className="rn-stagger mt-4 grid gap-4 sm:grid-cols-4">
+          <motion.div
+            ref={stepsRef}
+            initial={{ opacity: 0, y: 40 }}
+            animate={stepsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.08 }}
+          >
+            <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-white/70">
+              How to get in
+            </p>
+            <div className="rn-stagger mt-4 grid gap-4 sm:grid-cols-4">
             <div className="rn-card rounded-xl border border-white/15 bg-black/20 p-3 sm:p-4 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10">      
               <p className="text-[10px] font-bold tracking-[0.12em] uppercase text-white/85 sm:text-xs sm:tracking-[0.14em]">
                 01. Check if you qualify
@@ -148,7 +210,8 @@ export default function Home() {
                 personally — no auto-rejections.
               </p>
             </div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
     </main>

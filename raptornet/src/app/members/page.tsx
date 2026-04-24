@@ -1,9 +1,10 @@
-import Image from "next/image";
 import Link from "next/link";
 import { unstable_noStore as noStore } from "next/cache";
 import Navbar from "@/components/Navbar";
 import { getDb } from "@/lib/mongodb";
+import { getAuthenticatedMemberSession } from "@/lib/memberAuth";
 import MembersCardsClient from "@/components/MembersCardsClient";
+import MagneticLink from "@/components/MagneticLink";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -100,24 +101,44 @@ async function getApprovedMembers(): Promise<Member[]> {
   }
 }
 
-function ProfileAvatar({ member }: { member: Member }) {
-  if (member.image) {
-    return (
-      <div className="relative mx-auto h-32 w-32 overflow-hidden rounded-2xl border border-white/15 bg-white/5 md:mx-0 md:h-36 md:w-36">
-        <Image
-          src={member.image}
-          alt={`${member.name} profile`}
-          fill
-          sizes="144px"
-          className="object-cover"
-        />
-      </div>
-    );
-  }
-
+function RedactedMembersGrid({ members }: { members: Member[] }) {
   return (
-    <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-2xl border border-white/15 bg-white/5 text-3xl font-bold uppercase text-white/75 md:mx-0 md:h-36 md:w-36">
-      {member.name.slice(0, 1)}
+    <div className="space-y-4">
+      {members.map((member) => {
+        const projectTag = member.projectLink ? "Project linked" : "Project pending";
+
+        return (
+          <article
+            key={member.id}
+            className="rounded-[1.7rem] border border-white/10 bg-[linear-gradient(150deg,rgba(255,255,255,0.04),rgba(10,12,18,0.9))] p-5 sm:p-6"
+          >
+            <div className="grid gap-5 text-center md:grid-cols-[150px_1fr] md:items-start md:text-left">
+              <div className="relative mx-auto h-32 w-32 overflow-hidden rounded-2xl border border-white/15 bg-white/5 md:mx-0 md:h-36 md:w-36">
+                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.2),rgba(255,255,255,0.03))]" />
+                <div className="absolute inset-0 bg-black/40" />
+              </div>
+
+              <div>
+                <p className="mt-1 text-sm font-semibold tracking-[0.04em] text-white/55 select-none">
+                  ***************
+                </p>
+                <p className="mt-1 text-xs uppercase tracking-[0.16em] text-white/30 select-none">
+                  PROFILE RESTRICTED
+                </p>
+
+                <div className="mt-4 flex flex-wrap justify-center gap-2 md:justify-start">
+                  <span className="rounded-full border border-[#7f1020]/60 bg-[#7f1020]/18 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#ffb9c4]">
+                    {member.branch}
+                  </span>
+                  <span className="rounded-full border border-white/20 bg-black/30 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-white/76">
+                    {projectTag}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+        );
+      })}
     </div>
   );
 }
@@ -125,6 +146,8 @@ function ProfileAvatar({ member }: { member: Member }) {
 export default async function MembersPage() {
   const acceptedMembers = await getApprovedMembers();
   const members = [...foundingMembers, ...acceptedMembers];
+  const session = await getAuthenticatedMemberSession();
+  const canViewFullRoster = Boolean(session);
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#05070b] text-white">
@@ -146,19 +169,35 @@ export default async function MembersPage() {
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
             <span className="rounded-full border border-white/15 bg-black/30 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/75">
-              {members.length} listed member{members.length > 1 ? "s" : ""}
+              {members.length} builders. Vetted.
             </span>
-            <Link
+            <MagneticLink
               href="/apply"
               className="rn-button rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/20"
             >
               Apply to join
-            </Link>
+            </MagneticLink>
           </div>
         </div>
 
         <section className="mt-5 grid gap-4 sm:mt-6 lg:grid-cols-[1.7fr_1fr]">
-          <MembersCardsClient members={members} />
+          <div>
+            {canViewFullRoster ? <MembersCardsClient members={members} /> : <RedactedMembersGrid members={members} />}
+
+            {!canViewFullRoster ? (
+              <div className="mt-5 flex items-center gap-3 rounded-2xl border border-white/12 bg-black/35 px-4 py-3 text-white/78">
+                <span aria-hidden="true" className="inline-flex size-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-sm">
+                  🔒
+                </span>
+                <p className="text-sm leading-6">
+                  Login to view full roster.
+                  <Link href="/login" className="ml-2 font-semibold text-white transition-colors hover:text-[#9fc9ff]">
+                    Member login
+                  </Link>
+                </p>
+              </div>
+            ) : null}
+          </div>
 
           <aside className="rn-reveal rn-delay-2 rounded-[1.7rem] border border-white/10 bg-black/30 p-5 text-center sm:p-6 lg:text-left">
             <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/62">

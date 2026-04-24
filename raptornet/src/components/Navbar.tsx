@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import MagneticLink from "@/components/MagneticLink";
 import { Geist, Cormorant_Garamond, Space_Grotesk } from "next/font/google";
 
 const geist = Geist({
@@ -23,6 +24,7 @@ const netFont = Space_Grotesk({
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [moreMenuOpen, setMoreMenuOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
   const moreMenuRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -42,8 +44,19 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 8);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className={`${geist.className} rn-nav-enter relative z-[100] rounded-[1.35rem] border border-white/12 bg-[#0b0f15]/70 px-3 py-2 text-white backdrop-blur-md sm:rounded-[1.5rem] sm:px-4 sm:py-3 md:px-5`}>
+    <nav className={`${geist.className} rn-nav-enter relative z-[100] rounded-[1.35rem] border px-3 py-2 text-white transition-all duration-300 ease-out sm:rounded-[1.5rem] sm:px-4 sm:py-3 md:px-5 ${scrolled ? "border-b border-white/[0.06] border-x-white/10 border-t-white/10 bg-[rgba(10,10,10,0.7)] backdrop-blur-[16px]" : "border-transparent bg-transparent backdrop-blur-0"}`}>
       <div className="flex items-center justify-between gap-2 sm:gap-6">
         {/* Logo */}
         <Link href="/" className="shrink-0" aria-label="RaptorNet home">
@@ -127,7 +140,7 @@ export default function Navbar() {
             Login
           </Link>
 
-          <Link
+          <MagneticLink
             href="/apply"
             className="rn-button hidden items-center gap-2.5 rounded-full border border-white/10 bg-white/5 pl-5 pr-2 py-2 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white md:flex"
           >
@@ -137,14 +150,14 @@ export default function Navbar() {
                 <path d="M.6 4.602h10m-4-4 4 4-4 4" stroke="#3f3f47" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
-          </Link>
+          </MagneticLink>
 
-          <Link
+          <MagneticLink
             href="/apply"
             className="rn-button rounded-full border border-white/10 bg-white/5 px-2.5 py-1.5 text-[10px] font-semibold tracking-[0.12em] uppercase text-white transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white sm:px-4 sm:py-2 sm:text-[11px] md:hidden"
           >
             Join
-          </Link>
+          </MagneticLink>
 
           {/* Mobile Hamburger */}
           <button
@@ -183,7 +196,7 @@ export default function Navbar() {
             Login
           </Link>
 
-          <Link
+          <MagneticLink
             href="/apply"
             onClick={() => setMobileMenuOpen(false)}
             className="rn-button mt-3 flex w-full items-center justify-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white"
@@ -194,7 +207,7 @@ export default function Navbar() {
                 <path d="M.6 4.602h10m-4-4 4 4-4 4" stroke="#3f3f47" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
-          </Link>
+          </MagneticLink>
         </div>
       )}
     </nav>

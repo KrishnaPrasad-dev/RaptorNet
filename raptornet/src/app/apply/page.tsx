@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import ApplicationForm from "@/components/ApplicationForm";
+import TerminalGate from "@/components/TerminalGate";
 
 export default function ApplyPage() {
   return (
@@ -67,7 +68,10 @@ export default function ApplyPage() {
             </div>
           </div>
 
-          <ApplicationForm />
+          <div className="space-y-4">
+            <TerminalGate />
+            <ApplicationForm />
+          </div>
         </div>
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
