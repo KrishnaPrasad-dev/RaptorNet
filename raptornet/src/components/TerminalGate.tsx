@@ -13,6 +13,8 @@ export default function TerminalGate() {
   useEffect(() => {
     let firstIndex = 0;
     let secondIndex = 0;
+    let secondTimer: number | undefined;
+    let lineDelayTimer: number | undefined;
 
     const firstTimer = window.setInterval(() => {
       firstIndex += 1;
@@ -20,10 +22,10 @@ export default function TerminalGate() {
 
       if (firstIndex >= lineOne.length) {
         window.clearInterval(firstTimer);
-        window.setTimeout(() => {
+        lineDelayTimer = window.setTimeout(() => {
           setActiveLine(2);
 
-          const secondTimer = window.setInterval(() => {
+          secondTimer = window.setInterval(() => {
             secondIndex += 1;
             setSecond(lineTwo.slice(0, secondIndex));
 
@@ -38,6 +40,12 @@ export default function TerminalGate() {
 
     return () => {
       window.clearInterval(firstTimer);
+      if (lineDelayTimer !== undefined) {
+        window.clearTimeout(lineDelayTimer);
+      }
+      if (secondTimer !== undefined) {
+        window.clearInterval(secondTimer);
+      }
     };
   }, []);
 

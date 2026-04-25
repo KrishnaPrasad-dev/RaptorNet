@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -7,6 +8,7 @@ type ProfileForm = {
   name: string;
   role: string;
   title: string;
+  image: string;
   college: string;
   branch: string;
   bio: string;
@@ -23,6 +25,7 @@ const initialForm: ProfileForm = {
   name: "",
   role: "",
   title: "",
+  image: "",
   college: "",
   branch: "",
   bio: "",
@@ -40,6 +43,7 @@ export default function EditProfileClient() {
   const [form, setForm] = useState<ProfileForm>(initialForm);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -61,6 +65,7 @@ export default function EditProfileClient() {
           name?: string;
           role?: string;
           title?: string;
+          image?: string;
           college?: string;
           branch?: string;
           bio?: string;
@@ -78,6 +83,7 @@ export default function EditProfileClient() {
             name: profile.name ?? "",
             role: profile.role ?? "",
             title: profile.title ?? "",
+            image: profile.image ?? "",
             college: profile.college ?? "",
             branch: profile.branch ?? "",
             bio: profile.bio ?? "",
@@ -111,6 +117,81 @@ export default function EditProfileClient() {
   function onChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = event.target;
     setForm((current) => ({ ...current, [name]: value }));
+  }
+
+  async function onImageChange(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+      setError("Please upload a valid image file.");
+      event.target.value = "";
+      return;
+    }
+
+    const maxFileSize = 5 * 1024 * 1024;
+    if (file.size > maxFileSize) {
+      setError("Image size must be 5MB or less.");
+      event.target.value = "";
+      return;
+    }
+
+    try {
+      setError("");
+      setIsUploadingImage(true);
+
+      const signatureResponse = await fetch("/api/cloudinary/signature", {
+        method: "POST",
+      });
+
+      if (!signatureResponse.ok) {
+        const payload = (await signatureResponse.json().catch(() => null)) as
+          | { message?: string }
+          | null;
+        throw new Error(payload?.message ?? "Could not start upload.");
+      }
+
+      const signaturePayload = (await signatureResponse.json()) as {
+        cloudName: string;
+        apiKey: string;
+        folder: string;
+        timestamp: number;
+        signature: string;
+      };
+
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("api_key", signaturePayload.apiKey);
+      formData.append("folder", signaturePayload.folder);
+      formData.append("timestamp", String(signaturePayload.timestamp));
+      formData.append("signature", signaturePayload.signature);
+
+      const uploadResponse = await fetch(
+        `https://api.cloudinary.com/v1_1/${signaturePayload.cloudName}/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const uploadPayload = (await uploadResponse.json().catch(() => null)) as
+        | { secure_url?: string; error?: { message?: string } }
+        | null;
+
+      if (!uploadResponse.ok || !uploadPayload?.secure_url) {
+        throw new Error(uploadPayload?.error?.message ?? "Upload failed.");
+      }
+
+      setForm((current) => ({ ...current, image: uploadPayload.secure_url ?? "" }));
+    } catch (uploadError) {
+      setError(uploadError instanceof Error ? uploadError.message : "Could not upload image.");
+    } finally {
+      setIsUploadingImage(false);
+      event.target.value = "";
+    }
   }
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -166,9 +247,52 @@ export default function EditProfileClient() {
       <form className="mt-6 grid gap-4 sm:grid-cols-2" onSubmit={onSubmit}>
         <input name="name" value={form.name} onChange={onChange} className="h-12 rounded-xl border border-white/20 bg-black/35 px-4 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#ff4a4a]" placeholder="Name" />
         <input name="title" value={form.title} onChange={onChange} className="h-12 rounded-xl border border-white/20 bg-black/35 px-4 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#ff4a4a]" placeholder="Title" />
+        <div className="rounded-xl border border-white/15 bg-black/25 p-4 sm:col-span-2">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/65">Profile picture</p>
+          <div className="mt-3 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <div className="relative h-20 w-20 overflow-hidden rounded-full border border-white/20 bg-black/40">
+              {form.image ? (
+                <Image
+                  src={form.image}
+                  alt="Profile preview"
+                  fill
+                  sizes="80px"
+                  className="object-cover"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center text-xl font-bold text-white/65">
+                  {form.name.trim().charAt(0).toUpperCase() || "R"}
+                </div>
+              )}
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <label className="inline-flex cursor-pointer items-center justify-center rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white/85 transition-colors duration-150 ease-out hover:border-[#ff4a4a]/60 hover:bg-[#ff4a4a]/10">
+                {isUploadingImage ? "Uploading..." : "Upload image"}
+                <input
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp,image/jpg"
+                  onChange={onImageChange}
+                  disabled={isUploadingImage}
+                  className="hidden"
+                />
+              </label>
+              {form.image ? (
+                <button
+                  type="button"
+                  onClick={() => setForm((current) => ({ ...current, image: "" }))}
+                  className="inline-flex items-center justify-center rounded-full border border-white/20 bg-transparent px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-white/70 transition-colors duration-150 ease-out hover:border-white/35 hover:text-white"
+                >
+                  Remove
+                </button>
+              ) : null}
+            </div>
+          </div>
+          <p className="mt-3 text-xs text-white/52">PNG, JPG, or WEBP. Max size 5MB.</p>
+        </div>
         <input name="role" value={form.role} onChange={onChange} className="h-12 rounded-xl border border-white/20 bg-black/35 px-4 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#ff4a4a]" placeholder="Role" />
         <input name="college" value={form.college} onChange={onChange} className="h-12 rounded-xl border border-white/20 bg-black/35 px-4 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#ff4a4a]" placeholder="College" />
-        <input name="branch" value={form.branch} onChange={onChange} className="h-12 rounded-xl border border-white/20 bg-black/35 px-4 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#ff4a4a]" placeholder="Branch" />
+        <input name="branch" value={form.branch} onChange={onChange} className="h-12 rounded-xl border border-white/20 bg-black/35 px-4 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#ff4a4a]" placeholder="CSE - GNU" />
         <input name="phoneNumber" value={form.phoneNumber} onChange={onChange} className="h-12 rounded-xl border border-white/20 bg-black/35 px-4 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#ff4a4a]" placeholder="Phone" />
         <input name="resumeLink" value={form.resumeLink} onChange={onChange} className="h-12 rounded-xl border border-white/20 bg-black/35 px-4 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#ff4a4a]" placeholder="Resume link" />
         <input name="projectLink" value={form.projectLink} onChange={onChange} className="h-12 rounded-xl border border-white/20 bg-black/35 px-4 text-sm text-white outline-none placeholder:text-white/35 focus:border-[#ff4a4a]" placeholder="Project link" />

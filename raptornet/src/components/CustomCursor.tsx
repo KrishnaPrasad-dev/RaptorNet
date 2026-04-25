@@ -6,16 +6,19 @@ export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
-  const [enabled, setEnabled] = useState(false);
+  const [enabled] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+    return window.matchMedia("(pointer: fine)").matches;
+  });
   const [interactive, setInteractive] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const media = window.matchMedia("(pointer: fine)");
-    if (!media.matches) {
+    if (!enabled) {
       return;
     }
-    setEnabled(true);
 
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
@@ -74,7 +77,7 @@ export default function CustomCursor() {
         cancelAnimationFrame(rafRef.current);
       }
     };
-  }, []);
+  }, [enabled]);
 
   if (!enabled) {
     return null;

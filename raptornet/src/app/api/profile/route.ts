@@ -16,6 +16,7 @@ type MemberDoc = {
   _id: ObjectId;
   name?: string;
   email?: string;
+  image?: string;
   college?: string;
   branch?: string;
   role?: string;
@@ -36,6 +37,7 @@ type ProfilePayload = {
   name?: string;
   role?: string;
   title?: string;
+  image?: string;
   college?: string;
   branch?: string;
   bio?: string;
@@ -81,6 +83,7 @@ function profileResponse(member: MemberDoc, account: MemberAccountDoc) {
     accountId: account._id.toString(),
     name: member.name ?? account.name ?? "",
     email: member.email ?? account.email ?? "",
+    image: member.image ?? "",
     college: member.college ?? "",
     branch: member.branch ?? "",
     role: member.role ?? "Guild Member",
@@ -164,6 +167,7 @@ export async function PUT(request: Request) {
       name: cleanString(body.name, 80),
       role: cleanString(body.role, 80),
       title: cleanString(body.title, 120),
+      image: cleanString(body.image, 500),
       college: cleanString(body.college, 120),
       branch: cleanString(body.branch, 120),
       bio: cleanString(body.bio, 600),
@@ -187,6 +191,7 @@ export async function PUT(request: Request) {
           email: result.account.email?.toLowerCase() ?? result.member.email ?? "",
           role: payload.role || result.member.role || "Guild Member",
           title: payload.title || result.member.title || "Builder",
+          image: payload.image,
           college: payload.college,
           branch: payload.branch,
           bio: payload.bio,

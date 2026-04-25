@@ -53,7 +53,7 @@ export default function ApplyPage() {
               </p>
               <ol className="mt-4 space-y-3 text-sm leading-6 text-white/75">
                 <li>
-                  <span className="font-semibold text-white">1. Resume (Google Drive):</span> set "Anyone with the link can view".
+                  <span className="font-semibold text-white">1. Resume (Google Drive):</span> set &quot;Anyone with the link can view&quot;.
                 </li>
                 <li>
                   <span className="font-semibold text-white">2. Project proof:</span> software = live deployed link, ECE/hardware = Google Drive demo video.

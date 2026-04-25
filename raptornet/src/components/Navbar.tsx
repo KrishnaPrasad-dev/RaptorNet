@@ -56,7 +56,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`${geist.className} rn-nav-enter relative z-[100] rounded-[1.35rem] border px-3 py-2 text-white transition-all duration-300 ease-out sm:rounded-[1.5rem] sm:px-4 sm:py-3 md:px-5 ${scrolled ? "border-b border-white/[0.06] border-x-white/10 border-t-white/10 bg-[rgba(10,10,10,0.7)] backdrop-blur-[16px]" : "border-transparent bg-transparent backdrop-blur-0"}`}>
+    <nav className={`${geist.className} rn-nav-enter relative z-[100] rounded-[1.35rem] border border-white/10 bg-[rgba(10,10,10,0.62)] px-3 py-2 text-white backdrop-blur-[14px] transition-all duration-300 ease-out sm:rounded-[1.5rem] sm:px-4 sm:py-3 md:px-5 ${scrolled ? "border-white/18 bg-[rgba(10,10,10,0.74)] shadow-[0_12px_30px_rgba(0,0,0,0.35)]" : "shadow-[0_8px_20px_rgba(0,0,0,0.18)]"}`}>
       <div className="flex items-center justify-between gap-2 sm:gap-6">
         {/* Logo */}
         <Link href="/" className="shrink-0" aria-label="RaptorNet home">

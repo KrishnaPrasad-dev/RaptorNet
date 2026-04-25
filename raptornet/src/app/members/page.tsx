@@ -5,6 +5,7 @@ import { getDb } from "@/lib/mongodb";
 import { getAuthenticatedMemberSession } from "@/lib/memberAuth";
 import MembersCardsClient from "@/components/MembersCardsClient";
 import MagneticLink from "@/components/MagneticLink";
+import MembersVettedBadge from "@/components/MembersVettedBadge";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -31,6 +32,7 @@ type Member = {
 type MemberDoc = {
   _id: { toString(): string };
   name?: string;
+  image?: string;
   college?: string;
   branch?: string;
   role?: string;
@@ -89,6 +91,7 @@ async function getApprovedMembers(): Promise<Member[]> {
       branch: member.branch ?? "Not specified",
       year: member.college ?? "GNU",
       status: "Active",
+      image: member.image ?? "",
       projectLink: member.projectLink ?? "",
       githubUrl: member.githubLink ?? "",
       linkedinUrl: member.linkedinLink ?? "",
@@ -168,12 +171,10 @@ export default async function MembersPage() {
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
-            <span className="rounded-full border border-white/15 bg-black/30 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/75">
-              {members.length} builders. Vetted.
-            </span>
+            <MembersVettedBadge total={members.length} />
             <MagneticLink
               href="/apply"
-              className="rn-button rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/20"
+              className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/20"
             >
               Apply to join
             </MagneticLink>

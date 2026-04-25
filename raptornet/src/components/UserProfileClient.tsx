@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -8,6 +9,7 @@ type UserProfile = {
   accountId: string;
   name: string;
   email: string;
+  image: string;
   college: string;
   branch: string;
   role: string;
@@ -137,9 +139,21 @@ export default function UserProfileClient({ profile }: { profile: UserProfile })
 
         <div className="grid gap-8 md:grid-cols-[260px_1fr] md:items-start">
           <div className="flex flex-col items-center">
-            <div className="flex h-40 w-40 items-center justify-center overflow-hidden rounded-full border-4 border-[#7f1020]/70 bg-[linear-gradient(140deg,#2a0f15,#10131a)] text-6xl font-black text-white shadow-[0_0_50px_rgba(127,16,32,0.35)] md:h-52 md:w-52 md:text-7xl">
-              {initials}
-            </div>
+            {profile.image ? (
+              <div className="relative h-40 w-40 overflow-hidden rounded-full border-4 border-[#7f1020]/70 shadow-[0_0_50px_rgba(127,16,32,0.35)] md:h-52 md:w-52">
+                <Image
+                  src={profile.image}
+                  alt={`${profile.name || "Member"} avatar`}
+                  fill
+                  sizes="208px"
+                  className="object-cover"
+                />
+              </div>
+            ) : (
+              <div className="flex h-40 w-40 items-center justify-center overflow-hidden rounded-full border-4 border-[#7f1020]/70 bg-[linear-gradient(140deg,#2a0f15,#10131a)] text-6xl font-black text-white shadow-[0_0_50px_rgba(127,16,32,0.35)] md:h-52 md:w-52 md:text-7xl">
+                {initials}
+              </div>
+            )}
             <span className="mt-4 rounded-full border border-white/10 bg-black/30 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-white/70">
               {profile.branch || "Member"}
             </span>

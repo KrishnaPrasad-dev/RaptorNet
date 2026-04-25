@@ -50,6 +50,8 @@ const RippleGrid = ({
   const mouseInfluenceRef = useRef(0);
   const uniformsRef = useRef<UniformMap | null>(null);
 
+  // Initialize the WebGL scene once; dynamic visual props are synced via uniforms in the next effect.
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -265,6 +267,7 @@ void main() {
       container?.removeChild(gl.canvas);
     };
   }, []);
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   useEffect(() => {
     if (!uniformsRef.current) return;

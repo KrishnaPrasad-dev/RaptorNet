@@ -20,6 +20,7 @@ type MemberDoc = {
   _id: ObjectId;
   name?: string;
   email?: string;
+  image?: string;
   college?: string;
   branch?: string;
   role?: string;
@@ -73,6 +74,7 @@ async function getProfile() {
     accountId: account._id.toString(),
     name: member.name ?? account.name ?? "",
     email: member.email ?? account.email ?? "",
+    image: member.image ?? "",
     college: member.college ?? "",
     branch: member.branch ?? "",
     role: member.role ?? "Guild Member",

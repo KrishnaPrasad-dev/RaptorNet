@@ -13,6 +13,7 @@ type MemberDoc = {
   _id: ObjectId;
   name?: string;
   email?: string;
+  image?: string;
   college?: string;
   branch?: string;
   role?: string;
@@ -86,7 +87,7 @@ async function getMemberProfile(id: string) {
     branch: member.branch ?? "Not specified",
     year: member.college ?? "GNU",
     status: "Active",
-    image: "",
+    image: member.image ?? "",
     bio:
       member.bio ??
       "Accepted through the RaptorNet application review process and currently active in guild projects.",
