@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import MagneticLink from "@/components/MagneticLink";
 import { Geist, Cormorant_Garamond, Space_Grotesk } from "next/font/google";
 
@@ -22,9 +23,12 @@ const netFont = Space_Grotesk({
 });
 
 export default function Navbar() {
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [moreMenuOpen, setMoreMenuOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggingOut, setIsLoggingOut] = React.useState(false);
   const moreMenuRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -54,6 +58,51 @@ export default function Navbar() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  React.useEffect(() => {
+    let cancelled = false;
+
+    async function checkSession() {
+      try {
+        const response = await fetch("/api/profile", {
+          method: "GET",
+          credentials: "include",
+          cache: "no-store",
+        });
+
+        if (!cancelled) {
+          setIsLoggedIn(response.ok);
+        }
+      } catch {
+        if (!cancelled) {
+          setIsLoggedIn(false);
+        }
+      }
+    }
+
+    void checkSession();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  async function handleLogout() {
+    try {
+      setIsLoggingOut(true);
+
+      await fetch("/api/auth/logout", {
+        method: "POST",
+      });
+
+      setIsLoggedIn(false);
+      setMobileMenuOpen(false);
+      router.push("/login");
+      router.refresh();
+    } finally {
+      setIsLoggingOut(false);
+    }
+  }
 
   return (
     <nav className={`${geist.className} rn-nav-enter relative z-[100] rounded-[1.35rem] border border-white/10 bg-[rgba(10,10,10,0.62)] px-3 py-2 text-white backdrop-blur-[14px] transition-all duration-300 ease-out sm:rounded-[1.5rem] sm:px-4 sm:py-3 md:px-5 ${scrolled ? "border-white/18 bg-[rgba(10,10,10,0.74)] shadow-[0_12px_30px_rgba(0,0,0,0.35)]" : "shadow-[0_8px_20px_rgba(0,0,0,0.18)]"}`}>
@@ -86,11 +135,11 @@ export default function Navbar() {
 
         {/* Main Navigation - Shows on md and up */}
         <div className="hidden items-center gap-6 md:flex lg:gap-8 xl:gap-4">
-          <Link href="/profile" className="text-sm font-medium text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020] px-3 py-2 lg:text-base">
-            Profile
-          </Link>
           <Link href="/resources" className="text-sm font-medium text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020] px-3 py-2 lg:text-base">
             Resources
+          </Link>
+          <Link href="/projects" className="text-sm font-medium text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020] px-3 py-2 lg:text-base">
+            Projects
           </Link>
           <Link href="/members" className="text-sm font-medium text-white/75 transition-colors duration-150 ease-out hover:text-[#7f1020] px-3 py-2 lg:text-base">
             Members
@@ -133,31 +182,60 @@ export default function Navbar() {
 
         {/* Right Side - Join Button & Mobile Menu */}
         <div className="flex items-center gap-1 sm:gap-2 shrink-0">
-          <Link
-            href="/login"
-            className="hidden rounded-full border border-white/10 bg-transparent px-4 py-2 text-sm font-medium text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white md:inline-flex"
-          >
-            Login
-          </Link>
+          {isLoggedIn ? (
+            <button
+              type="button"
+              onClick={handleLogout}
+              disabled={isLoggingOut}
+              className="hidden rounded-full border border-white/10 bg-transparent px-4 py-2 text-sm font-medium text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white disabled:cursor-not-allowed disabled:opacity-60 md:inline-flex"
+            >
+              {isLoggingOut ? "Logging out..." : "Logout"}
+            </button>
+          ) : (
+            <Link
+              href="/login"
+              className="hidden rounded-full border border-white/10 bg-transparent px-4 py-2 text-sm font-medium text-white/80 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:text-white md:inline-flex"
+            >
+              Login
+            </Link>
+          )}
 
-          <MagneticLink
-            href="/apply"
-            className="rn-button hidden items-center gap-2.5 rounded-full border border-white/10 bg-white/5 pl-5 pr-2 py-2 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white md:flex"
-          >
-            Join the Raptor Guild
-            <span className="flex size-7 items-center justify-center rounded-full bg-white">
-              <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M.6 4.602h10m-4-4 4 4-4 4" stroke="#3f3f47" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+          {isLoggedIn ? (
+            <Link
+              href="/profile"
+              aria-label="Profile"
+              className="group hidden h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-[radial-gradient(circle_at_35%_20%,rgba(255,255,255,0.18),rgba(255,255,255,0.02))] text-white/85 shadow-[0_6px_18px_rgba(0,0,0,0.28)] transition-all duration-150 ease-out hover:border-[#7f1020] hover:text-white hover:shadow-[0_8px_22px_rgba(127,16,32,0.35)] md:inline-flex"
+            >
+              <svg viewBox="0 0 24 24" className="h-5 w-5 transition-transform duration-150 ease-out group-hover:scale-105" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden="true">
+                <circle cx="12" cy="8" r="3.2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M6.5 18a5.5 5.5 0 0 1 11 0" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="12" cy="12" r="9" strokeOpacity="0.85" />
               </svg>
-            </span>
-          </MagneticLink>
+            </Link>
+          ) : null}
 
-          <MagneticLink
-            href="/apply"
-            className="rn-button rounded-full border border-white/10 bg-white/5 px-2.5 py-1.5 text-[10px] font-semibold tracking-[0.12em] uppercase text-white transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white sm:px-4 sm:py-2 sm:text-[11px] md:hidden"
-          >
-            Join
-          </MagneticLink>
+          {!isLoggedIn ? (
+            <MagneticLink
+              href="/apply"
+              className="rn-button hidden items-center gap-2.5 rounded-full border border-white/10 bg-white/5 pl-5 pr-2 py-2 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white md:flex"
+            >
+              Join the Raptor Guild
+              <span className="flex size-7 items-center justify-center rounded-full bg-white">
+                <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M.6 4.602h10m-4-4 4 4-4 4" stroke="#3f3f47" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </MagneticLink>
+          ) : null}
+
+          {!isLoggedIn ? (
+            <MagneticLink
+              href="/apply"
+              className="rn-button rounded-full border border-white/10 bg-white/5 px-2.5 py-1.5 text-[10px] font-semibold tracking-[0.12em] uppercase text-white transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white sm:px-4 sm:py-2 sm:text-[11px] md:hidden"
+            >
+              Join
+            </MagneticLink>
+          ) : null}
 
           {/* Mobile Hamburger */}
           <button
@@ -177,11 +255,11 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="absolute left-0 top-full z-[200] mt-2.5 flex max-h-[calc(100vh-6rem)] w-full flex-col gap-1 overflow-y-auto rounded-b-[1.25rem] border border-white/10 border-t-0 bg-[#0d1117] p-4 shadow-2xl sm:mt-3 sm:p-5 md:hidden">
-          <Link href="/profile" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
-            Profile
-          </Link>
           <Link href="/resources" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
             Resources
+          </Link>
+          <Link href="/projects" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
+            Projects
           </Link>
           <Link href="/members" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
             Current Members
@@ -192,22 +270,35 @@ export default function Navbar() {
           <Link href="/admin/applications" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
             Applications
           </Link>
-          <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
-            Login
-          </Link>
+          {isLoggedIn ? (
+            <button
+              type="button"
+              onClick={handleLogout}
+              disabled={isLoggingOut}
+              className="rounded-lg px-4 py-3 text-left text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isLoggingOut ? "Logging out..." : "Logout"}
+            </button>
+          ) : (
+            <Link href="/login" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-4 py-3 text-sm text-white/65 transition-colors duration-150 ease-out hover:bg-[#7f1020] hover:text-white">
+              Login
+            </Link>
+          )}
 
-          <MagneticLink
-            href="/apply"
-            onClick={() => setMobileMenuOpen(false)}
-            className="rn-button mt-3 flex w-full items-center justify-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white"
-          >
-            Join Our Guild
-            <span className="flex size-7 items-center justify-center rounded-full bg-white">
-              <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M.6 4.602h10m-4-4 4 4-4 4" stroke="#3f3f47" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-          </MagneticLink>
+          {!isLoggedIn ? (
+            <MagneticLink
+              href="/apply"
+              onClick={() => setMobileMenuOpen(false)}
+              className="rn-button mt-3 flex w-full items-center justify-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-medium text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020] hover:text-white"
+            >
+              Join Our Guild
+              <span className="flex size-7 items-center justify-center rounded-full bg-white">
+                <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M.6 4.602h10m-4-4 4 4-4 4" stroke="#3f3f47" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </span>
+            </MagneticLink>
+          ) : null}
         </div>
       )}
     </nav>
