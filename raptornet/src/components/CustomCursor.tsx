@@ -6,14 +6,15 @@ export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
-  const [enabled] = useState(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
-    return window.matchMedia("(pointer: fine)").matches;
-  });
+  const [enabled, setEnabled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [interactive, setInteractive] = useState(false);
   const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    setEnabled(window.matchMedia("(pointer: fine)").matches);
+  }, []);
 
   useEffect(() => {
     if (!enabled) {
@@ -79,7 +80,7 @@ export default function CustomCursor() {
     };
   }, [enabled]);
 
-  if (!enabled) {
+  if (!mounted || !enabled) {
     return null;
   }
 
