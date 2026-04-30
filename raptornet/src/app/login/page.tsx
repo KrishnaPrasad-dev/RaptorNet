@@ -116,6 +116,15 @@ export default function LoginPage() {
               />
             </label>
 
+            <div className="flex justify-end mt-1">
+              <Link
+                href="/reset-password"
+                className="text-xs text-[#ff9f9f] hover:text-[#ffc1c1] font-semibold transition-colors duration-150 ease-out"
+              >
+                Forgot Password?
+              </Link>
+            </div>
+
             {error ? (
               <p className="rounded-lg border border-[#ff7890]/35 bg-[#7f1020]/20 px-3 py-2 text-sm text-[#ffd3dc]">
                 {error}

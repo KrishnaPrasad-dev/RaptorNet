@@ -45,24 +45,6 @@ type MemberDoc = {
   createdAt?: Date | string;
 };
 
-const foundingMembers: Member[] = [
-  {
-    id: "founder-krishna",
-    name: "J Krishna Prasad Goud",
-    role: "Guild Admin",
-    title: "Full Stack Web Developer (MERN)",
-    branch: "Computer Science",
-    year: "GNU",
-    focus: ["Web Platforms", "Builder Community", "Mentorship"],
-    strengths: ["React", "Next.js", "Node.js", "MongoDB", "Product Thinking"],
-    image: "/kp.jpeg",
-    status: "Core",
-    githubUrl: "https://github.com/KrishnaPrasad-dev/RaptorNet",
-    linkedinUrl: "https://www.linkedin.com/in/krishnaprasad-webdev/",
-    portfolioUrl: "https://krishnaprasad.space",
-    bio: "Built RaptorNet as a vetted community for students who ship real work, prepare for internships, and compete through projects and hackathons.",
-  },
-];
 
 const seatsToFill = [
   "AIML builder",
@@ -95,7 +77,7 @@ async function getApprovedMembers(): Promise<Member[]> {
       githubUrl: member.githubLink ?? "",
       linkedinUrl: member.linkedinLink ?? "",
       leetcodeUrl: member.leetcodeLink ?? "",
-      bio: "Accepted through the RaptorNet application review process and currently active in guild projects.",
+      bio: member.bio ?? "Accepted through the RaptorNet application review process and currently active in guild projects.",
     }));
   } catch (error) {
     console.error("Failed to load members:", error);
@@ -104,8 +86,7 @@ async function getApprovedMembers(): Promise<Member[]> {
 }
 
 export default async function MembersPage() {
-  const acceptedMembers = await getApprovedMembers();
-  const members = [...foundingMembers, ...acceptedMembers];
+  const members = await getApprovedMembers();
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#05070b] text-white">
@@ -136,38 +117,8 @@ export default async function MembersPage() {
           </div>
         </div>
 
-        <section className="mt-5 grid gap-4 sm:mt-6 lg:grid-cols-[1.7fr_1fr]">
-          <div>
-            <MembersCardsClient members={members} />
-          </div>
-
-          <aside className="rn-reveal rn-delay-2 rounded-[1.7rem] border border-white/10 bg-black/30 p-5 text-center sm:p-6 lg:text-left">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/62">
-              Open Builder Seats
-            </p>
-            <p className="mt-3 text-sm leading-6 text-white/72">
-              We are expanding with members from multiple branches. If you build consistently, you belong here.
-            </p>
-
-            <div className="mt-4 space-y-2.5">
-              {seatsToFill.map((seat) => (
-                <div
-                  key={seat}
-                  className="rn-card flex items-center justify-between rounded-xl border border-white/10 bg-black/35 px-3.5 py-2.5 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/10"
-                >
-                  <span className="text-sm text-white/84">{seat}</span>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-white/45">Open</span>
-                </div>
-              ))}
-            </div>
-
-            <Link
-              href="/apply"
-              className="rn-button mt-5 inline-flex w-full items-center justify-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/85 transition-colors duration-150 ease-out hover:border-[#7f1020] hover:bg-[#7f1020]/20 sm:w-auto"
-            >
-              Submit profile
-            </Link>
-          </aside>
+        <section className="mt-5 sm:mt-6">
+          <MembersCardsClient members={members} />
         </section>
       </section>
     </main>
