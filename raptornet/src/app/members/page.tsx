@@ -36,6 +36,7 @@ type MemberDoc = {
   branch?: string;
   role?: string;
   title?: string;
+  bio?: string;
   status?: string;
   projectLink?: string;
   githubLink?: string;
