@@ -77,6 +77,8 @@ type MemberDoc = {
   name?: string;
   email?: string;
   linkedinLink?: string;
+  bio?: string;
+  skills?: string[];
 };
 
 export function cleanString(value: unknown, maxLength = 400) {
